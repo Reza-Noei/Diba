@@ -1,0 +1,111 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Diba.Desktop"
+                    xmlns:local="clr-namespace:Diba.Desktop.Themes">
+
+    <BitmapImage x:Key="CloseButton" UriSource="/Diba.Desktop;component/Resources/CloseButton.png"></BitmapImage>
+
+    <Style TargetType="Button" x:Key="CloseButtonStyle">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="BorderBrush" Value="#999"/>
+        <Setter Property="Background"  Value="#FFF"/>
+        <Setter Property="Foreground" Value="#fff"/>
+        <Setter Property="Padding" Value="2"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="2" Name="container" Cursor="Hand" 
+                                        Padding="{TemplateBinding Padding}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}" 
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        Background="{TemplateBinding Background}">
+                        <Canvas Width="9" Height="9" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Line X1="0" X2="9" Y1="0" Y2="9" StrokeThickness="3" Stroke="#999"/>
+                            <Line X1="0" X2="9" Y1="9" Y2="0" StrokeThickness="3" Stroke="#999"/>
+                            <Line X1="0.3" X2="8.7" Y1="0.3" Y2="8.7" StrokeThickness="1.5" Stroke="#FFF"/>
+                            <Line X1="0.3" X2="8.7" Y1="8.7" Y2="0.3" StrokeThickness="1.5" Stroke="#FFF"/>
+                        </Canvas>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup>
+                                <VisualState Name="Normal">
+
+                                </VisualState>
+                                <VisualState Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="container" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                                                        Duration="0:0:0.10" To="#bd4737"></ColorAnimation>
+                                        <ColorAnimation Storyboard.TargetName="container" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" 
+                                                        Duration="0:0:0.10" To="#9e392d"></ColorAnimation>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="container" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                                                        Duration="0:0:0.10" To="#a34035"></ColorAnimation>
+                                        <ColorAnimation Storyboard.TargetName="container" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" 
+                                                        Duration="0:0:0.10" To="#781c0c"></ColorAnimation>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- الگوی پنل اصلی دش لت -->
+    <Style TargetType="controls:DialogPanel">
+        <Setter Property="FontFamily" Value="{StaticResource IranSans}"/>
+        <Setter Property="Background" Value="#eee"/>
+        <Setter Property="BorderBrush" Value="#ccc"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl Content="{Binding}" Foreground="#333"></ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:DialogPanel">
+                    <Border Name="MainBorder" CornerRadius="6 6 6 6" Background="White" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Border.Effect>
+                            <DropShadowEffect ShadowDepth="0"
+                          Color="#BBB"
+                          Opacity="1"
+                          BlurRadius="10"/>
+                        </Border.Effect>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Border Name="header" CornerRadius="6 6 0 0" Padding="4 4 4 4"  Background="{TemplateBinding Background}" MinHeight="26" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,0,0,1">
+                                <Grid>
+                                    <TextBlock HorizontalAlignment="Center" FontSize="24"  FontWeight="Thin" VerticalAlignment="Center" Text="{TemplateBinding Header}"></TextBlock>
+                                    <Border Margin="5 0 5 0" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Right" Width="25" Height="15">
+                                        <Button x:Name="CloseButton" Width="25" Height="15" Style="{StaticResource CloseButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"></Button>
+                                    </Border>
+                                </Grid>
+                            </Border>
+
+                            <ContentControl Name="content" Grid.Row="1" TextBlock.Foreground="#333">
+                                <ContentPresenter Margin="15"></ContentPresenter>
+                            </ContentControl>
+
+                            <Border Grid.Row="2" Name="footer" Padding="0 4 4 4" Background="#f5f5f5" BorderThickness="0,1,0,0" CornerRadius="0 0 6 6" BorderBrush="#ddd">
+                                <ContentPresenter ContentSource="Footer"></ContentPresenter>
+                            </Border>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

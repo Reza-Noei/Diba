@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Diba.Desktop.Page.Home.PopUp.UserProfilePopUp"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Diba.Desktop.Page.Home.PopUp"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d">
+    <Grid Width="200" Margin="8,8,8,8">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button x:Name="ViewProfile"
+                IsDefault="True" 
+                Grid.Row="0"
+                Foreground="Black"
+                Command="{x:Static materialDesign:PopupBox.ClosePopupCommand}" 
+                Style="{StaticResource MaterialDesignFlatButton}"> مشاهده حساب کاربری </Button>
+
+        <Button x:Name="Settings"
+                IsDefault="True" 
+                Grid.Row="1"
+                Foreground="Black"
+                Command="{x:Static materialDesign:PopupBox.ClosePopupCommand}" 
+                Style="{StaticResource MaterialDesignFlatButton}"> تنظیمات </Button>
+
+        <Button x:Name="Exit"
+                Grid.Row="3"
+                IsDefault="True"
+                Command="{x:Static materialDesign:PopupBox.ClosePopupCommand}" 
+                Style="{StaticResource MaterialDesignFlatButton}"> خروج از سامانه </Button>
+    </Grid>
+</UserControl>

@@ -1,0 +1,124 @@
+﻿<Forms:FormBase x:Class="Diba.Desktop.Page.CustomerPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Forms ="clr-namespace:Diba.Desktop.Common"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Diba.Desktop.Page.Customer"
+             mc:Ignorable="d"   
+             TextBlock.FontSize="14"
+             Loaded="FormBase_Loaded"
+             FlowDirection="RightToLeft"
+             xmlns:Controls ="clr-namespace:Diba.Desktop.Controls"             
+             d:DesignHeight="2000" d:DesignWidth="900">
+    <Grid Background="#fafafa" Margin="0" Height="auto" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="White">
+            <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <StackPanel Margin="13" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal">
+                            <Border BorderThickness="1" CornerRadius="2" Padding="8 4 8 4" BorderBrush="SkyBlue">
+                                <TextBlock FontSize="17" FontWeight="Bold" Foreground="LightSalmon"> نرم افزار اتوماسیون قالیشویی دیبا</TextBlock>
+                            </Border>
+                            <TextBlock  Padding="8 4 8 4" FontSize="17" FontWeight="Bold" Foreground="LightSlateGray"> مشتری</TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                    <Button Margin="0 0 16 0"
+                            Click="Return_Click"
+                            Foreground="Green"
+                            BorderBrush="Green"
+                            materialDesign:ButtonAssist.CornerRadius="15"
+                            Style="{StaticResource MaterialDesignOutlinedButton}"
+                            HorizontalAlignment="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="KeyboardReturn" />
+                            <TextBlock Margin="5 0 0 0"> بازگشت</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0 0 0 1" />
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Height="50" Margin="15" >
+                    <TextBlock x:Name="CustomerFullName" Margin="10 0 0 0" FontSize="20" FontWeight="Bold" VerticalAlignment="Center">نام مشتری</TextBlock>
+                </Border>
+                <Grid Grid.Row="2" Margin="20" Height="auto">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Column="0">
+                            <materialDesign:PackIcon VerticalAlignment="Center" Foreground="DarkOrange" Width="25" Height="25" Kind="OrderBoolAscendingVariant" />
+                            <TextBlock Margin="10 0 0 0" VerticalAlignment="Center" FontSize="14">سفارشات اخیر</TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
+                            <Button Margin="0 0 0 0"
+                                            materialDesign:ButtonAssist.CornerRadius="15"
+                                            Style="{StaticResource MaterialDesignOutlinedButton}"
+                                            HorizontalAlignment="Right" Click="Button_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon VerticalAlignment="Center" Kind="AccountPlus" />
+                                    <TextBlock Margin="5 0 0 0"> سفارش جدید</TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+
+                    <Controls:Table x:Name="ReceiptsGrid" Grid.Row="1" MinHeight="100" Margin="0 15 0 15" />
+                </Grid>
+
+                <Grid Grid.Row="3" Margin="20" >
+                    <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth1" Padding="20">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0" Margin="15 10 15 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                                    <materialDesign:PackIcon VerticalAlignment="Center" Foreground="SlateGray"  Kind="CardAccountDetailsOutline" Width="25" Height="25"/>
+                                    <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" FontSize="14">اطلاعات مشتری</TextBlock>
+                                </StackPanel>
+
+                                <Button Grid.Column="1" HorizontalAlignment="Right" Width="auto" Style="{StaticResource MaterialDesignFlatButton}" ToolTip="MaterialDesignIconButton">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Pencil" VerticalAlignment="Center" />
+                                        <TextBlock Margin="5 0 0 0" Width="auto">ویرایش</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                            </Grid>
+                            <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+                            <Controls:CustomerControl x:Name="Customer" Grid.Row="1"></Controls:CustomerControl>
+                            <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+                        </Grid>
+                    </materialDesign:Card>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Forms:FormBase>

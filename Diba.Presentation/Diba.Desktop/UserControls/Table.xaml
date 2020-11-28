@@ -1,0 +1,69 @@
+﻿<Forms:FormBase x:Class="Diba.Desktop.Controls.Table"
+             xmlns:Forms ="clr-namespace:Diba.Desktop.Common"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Diba.Desktop"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             FlowDirection="RightToLeft" 
+            d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0"
+                BorderThickness="1"
+                CornerRadius="3"
+                BorderBrush="Black">
+            <DataGrid   Grid.Row="0"
+                        CanUserSortColumns="True"
+                        AutoGenerateColumns="False"
+                        x:Name="DataGrid"
+                        SelectionUnit="FullRow"
+                        SelectionMode="Single"
+                        HeadersVisibility="All">
+                <DataGrid.Resources>
+                    <!--<domain:BindingProxy x:Key="DataContextProxy" Data="{Binding}" xmlns:domain="clr-namespace:MaterialDesignDemo.Domain" />-->
+                </DataGrid.Resources>
+                <!--<DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow" BasedOn="{StaticResource MaterialDesignDataGridRow}">
+                        <Style.Triggers>
+                            --><!--<Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#CCDAFF" />
+                            </Trigger>-->
+                            <!--<Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#ffeb3b" />
+                            </Trigger>--><!--
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>-->
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="Transparent" />
+                            </Trigger>
+                            <!--<Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#bf8afb" />
+                            </Trigger>-->
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
+            </DataGrid>
+        </Border>
+        <StackPanel Margin="10" 
+                    Visibility="Collapsed"
+                    Grid.Row="1"
+                    VerticalAlignment="Bottom" 
+                    HorizontalAlignment="Right" 
+                    Orientation="Horizontal">
+            <Button Margin="5 0 0 0" Style="{StaticResource MaterialDesignFlatButton}">2</Button>
+            <Button Margin="5 0 0 0">3</Button>
+            <TextBlock xml:space="preserve" VerticalAlignment="Center"> . . .</TextBlock>
+            <Button Margin="5 0 0 0">4</Button>
+        </StackPanel>
+    </Grid>
+</Forms:FormBase>

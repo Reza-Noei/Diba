@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diba.Core.WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:Diba.Core.WebApi.Controllers.AuthenticationController.Post(Diba.Core.AppService.Contract.BindingModels.UserAuthenticationBindingModel)">
+            <summary>
+            ورود اولیه به سامانه
+            </summary>
+            <param name="request">درخواست</param>
+            <returns>توکن</returns>
+        </member>
+        <member name="M:Diba.Core.WebApi.Controllers.AuthenticationController.Patch(Diba.Core.AppService.Contract.BindingModels.MembershipAuthenticationBindingModel)">
+            <summary>
+            ورود مرحله دوم به سامانه
+            </summary>
+            <param name="request">درخواست</param>
+            <returns>توکن</returns>
+        </member>
+        <member name="M:Diba.Core.WebApi.Controllers.AuthenticationController.Get">
+            <summary>
+            بازیابی عضویت های کاربر
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diba.Core.WebApi.Controllers.CustomerManagementController.Post(Diba.Core.AppService.CreateCustomerInputModel)">
+            <summary>
+            ایجاد مشتری
+            </summary>
+            <param name="request">درخواست</param>
+            <returns>مشتری ایجاد شده</returns>
+        </member>
+        <member name="M:Diba.Core.WebApi.Controllers.CustomerManagementController.Get">
+            <summary>
+            ایجاد مشتری
+            </summary>
+            <param name="request">درخواست</param>
+            <returns>مشتری ایجاد شده</returns>
+        </member>
+        <member name="M:Diba.Core.WebApi.Controllers.OrganizationManagementController.#ctor(Diba.Core.AppService.Contract.IOrganizationManagementQuery)">
+            <summary>
+            کوئری برروی مدیریت سازمانها
+            </summary>
+            <param name="organizationManagementQuery"></param>
+        </member>
+        <member name="M:Diba.Core.WebApi.Controllers.OrganizationManagementController.Get">
+            <summary>
+            اطلاعات سازمان من
+            </summary>
+            <returns>اطلاعات سازمان</returns>
+        </member>
+        <member name="M:Diba.Core.WebApi.Internal.DibaAuthorization.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)">
+            <summary>  
+            This will Authorize User  
+            </summary>  
+            <returns></returns>  
+        </member>
+        <member name="P:Diba.Core.WebApi.Internal.JsonWebTokenSetting.Secret">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diba.Core.WebApi.Internal.JsonWebTokenSetting.LifeTime">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

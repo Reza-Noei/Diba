@@ -1,0 +1,192 @@
+﻿<UserControl x:Class="Diba.Desktop.Page.Customer.InvoiceControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Diba.Desktop.Page.Customer"
+             xmlns:Common="clr-namespace:Diba.Desktop.Common"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Common:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+    </UserControl.Resources>
+    <Grid Height="auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="CustomerCode"
+                         Grid.Row="1" 
+                         Grid.ColumnSpan="2"
+                         Margin="15"
+                         Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                         VerticalAlignment="Top"         
+                         materialDesign:TextFieldAssist.HasClearButton="{Binding Path=IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                         IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox}">
+            <materialDesign:HintAssist.Hint>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                    <materialDesign:PackIcon Kind="BarcodeScan" />
+                    <TextBlock xml:space="preserve"> کد اشتراک</TextBlock>
+                </StackPanel>
+            </materialDesign:HintAssist.Hint>
+        </TextBox>
+        <TextBox x:Name="CustomerFirstName"
+                         Grid.Row="2"
+                         Grid.ColumnSpan="1"
+                         Margin="15"
+                         Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                         VerticalAlignment="Top"                            
+                         materialDesign:TextFieldAssist.HasClearButton="{Binding Path=IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                         IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox}">
+            <materialDesign:HintAssist.Hint>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                    <materialDesign:PackIcon Kind="Account" />
+                    <TextBlock xml:space="preserve"> نام</TextBlock>
+                </StackPanel>
+            </materialDesign:HintAssist.Hint>
+        </TextBox>
+
+        <TextBox x:Name="CustomerLastName"
+                         Grid.Row="3"
+                         Grid.ColumnSpan="1"
+                         Margin="15"
+                         Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                         VerticalAlignment="Top"                            
+                         materialDesign:TextFieldAssist.HasClearButton="{Binding Path=IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                         IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox}">
+            <materialDesign:HintAssist.Hint>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                    <materialDesign:PackIcon Kind="Account" />
+                    <TextBlock xml:space="preserve"> نام خانوادگی</TextBlock>
+                </StackPanel>
+            </materialDesign:HintAssist.Hint>
+        </TextBox>
+
+        <TextBox x:Name="CustomerDistrict"
+                         Grid.Row="4"
+                         Grid.ColumnSpan="1"
+                         Margin="15"
+                         Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                         VerticalAlignment="Top"                            
+                         materialDesign:TextFieldAssist.HasClearButton="{Binding Path=IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                         IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox}">
+            <materialDesign:HintAssist.Hint>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                    <materialDesign:PackIcon Kind="HomeCity" />
+                    <TextBlock xml:space="preserve"> محله</TextBlock>
+                </StackPanel>
+            </materialDesign:HintAssist.Hint>
+        </TextBox>
+
+        <TextBox x:Name="CustomerPhoneNumber"
+                         Grid.Row="5"
+                         Grid.ColumnSpan="1"
+                         Margin="15"
+                         Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                         VerticalAlignment="Top"                            
+                         materialDesign:TextFieldAssist.HasClearButton="{Binding Path=IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                         IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox}">
+            <materialDesign:HintAssist.Hint>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                    <materialDesign:PackIcon Kind="PhoneClassic" />
+                    <TextBlock xml:space="preserve"> شماره تماس</TextBlock>
+                </StackPanel>
+            </materialDesign:HintAssist.Hint>
+        </TextBox>
+
+
+        <TextBox x:Name="CustomerEconomicCode"
+                         Grid.Row="2"
+                         Grid.Column="1"
+                         Margin="15"
+                         Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                         VerticalAlignment="Top"                            
+                         materialDesign:TextFieldAssist.HasClearButton="{Binding Path=IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                         IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox}">
+            <materialDesign:HintAssist.Hint>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                    <materialDesign:PackIcon Kind="Money" />
+                    <TextBlock xml:space="preserve"> کد اقتصادی</TextBlock>
+                </StackPanel>
+            </materialDesign:HintAssist.Hint>
+        </TextBox>
+
+        <TextBox x:Name="CustomerNationalIdentifier"
+                         Grid.Row="3"
+                         Grid.Column="1"
+                         Margin="15"
+                         Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                         VerticalAlignment="Top"                            
+                         materialDesign:TextFieldAssist.HasClearButton="{Binding Path=IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                         IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox}">
+            <materialDesign:HintAssist.Hint>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                    <materialDesign:PackIcon Kind="CardAccountDetailsOutline" />
+                    <TextBlock xml:space="preserve"> شناسه ملی</TextBlock>
+                </StackPanel>
+            </materialDesign:HintAssist.Hint>
+        </TextBox>
+
+        <TextBox x:Name="CustomerRegistrationNumber"
+                         Grid.Row="4"
+                         Grid.Column="1"
+                         Margin="15"
+                         Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                         VerticalAlignment="Top"                            
+                         materialDesign:TextFieldAssist.HasClearButton="{Binding Path=IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                         IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox}">
+            <materialDesign:HintAssist.Hint>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                    <materialDesign:PackIcon Kind="RegisteredTrademark" />
+                    <TextBlock xml:space="preserve"> شماره ثبت</TextBlock>
+                </StackPanel>
+            </materialDesign:HintAssist.Hint>
+        </TextBox>
+
+        <TextBox x:Name="CustomerPostalCode"
+                         Grid.Row="5"
+                         Grid.Column="1"
+                         Margin="15"
+                         Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                         VerticalAlignment="Top"                            
+                         materialDesign:TextFieldAssist.HasClearButton="{Binding Path=IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                         IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox}">
+            <materialDesign:HintAssist.Hint>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                    <materialDesign:PackIcon Kind="Email" />
+                    <TextBlock xml:space="preserve"> کد پستی</TextBlock>
+                </StackPanel>
+            </materialDesign:HintAssist.Hint>
+        </TextBox>
+
+        <TextBox x:Name="CustomerAddress"
+                         Grid.Row="6"
+                         Grid.ColumnSpan="2"
+                         Margin="15"
+                         VerticalAlignment="Top"
+                         Height="100"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto"
+                         Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                         materialDesign:TextFieldAssist.HasClearButton="{Binding Path=IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                         IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox}">
+            <materialDesign:HintAssist.Hint>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                    <materialDesign:PackIcon Kind="MapMarker" />
+                    <TextBlock xml:space="preserve"> آدرس</TextBlock>
+                </StackPanel>
+            </materialDesign:HintAssist.Hint>
+        </TextBox>
+    </Grid>
+</UserControl>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Diba.Core.Data</id>
+    <version>1.0.0</version>
+    <authors>Diba.Core.Data</authors>
+    <owners>Diba.Core.Data</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Diba.Core.Common" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Diba.Core.Domain" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.EntityFrameworkCore" version="3.1.6" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.EntityFrameworkCore.Proxies" version="3.1.6" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.EntityFrameworkCore.SqlServer" version="3.1.5" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\RezaNoei\Desktop\Diba\Diba.Core\Diba.Core.Data\bin\Release\netstandard2.0\Diba.Core.Data.dll" target="lib\netstandard2.0\Diba.Core.Data.dll" />
+  </files>
+</package>
