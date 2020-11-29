@@ -34,3 +34,15 @@ E:\Github\Diba\Diba.Core\Diba.Core.Domain\obj\Debug\netstandard2.0\Diba.Core.Dom
 E:\Github\Diba\Diba.Core\Diba.Core.Domain\obj\Debug\netstandard2.0\Diba.Core.Domain.csproj.CopyComplete
 E:\Github\Diba\Diba.Core\Diba.Core.Domain\obj\Debug\netstandard2.0\Diba.Core.Domain.dll
 E:\Github\Diba\Diba.Core\Diba.Core.Domain\obj\Debug\netstandard2.0\Diba.Core.Domain.pdb
+C:\Repos\Diba\Diba.Core\Diba.Core.Domain\bin\Debug\netstandard2.0\Diba.Core.Domain.deps.json
+C:\Repos\Diba\Diba.Core\Diba.Core.Domain\bin\Debug\netstandard2.0\Diba.Core.Domain.dll
+C:\Repos\Diba\Diba.Core\Diba.Core.Domain\bin\Debug\netstandard2.0\Diba.Core.Domain.pdb
+C:\Repos\Diba\Diba.Core\Diba.Core.Domain\bin\Debug\netstandard2.0\Diba.Core.Common.dll
+C:\Repos\Diba\Diba.Core\Diba.Core.Domain\bin\Debug\netstandard2.0\Diba.Core.Common.pdb
+C:\Repos\Diba\Diba.Core\Diba.Core.Domain\obj\Debug\netstandard2.0\Diba.Core.Domain.csprojAssemblyReference.cache
+C:\Repos\Diba\Diba.Core\Diba.Core.Domain\obj\Debug\netstandard2.0\Diba.Core.Domain.AssemblyInfoInputs.cache
+C:\Repos\Diba\Diba.Core\Diba.Core.Domain\obj\Debug\netstandard2.0\Diba.Core.Domain.AssemblyInfo.cs
+C:\Repos\Diba\Diba.Core\Diba.Core.Domain\obj\Debug\netstandard2.0\Diba.Core.Domain.csproj.CoreCompileInputs.cache
+C:\Repos\Diba\Diba.Core\Diba.Core.Domain\obj\Debug\netstandard2.0\Diba.Core.Domain.csproj.CopyComplete
+C:\Repos\Diba\Diba.Core\Diba.Core.Domain\obj\Debug\netstandard2.0\Diba.Core.Domain.dll
+C:\Repos\Diba\Diba.Core\Diba.Core.Domain\obj\Debug\netstandard2.0\Diba.Core.Domain.pdb

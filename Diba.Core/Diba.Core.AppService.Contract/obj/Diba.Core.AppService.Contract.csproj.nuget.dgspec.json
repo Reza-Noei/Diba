@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Github\\Diba\\Diba.Core\\Diba.Core.AppService.Contract\\Diba.Core.AppService.Contract.csproj": {}
+    "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.AppService.Contract\\Diba.Core.AppService.Contract.csproj": {}
   },
   "projects": {
-    "E:\\Github\\Diba\\Diba.Core\\Diba.Core.AppService.Contract\\Diba.Core.AppService.Contract.csproj": {
+    "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.AppService.Contract\\Diba.Core.AppService.Contract.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.AppService.Contract\\Diba.Core.AppService.Contract.csproj",
+        "projectUniqueName": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.AppService.Contract\\Diba.Core.AppService.Contract.csproj",
         "projectName": "Diba.Core.AppService.Contract",
-        "projectPath": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.AppService.Contract\\Diba.Core.AppService.Contract.csproj",
-        "packagesPath": "C:\\Users\\RezaNoei\\.nuget\\packages\\",
-        "outputPath": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.AppService.Contract\\obj\\",
+        "projectPath": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.AppService.Contract\\Diba.Core.AppService.Contract.csproj",
+        "packagesPath": "C:\\Users\\hamid\\.nuget\\packages\\",
+        "outputPath": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.AppService.Contract\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\RezaNoei\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hamid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -25,8 +25,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://www.myget.org/F/discord-net/api/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {

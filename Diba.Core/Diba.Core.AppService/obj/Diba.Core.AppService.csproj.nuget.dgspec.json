@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Github\\Diba\\Diba.Core\\Diba.Core.AppService\\Diba.Core.AppService.csproj": {}
+    "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.AppService\\Diba.Core.AppService.csproj": {}
   },
   "projects": {
-    "E:\\Github\\Diba\\Diba.Core\\Diba.Core.AppService.Contract\\Diba.Core.AppService.Contract.csproj": {
+    "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.AppService.Contract\\Diba.Core.AppService.Contract.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.AppService.Contract\\Diba.Core.AppService.Contract.csproj",
+        "projectUniqueName": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.AppService.Contract\\Diba.Core.AppService.Contract.csproj",
         "projectName": "Diba.Core.AppService.Contract",
-        "projectPath": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.AppService.Contract\\Diba.Core.AppService.Contract.csproj",
-        "packagesPath": "C:\\Users\\RezaNoei\\.nuget\\packages\\",
-        "outputPath": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.AppService.Contract\\obj\\",
+        "projectPath": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.AppService.Contract\\Diba.Core.AppService.Contract.csproj",
+        "packagesPath": "C:\\Users\\hamid\\.nuget\\packages\\",
+        "outputPath": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.AppService.Contract\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\RezaNoei\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hamid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -25,8 +25,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://www.myget.org/F/discord-net/api/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {
@@ -69,20 +68,20 @@
         }
       }
     },
-    "E:\\Github\\Diba\\Diba.Core\\Diba.Core.AppService\\Diba.Core.AppService.csproj": {
+    "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.AppService\\Diba.Core.AppService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.AppService\\Diba.Core.AppService.csproj",
+        "projectUniqueName": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.AppService\\Diba.Core.AppService.csproj",
         "projectName": "Diba.Core.AppService",
-        "projectPath": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.AppService\\Diba.Core.AppService.csproj",
-        "packagesPath": "C:\\Users\\RezaNoei\\.nuget\\packages\\",
-        "outputPath": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.AppService\\obj\\",
+        "projectPath": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.AppService\\Diba.Core.AppService.csproj",
+        "packagesPath": "C:\\Users\\hamid\\.nuget\\packages\\",
+        "outputPath": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.AppService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\RezaNoei\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hamid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -90,24 +89,23 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://www.myget.org/F/discord-net/api/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "E:\\Github\\Diba\\Diba.Core\\Diba.Core.AppService.Contract\\Diba.Core.AppService.Contract.csproj": {
-                "projectPath": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.AppService.Contract\\Diba.Core.AppService.Contract.csproj"
+              "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.AppService.Contract\\Diba.Core.AppService.Contract.csproj": {
+                "projectPath": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.AppService.Contract\\Diba.Core.AppService.Contract.csproj"
               },
-              "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Common\\Diba.Core.Common.csproj": {
-                "projectPath": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Common\\Diba.Core.Common.csproj"
+              "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Common\\Diba.Core.Common.csproj": {
+                "projectPath": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Common\\Diba.Core.Common.csproj"
               },
-              "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Data\\Diba.Core.Data.csproj": {
-                "projectPath": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Data\\Diba.Core.Data.csproj"
+              "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Data\\Diba.Core.Data.csproj": {
+                "projectPath": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Data\\Diba.Core.Data.csproj"
               },
-              "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Domain\\Diba.Core.Domain.csproj": {
-                "projectPath": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Domain\\Diba.Core.Domain.csproj"
+              "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Domain\\Diba.Core.Domain.csproj": {
+                "projectPath": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Domain\\Diba.Core.Domain.csproj"
               }
             }
           }
@@ -159,20 +157,20 @@
         }
       }
     },
-    "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Common\\Diba.Core.Common.csproj": {
+    "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Common\\Diba.Core.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Common\\Diba.Core.Common.csproj",
+        "projectUniqueName": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Common\\Diba.Core.Common.csproj",
         "projectName": "Diba.Core.Common",
-        "projectPath": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Common\\Diba.Core.Common.csproj",
-        "packagesPath": "C:\\Users\\RezaNoei\\.nuget\\packages\\",
-        "outputPath": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Common\\obj\\",
+        "projectPath": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Common\\Diba.Core.Common.csproj",
+        "packagesPath": "C:\\Users\\hamid\\.nuget\\packages\\",
+        "outputPath": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\RezaNoei\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hamid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -180,8 +178,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://www.myget.org/F/discord-net/api/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {
@@ -224,20 +221,20 @@
         }
       }
     },
-    "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Data\\Diba.Core.Data.csproj": {
+    "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Data\\Diba.Core.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Data\\Diba.Core.Data.csproj",
+        "projectUniqueName": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Data\\Diba.Core.Data.csproj",
         "projectName": "Diba.Core.Data",
-        "projectPath": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Data\\Diba.Core.Data.csproj",
-        "packagesPath": "C:\\Users\\RezaNoei\\.nuget\\packages\\",
-        "outputPath": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Data\\obj\\",
+        "projectPath": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Data\\Diba.Core.Data.csproj",
+        "packagesPath": "C:\\Users\\hamid\\.nuget\\packages\\",
+        "outputPath": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\RezaNoei\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hamid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -245,18 +242,17 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://www.myget.org/F/discord-net/api/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Common\\Diba.Core.Common.csproj": {
-                "projectPath": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Common\\Diba.Core.Common.csproj"
+              "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Common\\Diba.Core.Common.csproj": {
+                "projectPath": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Common\\Diba.Core.Common.csproj"
               },
-              "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Domain\\Diba.Core.Domain.csproj": {
-                "projectPath": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Domain\\Diba.Core.Domain.csproj"
+              "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Domain\\Diba.Core.Domain.csproj": {
+                "projectPath": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Domain\\Diba.Core.Domain.csproj"
               }
             }
           }
@@ -310,20 +306,20 @@
         }
       }
     },
-    "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Domain\\Diba.Core.Domain.csproj": {
+    "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Domain\\Diba.Core.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Domain\\Diba.Core.Domain.csproj",
+        "projectUniqueName": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Domain\\Diba.Core.Domain.csproj",
         "projectName": "Diba.Core.Domain",
-        "projectPath": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Domain\\Diba.Core.Domain.csproj",
-        "packagesPath": "C:\\Users\\RezaNoei\\.nuget\\packages\\",
-        "outputPath": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Domain\\obj\\",
+        "projectPath": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Domain\\Diba.Core.Domain.csproj",
+        "packagesPath": "C:\\Users\\hamid\\.nuget\\packages\\",
+        "outputPath": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\RezaNoei\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hamid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -331,15 +327,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://www.myget.org/F/discord-net/api/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Common\\Diba.Core.Common.csproj": {
-                "projectPath": "E:\\Github\\Diba\\Diba.Core\\Diba.Core.Common\\Diba.Core.Common.csproj"
+              "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Common\\Diba.Core.Common.csproj": {
+                "projectPath": "C:\\Repos\\Diba\\Diba.Core\\Diba.Core.Common\\Diba.Core.Common.csproj"
               }
             }
           }

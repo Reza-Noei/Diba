@@ -148,3 +148,11 @@ E:\Github\Diba\Diba.Core\Diba.Core.WebApi\obj\Debug\netcoreapp3.1\Diba.Core.WebA
 E:\Github\Diba\Diba.Core\Diba.Core.WebApi\obj\Debug\netcoreapp3.1\Diba.Core.WebApi.dll
 E:\Github\Diba\Diba.Core\Diba.Core.WebApi\obj\Debug\netcoreapp3.1\Diba.Core.WebApi.pdb
 E:\Github\Diba\Diba.Core\Diba.Core.WebApi\obj\Debug\netcoreapp3.1\Diba.Core.WebApi.genruntimeconfig.cache
+C:\Repos\Diba\Diba.Core\Diba.Core.WebApi\obj\Debug\netcoreapp3.1\Diba.Core.WebApi.csprojAssemblyReference.cache
+C:\Repos\Diba\Diba.Core\Diba.Core.WebApi\obj\Debug\netcoreapp3.1\Diba.Core.WebApi.AssemblyInfoInputs.cache
+C:\Repos\Diba\Diba.Core\Diba.Core.WebApi\obj\Debug\netcoreapp3.1\Diba.Core.WebApi.AssemblyInfo.cs
+C:\Repos\Diba\Diba.Core\Diba.Core.WebApi\obj\Debug\netcoreapp3.1\Diba.Core.WebApi.csproj.CoreCompileInputs.cache
+C:\Repos\Diba\Diba.Core\Diba.Core.WebApi\obj\Debug\netcoreapp3.1\Diba.Core.WebApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Repos\Diba\Diba.Core\Diba.Core.WebApi\obj\Debug\netcoreapp3.1\Diba.Core.WebApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Repos\Diba\Diba.Core\Diba.Core.WebApi\obj\Debug\netcoreapp3.1\Diba.Core.WebApi.dll
+C:\Repos\Diba\Diba.Core\Diba.Core.WebApi\obj\Debug\netcoreapp3.1\Diba.Core.WebApi.pdb
