@@ -1,5 +1,7 @@
 ﻿using Diba.Core.Data.Configuration;
 using Diba.Core.Domain;
+using Diba.Core.Domain.Constraints;
+using Diba.Core.Domain.Products;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -26,6 +28,8 @@ namespace Diba.Core.Data
         public DbSet<Secretary> Secretaries { get; set; }
         public DbSet<BaseRole> Roles { get; set; }
         public DbSet<CustomerOrder> Orders { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Constraint> Constraints { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Diba.Core.AppService.Contract.Product.Model.InputModels;
+using Diba.Core.AppService.Contract.Product.Model.ViewModels;
 
 namespace Diba.Core.AppService.Contract.Product
 {
     public interface IProductCommandService
     {
+        ServiceResult<ProductViewModel> Create(CreateProductViewModel model);
+        ServiceResult<ProductViewModel> Update(int id, UpdateProductViewModel model);
     }
 }

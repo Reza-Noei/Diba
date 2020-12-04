@@ -3,10 +3,36 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Diba.Core.Data.Migrations
 {
-    public partial class AddInitial : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Constraints",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Constraints", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "QuickAccessLists",
                 columns: table => new
@@ -628,14 +654,14 @@ namespace Diba.Core.Data.Migrations
                 columns: new[] { "Id", "Creation", "CreatorId", "Password", "Username" },
                 values: new object[,]
                 {
-                    { 1L, new DateTime(2020, 12, 4, 15, 14, 3, 507, DateTimeKind.Local).AddTicks(1915), null, "123456", "SuperAdmin" },
-                    { 2L, new DateTime(2020, 12, 4, 15, 14, 3, 511, DateTimeKind.Local).AddTicks(1865), null, "123456", "Secretary" }
+                    { 1L, new DateTime(2020, 12, 4, 19, 13, 9, 204, DateTimeKind.Local).AddTicks(3587), null, "123456", "SuperAdmin" },
+                    { 2L, new DateTime(2020, 12, 4, 19, 13, 9, 209, DateTimeKind.Local).AddTicks(729), null, "123456", "Secretary" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Organizations",
                 columns: new[] { "Id", "Creation", "CreatorId", "Modification", "ModifierId", "Prefix", "Title" },
-                values: new object[] { 1L, new DateTime(2020, 12, 4, 15, 14, 3, 513, DateTimeKind.Local).AddTicks(7601), 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "935", "Default Organization" });
+                values: new object[] { 1L, new DateTime(2020, 12, 4, 19, 13, 9, 211, DateTimeKind.Local).AddTicks(6994), 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "935", "Default Organization" });
 
             migrationBuilder.InsertData(
                 table: "Roles",
@@ -888,10 +914,16 @@ namespace Diba.Core.Data.Migrations
                 name: "AuthorityPermissions");
 
             migrationBuilder.DropTable(
+                name: "Constraints");
+
+            migrationBuilder.DropTable(
                 name: "ContactInfos");
 
             migrationBuilder.DropTable(
                 name: "CustomerOrders");
+
+            migrationBuilder.DropTable(
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "RolePermissions");

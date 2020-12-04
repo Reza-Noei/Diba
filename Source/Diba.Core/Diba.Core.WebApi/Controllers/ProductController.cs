@@ -4,6 +4,7 @@ using Diba.Core.AppService.Contract.Product.Model.InputModels;
 using Diba.Core.AppService.Contract.Product.Model.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Diba.Core.WebApi.Controllers
 {
@@ -11,18 +12,41 @@ namespace Diba.Core.WebApi.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        public ProductController()
+        public ProductController(IProductQueryService productQueryService, IProductCommandService productCommandService)
         {
+            _productQueryService = productQueryService;
+            _productCommandService = productCommandService;
+        }
 
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("/{id}")]
+        public ServiceResult<ProductViewModel> Get(int id)
+        {
+            ServiceResult<ProductViewModel> product = _productQueryService.Get(id);
+            return product;
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ServiceResult<IEnumerable<ProductViewModel>> GetList()
+        {
+            ServiceResult<IEnumerable<ProductViewModel>> products = _productQueryService.GetList();
+            return products;
         }
 
         [HttpPost]
         [AllowAnonymous]
         public ServiceResult<ProductViewModel> Create(CreateProductViewModel model)
         {
-            //return _constraintCommandService.Create(model);
-            throw new System.Exception();
+            return _productCommandService.Create(model);
+        }
 
+        [HttpPut]
+        [AllowAnonymous]
+        public ServiceResult<ProductViewModel> Update(int id, UpdateProductViewModel model)
+        {
+            return _productCommandService.Update(id, model);
         }
 
         private readonly IProductCommandService _productCommandService;

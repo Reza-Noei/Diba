@@ -1,6 +1,7 @@
 ﻿using System;
 using AutoMapper;
 using Diba.Core.AppService.Contract;
+using Diba.Core.AppService.Contract.Product;
 using Diba.Core.AppService.Contract.Product.Model.InputModels;
 using Diba.Core.AppService.Contract.Product.Model.ViewModels;
 using Diba.Core.Common.Infrastructure;
@@ -9,7 +10,7 @@ using Diba.Core.Domain.Products;
 
 namespace Diba.Core.AppService.Products
 {
-    public class ProductCommandService
+    public class ProductCommandService : IProductCommandService
     {
         public ProductCommandService(IProductRepository productRepository, IMapper mapper, IUnitOfWork unitOfWork)
         {
@@ -39,12 +40,14 @@ namespace Diba.Core.AppService.Products
             if (product == null)
                 return new ServiceResult<ProductViewModel>(StatusCode.NotFound);
 
-            //product.Update(area: request.Area, title: request.Title);
+            product.Update(name: request.Name);
 
             _unitOfWork.Commit();
 
             return new ServiceResult<ProductViewModel>(_mapper.Map<ProductViewModel>(product));
         }
+
+
 
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;

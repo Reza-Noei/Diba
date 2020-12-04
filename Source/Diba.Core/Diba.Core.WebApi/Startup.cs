@@ -6,9 +6,15 @@ using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
 using Diba.Core.AppService;
+using Diba.Core.AppService.Constraint;
 using Diba.Core.AppService.Contract;
+using Diba.Core.AppService.Contract.Constraint;
+using Diba.Core.AppService.Contract.Product;
 using Diba.Core.AppService.CustomerManagement;
 using Diba.Core.AppService.Dependencies;
+using Diba.Core.AppService.Products;
+using Diba.Core.Data.Repository.Implementations;
+using Diba.Core.Data.Repository.Interfaces;
 using Diba.Core.WebApi.Internal.Extension;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -74,6 +80,17 @@ namespace Diba.Core.Service
             });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddScoped<IProductCommandService, ProductCommandService>();
+            services.AddScoped<IProductQueryService, ProductQueryService>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+
+
+            services.AddScoped<IConstraintCommandService, ConstraintCommandService>();
+            services.AddScoped<IConstraintQueryService, ConstraintQueryService>();
+            services.AddScoped<IConstraintRepository, ConstraintRepository>();
+
+
             services.AddFromConfigurationFile(Configuration.GetSection("Services"));
 
             ServiceProvider serviceProvider = services.BuildServiceProvider();
@@ -93,6 +110,10 @@ namespace Diba.Core.Service
                 mc.AddProfile(new CustomerManagementMappingProfile());
                 mc.AddProfile(new OrganizationManagementMappingProfile());
                 mc.AddProfile(new OrganizationMembershipManagementMappingProfile());
+
+                mc.AddProfile(new ProductMappingConfig());
+                mc.AddProfile(new ConstraintMappingConfig());
+
             });
 
             IMapper mapper = mappingConfig.CreateMapper();

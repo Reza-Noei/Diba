@@ -5,5 +5,6 @@ namespace Diba.Core.Data.Repository.Interfaces
 {
     public interface IProductRepository : IRepository<Product>
     {
+        Product GetById(int id);
     }
 }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Diba.Core.Data.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20201204114404_AddInitial")]
-    partial class AddInitial
+    [Migration("20201204154310_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -214,6 +214,21 @@ namespace Diba.Core.Data.Migrations
                     b.HasIndex("OrganizationId");
 
                     b.ToTable("CollectorMemberships");
+                });
+
+            modelBuilder.Entity("Diba.Core.Domain.Constraints.Constraint", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Constraints");
                 });
 
             modelBuilder.Entity("Diba.Core.Domain.ContactInfo", b =>
@@ -499,12 +514,27 @@ namespace Diba.Core.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            Creation = new DateTime(2020, 12, 4, 15, 14, 3, 513, DateTimeKind.Local).AddTicks(7601),
+                            Creation = new DateTime(2020, 12, 4, 19, 13, 9, 211, DateTimeKind.Local).AddTicks(6994),
                             CreatorId = 1L,
                             Modification = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Prefix = "935",
                             Title = "Default Organization"
                         });
+                });
+
+            modelBuilder.Entity("Diba.Core.Domain.Products.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Diba.Core.Domain.QName", b =>
@@ -751,14 +781,14 @@ namespace Diba.Core.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            Creation = new DateTime(2020, 12, 4, 15, 14, 3, 507, DateTimeKind.Local).AddTicks(1915),
+                            Creation = new DateTime(2020, 12, 4, 19, 13, 9, 204, DateTimeKind.Local).AddTicks(3587),
                             Password = "123456",
                             Username = "SuperAdmin"
                         },
                         new
                         {
                             Id = 2L,
-                            Creation = new DateTime(2020, 12, 4, 15, 14, 3, 511, DateTimeKind.Local).AddTicks(1865),
+                            Creation = new DateTime(2020, 12, 4, 19, 13, 9, 209, DateTimeKind.Local).AddTicks(729),
                             Password = "123456",
                             Username = "Secretary"
                         });

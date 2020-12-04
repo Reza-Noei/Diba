@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Diba.Core.AppService.Contract.Product.Model.ViewModels
+﻿namespace Diba.Core.AppService.Contract.Product.Model.ViewModels
 {
     public class ProductViewModel
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

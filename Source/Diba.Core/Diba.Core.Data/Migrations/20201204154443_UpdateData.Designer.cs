@@ -4,14 +4,16 @@ using Diba.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Diba.Core.Data.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20201204154443_UpdateData")]
+    partial class UpdateData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -512,7 +514,7 @@ namespace Diba.Core.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            Creation = new DateTime(2020, 12, 4, 19, 15, 32, 487, DateTimeKind.Local).AddTicks(6548),
+                            Creation = new DateTime(2020, 12, 4, 19, 14, 41, 975, DateTimeKind.Local).AddTicks(202),
                             CreatorId = 1L,
                             Modification = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Prefix = "935",
@@ -779,14 +781,14 @@ namespace Diba.Core.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            Creation = new DateTime(2020, 12, 4, 19, 15, 32, 481, DateTimeKind.Local).AddTicks(1914),
+                            Creation = new DateTime(2020, 12, 4, 19, 14, 41, 965, DateTimeKind.Local).AddTicks(8068),
                             Password = "123456",
                             Username = "SuperAdmin"
                         },
                         new
                         {
                             Id = 2L,
-                            Creation = new DateTime(2020, 12, 4, 19, 15, 32, 485, DateTimeKind.Local).AddTicks(1428),
+                            Creation = new DateTime(2020, 12, 4, 19, 14, 41, 971, DateTimeKind.Local).AddTicks(4649),
                             Password = "123456",
                             Username = "Secretary"
                         });

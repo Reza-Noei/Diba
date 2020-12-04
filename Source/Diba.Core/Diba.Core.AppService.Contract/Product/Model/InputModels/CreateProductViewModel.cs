@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Diba.Core.AppService.Contract.Product.Model.InputModels
+﻿namespace Diba.Core.AppService.Contract.Product.Model.InputModels
 {
     public class CreateProductViewModel
     {
+        public string Name { get; set; }
     }
 }

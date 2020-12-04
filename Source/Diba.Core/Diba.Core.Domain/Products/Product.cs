@@ -1,33 +1,34 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using Diba.Core.Domain.Products.ProductConstraints;
+﻿using System;
 
 namespace Diba.Core.Domain.Products
 {
     public class Product : BaseEntity<int>
     {
-        private List<ProductConstraint> _constraints;
-        private List<ProductConstraint> constraints;
+        //private List<ProductConstraint> _constraints;
+        //private List<ProductConstraint> constraints;
 
-        public string Name { get; }
-        public ReadOnlyCollection<ProductConstraint> Constraints => _constraints.AsReadOnly();
+        public string Name { get; private set; }
+        //public ReadOnlyCollection<ProductConstraint> Constraints => _constraints.AsReadOnly();
 
-        public Product(int id, string name, List<ProductConstraint> constraints)
+        public Product(string name/*, List<ProductConstraint> constraints*/)
         {
-            GuardAgainstDuplicateConstraint(constraints);
+            //GuardAgainstDuplicateConstraint(constraints);
 
-            this.Id = id;
             this.Name = name;
-            this._constraints = constraints;
+            //this._constraints = constraints;
         }
 
-        private static void GuardAgainstDuplicateConstraint(List<ProductConstraint> constraints)
+        public void Update(string name)
         {
-            var anyDuplicate = constraints.GroupBy(a => a.ConstraintId, (key, value) => new {key, value})
-                .Any(a => a.value.Count() > 1);
-            if (anyDuplicate)
-                throw new DuplicateProductConstraintException();
+            this.Name = name;
         }
+
+        //private static void GuardAgainstDuplicateConstraint(List<ProductConstraint> constraints)
+        //{
+        //    var anyDuplicate = constraints.GroupBy(a => a.ConstraintId, (key, value) => new {key, value})
+        //        .Any(a => a.value.Count() > 1);
+        //    if (anyDuplicate)
+        //        throw new DuplicateProductConstraintException();
+        //}
     }
 }

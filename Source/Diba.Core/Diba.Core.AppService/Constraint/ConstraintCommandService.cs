@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Diba.Core.AppService.Contract;
 using Diba.Core.AppService.Contract.Constraint;
+using Diba.Core.AppService.Contract.Constraint.Model.InputModels;
 using Diba.Core.AppService.Contract.Constraint.Model.ViewModels;
 using Diba.Core.Common.Infrastructure;
 using Diba.Core.Data.Repository.Interfaces;
@@ -23,6 +24,11 @@ namespace Diba.Core.AppService
             _unitOfWork.Commit();
 
             return new ServiceResult<ConstraintViewModel>(_mapper.Map<ConstraintViewModel>(constraint));
+        }
+
+        public ServiceResult<ConstraintViewModel> Update(int id, UpdateConstraintViewModel model)
+        {
+            throw new System.NotImplementedException();
         }
 
         private readonly IUnitOfWork _unitOfWork;
