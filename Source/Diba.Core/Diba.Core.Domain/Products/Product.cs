@@ -13,7 +13,7 @@ namespace Diba.Core.Domain.Products
         public string Name { get; }
         public ReadOnlyCollection<ProductConstraint> Constraints => _constraints.AsReadOnly();
 
-        public Product(long id, string name, List<ProductConstraint> constraints)
+        public Product(int id, string name, List<ProductConstraint> constraints)
         {
             GuardAgainstDuplicateConstraint(constraints);
 
