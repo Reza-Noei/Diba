@@ -1,9 +1,0 @@
-C:\Users\RezaNoei\Desktop\Diba\Diba.Core\Diba.Core.Common\bin\Release\netstandard2.0\Diba.Core.Common.deps.json
-C:\Users\RezaNoei\Desktop\Diba\Diba.Core\Diba.Core.Common\bin\Release\netstandard2.0\Diba.Core.Common.dll
-C:\Users\RezaNoei\Desktop\Diba\Diba.Core\Diba.Core.Common\bin\Release\netstandard2.0\Diba.Core.Common.pdb
-C:\Users\RezaNoei\Desktop\Diba\Diba.Core\Diba.Core.Common\obj\Release\netstandard2.0\Diba.Core.Common.csprojAssemblyReference.cache
-C:\Users\RezaNoei\Desktop\Diba\Diba.Core\Diba.Core.Common\obj\Release\netstandard2.0\Diba.Core.Common.csproj.CoreCompileInputs.cache
-C:\Users\RezaNoei\Desktop\Diba\Diba.Core\Diba.Core.Common\obj\Release\netstandard2.0\Diba.Core.Common.AssemblyInfoInputs.cache
-C:\Users\RezaNoei\Desktop\Diba\Diba.Core\Diba.Core.Common\obj\Release\netstandard2.0\Diba.Core.Common.AssemblyInfo.cs
-C:\Users\RezaNoei\Desktop\Diba\Diba.Core\Diba.Core.Common\obj\Release\netstandard2.0\Diba.Core.Common.dll
-C:\Users\RezaNoei\Desktop\Diba\Diba.Core\Diba.Core.Common\obj\Release\netstandard2.0\Diba.Core.Common.pdb
