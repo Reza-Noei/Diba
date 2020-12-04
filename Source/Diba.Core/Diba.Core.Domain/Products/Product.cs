@@ -5,12 +5,11 @@ using Diba.Core.Domain.Products.ProductConstraints;
 
 namespace Diba.Core.Domain.Products
 {
-    public class Product
+    public class Product : BaseEntity<int>
     {
         private List<ProductConstraint> _constraints;
         private List<ProductConstraint> constraints;
 
-        public long Id { get; }
         public string Name { get; }
         public ReadOnlyCollection<ProductConstraint> Constraints => _constraints.AsReadOnly();
 

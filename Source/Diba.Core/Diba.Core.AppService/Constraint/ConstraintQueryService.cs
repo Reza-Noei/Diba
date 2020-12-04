@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Diba.Core.Domain.Constraints
+namespace Diba.Core.AppService.Constraint
 {
-    class Constraints
+    public class ConstraintQueryService
     {
     }
 }

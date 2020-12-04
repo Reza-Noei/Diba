@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Diba.Core.Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class AddInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -628,14 +628,14 @@ namespace Diba.Core.Data.Migrations
                 columns: new[] { "Id", "Creation", "CreatorId", "Password", "Username" },
                 values: new object[,]
                 {
-                    { 1L, new DateTime(2020, 10, 30, 14, 14, 15, 311, DateTimeKind.Local).AddTicks(794), null, "123456", "SuperAdmin" },
-                    { 2L, new DateTime(2020, 10, 30, 14, 14, 15, 312, DateTimeKind.Local).AddTicks(9538), null, "123456", "Secretary" }
+                    { 1L, new DateTime(2020, 12, 4, 15, 14, 3, 507, DateTimeKind.Local).AddTicks(1915), null, "123456", "SuperAdmin" },
+                    { 2L, new DateTime(2020, 12, 4, 15, 14, 3, 511, DateTimeKind.Local).AddTicks(1865), null, "123456", "Secretary" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Organizations",
                 columns: new[] { "Id", "Creation", "CreatorId", "Modification", "ModifierId", "Prefix", "Title" },
-                values: new object[] { 1L, new DateTime(2020, 10, 30, 14, 14, 15, 313, DateTimeKind.Local).AddTicks(8222), 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "935", "Default Organization" });
+                values: new object[] { 1L, new DateTime(2020, 12, 4, 15, 14, 3, 513, DateTimeKind.Local).AddTicks(7601), 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "935", "Default Organization" });
 
             migrationBuilder.InsertData(
                 table: "Roles",

@@ -29,7 +29,7 @@ namespace Diba.Core.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=REZA-PC\SQLSERVER2017ENT;Database=DibaTest;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=Diba; Integrated Security=True; MultipleActiveResultSets=True;");
             //optionsBuilder.UseSqlServer(@"Server=DESKTOP-LOCCOLD\DIBA;Database=DibaTest;UserId=sa;password=325896;Trusted_Connection=True;");
             optionsBuilder.UseLazyLoadingProxies();
             optionsBuilder.EnableSensitiveDataLogging(true);
@@ -54,6 +54,8 @@ namespace Diba.Core.Data
             modelBuilder.ApplyConfiguration(new AuthorityPermissionConfiguration());
 
             modelBuilder.ApplyConfiguration(new ContactInfoConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new ConstraintConfiguration());
 
             modelBuilder.ApplyConfiguration(new AdminConfiguration());
             modelBuilder.ApplyConfiguration(new SuperAdminConfiguration());

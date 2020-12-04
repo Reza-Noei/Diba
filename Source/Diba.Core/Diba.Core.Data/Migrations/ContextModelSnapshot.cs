@@ -497,7 +497,7 @@ namespace Diba.Core.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            Creation = new DateTime(2020, 10, 30, 14, 14, 15, 313, DateTimeKind.Local).AddTicks(8222),
+                            Creation = new DateTime(2020, 12, 4, 15, 14, 3, 513, DateTimeKind.Local).AddTicks(7601),
                             CreatorId = 1L,
                             Modification = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Prefix = "935",
@@ -749,14 +749,14 @@ namespace Diba.Core.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            Creation = new DateTime(2020, 10, 30, 14, 14, 15, 311, DateTimeKind.Local).AddTicks(794),
+                            Creation = new DateTime(2020, 12, 4, 15, 14, 3, 507, DateTimeKind.Local).AddTicks(1915),
                             Password = "123456",
                             Username = "SuperAdmin"
                         },
                         new
                         {
                             Id = 2L,
-                            Creation = new DateTime(2020, 10, 30, 14, 14, 15, 312, DateTimeKind.Local).AddTicks(9538),
+                            Creation = new DateTime(2020, 12, 4, 15, 14, 3, 511, DateTimeKind.Local).AddTicks(1865),
                             Password = "123456",
                             Username = "Secretary"
                         });
