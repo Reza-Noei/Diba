@@ -5,7 +5,7 @@ namespace Diba.Core.Domain.Products.ProductConstraints
         public long MaxLength { get; private set; }
         public string Format { get; private set; }
 
-        public StringConstraint(long constraintId, long maxLength) : base(constraintId)
+        public StringConstraint(long maxLength)
         {
             MaxLength = maxLength;
         }

@@ -8,18 +8,21 @@ namespace Diba.Core.Domain.Products
 {
     public class Product : BaseEntity<int>
     {
-        private List<ProductConstraint> _constraints;
-        //private List<ProductConstraint> constraints;
+        public Product()
+        {
+
+        }
+
+        public virtual List<ProductConstraint> Constraints { get; set; }
 
         public string Name { get; private set; }
-        public ReadOnlyCollection<ProductConstraint> Constraints => _constraints.AsReadOnly();
 
         public Product(string name, List<ProductConstraint> constraints)
         {
             GuardAgainstDuplicateConstraint(constraints);
 
             this.Name = name;
-            this._constraints = constraints;
+            this.Constraints = constraints;
         }
 
         public void Update(string name)

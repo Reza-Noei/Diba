@@ -8,11 +8,9 @@ namespace Diba.Core.Domain.Products.ProductConstraints
         private List<Option> options;
         public IReadOnlyList<Option> Options => options.AsReadOnly();
 
-        public SelectiveConstraint(long constraintId, List<Option> options)
-            : base(constraintId)
+        public SelectiveConstraint(List<Option> options)   
         {
             GuardAgaintsDuplicateValueIn(options);
-
             this.options = options;
         }
 
