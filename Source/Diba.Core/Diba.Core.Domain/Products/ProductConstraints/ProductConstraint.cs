@@ -1,14 +1,16 @@
 ﻿namespace Diba.Core.Domain.Products.ProductConstraints
 {
-    public abstract class ProductConstraint
+    public abstract class ProductConstraint: BaseEntity<int>
     {
-        public int Id { get; set; }
-        public long ConstraintId { get; set; }
+        public string Title { get; private set; }
 
+        public int ProductId { get; set; }
+
+        public virtual Product Product { get; set; }
 
         protected ProductConstraint()
         {
 
-        }
+        }        
     }
 }

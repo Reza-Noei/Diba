@@ -6,7 +6,6 @@ using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
 using Diba.Core.AppService;
-using Diba.Core.AppService.Constraint;
 using Diba.Core.AppService.Contract;
 using Diba.Core.AppService.Contract.Constraint;
 using Diba.Core.AppService.Contract.Product;
@@ -86,9 +85,9 @@ namespace Diba.Core.Service
             services.AddScoped<IProductRepository, ProductRepository>();
 
 
-            services.AddScoped<IConstraintCommandService, ConstraintCommandService>();
-            services.AddScoped<IConstraintQueryService, ConstraintQueryService>();
-            services.AddScoped<IConstraintRepository, ConstraintRepository>();
+            //services.AddScoped<IConstraintCommandService, ConstraintCommandService>();
+            //services.AddScoped<IConstraintQueryService, ConstraintQueryService>();
+            //services.AddScoped<IConstraintRepository, ConstraintRepository>();
 
 
             services.AddFromConfigurationFile(Configuration.GetSection("Services"));
@@ -112,7 +111,7 @@ namespace Diba.Core.Service
                 mc.AddProfile(new OrganizationMembershipManagementMappingProfile());
 
                 mc.AddProfile(new ProductMappingConfig());
-                mc.AddProfile(new ConstraintMappingConfig());
+                //mc.AddProfile(new ConstraintMappingConfig());
 
             });
 

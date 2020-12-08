@@ -1,7 +1,7 @@
 ﻿using Diba.Core.Data.Configuration;
 using Diba.Core.Domain;
-using Diba.Core.Domain.Constraints;
 using Diba.Core.Domain.Products;
+using Diba.Core.Domain.Products.ProductConstraints;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -29,7 +29,11 @@ namespace Diba.Core.Data
         public DbSet<BaseRole> Roles { get; set; }
         public DbSet<CustomerOrder> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Constraint> Constraints { get; set; }
+
+        public DbSet<StringConstraint> StringConstraints { get; set; }
+
+        public DbSet<SelectiveConstraint> SelectiveConstraints { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -59,7 +63,9 @@ namespace Diba.Core.Data
 
             modelBuilder.ApplyConfiguration(new ContactInfoConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
-            modelBuilder.ApplyConfiguration(new ConstraintConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConstraintConfiguration());
+            modelBuilder.ApplyConfiguration(new StringConstraintConfiguration());
+            modelBuilder.ApplyConfiguration(new SelectiveConstraintConfiguration());
 
             modelBuilder.ApplyConfiguration(new AdminConfiguration());
             modelBuilder.ApplyConfiguration(new SuperAdminConfiguration());

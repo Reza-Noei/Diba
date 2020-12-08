@@ -19,7 +19,7 @@ namespace Diba.Core.Domain.Products
 
         public Product(string name, List<ProductConstraint> constraints)
         {
-            GuardAgainstDuplicateConstraint(constraints);
+            //GuardAgainstDuplicateConstraint(constraints);
 
             this.Name = name;
             this.Constraints = constraints;
@@ -30,12 +30,12 @@ namespace Diba.Core.Domain.Products
             this.Name = name;
         }
 
-        private static void GuardAgainstDuplicateConstraint(List<ProductConstraint> constraints)
-        {
-            var anyDuplicate = constraints.GroupBy(a => a.ConstraintId, (key, value) => new { key, value })
-                .Any(a => a.value.Count() > 1);
-            if (anyDuplicate)
-                throw new DuplicateProductConstraintException();
-        }
+        //private static void GuardAgainstDuplicateConstraint(List<ProductConstraint> constraints)
+        //{
+        //    var anyDuplicate = constraints.GroupBy(a => a.ConstraintId, (key, value) => new { key, value })
+        //        .Any(a => a.value.Count() > 1);
+        //    if (anyDuplicate)
+        //        throw new DuplicateProductConstraintException();
+        //}
     }
 }
