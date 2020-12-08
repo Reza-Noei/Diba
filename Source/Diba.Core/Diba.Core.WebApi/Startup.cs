@@ -9,8 +9,10 @@ using Diba.Core.AppService;
 using Diba.Core.AppService.Contract;
 using Diba.Core.AppService.Contract.Constraint;
 using Diba.Core.AppService.Contract.Product;
+using Diba.Core.AppService.Contract.ProductConstraint;
 using Diba.Core.AppService.CustomerManagement;
 using Diba.Core.AppService.Dependencies;
+using Diba.Core.AppService.ProductConstraint;
 using Diba.Core.AppService.Products;
 using Diba.Core.Data.Repository.Implementations;
 using Diba.Core.Data.Repository.Interfaces;
@@ -85,10 +87,13 @@ namespace Diba.Core.Service
             services.AddScoped<IProductRepository, ProductRepository>();
 
 
-            //services.AddScoped<IConstraintCommandService, ConstraintCommandService>();
-            //services.AddScoped<IConstraintQueryService, ConstraintQueryService>();
-            //services.AddScoped<IConstraintRepository, ConstraintRepository>();
+            services.AddScoped<IProductStringConstraintsQueryService, ProductStringConstraintsQueryService>();
+            services.AddScoped<IProductStringConstraintsCommandService, ProductStringConstraintsCommandService>();
+            services.AddScoped<IProductStringConstraintsRepository, ProductStringConstraintsRepository>();
 
+            services.AddScoped<IProductSelectiveConstraintsQueryService, ProductSelectiveConstraintsQueryService>();
+            services.AddScoped<IProductSelectiveConstraintsCommandService, ProductSelectiveConstraintsCommandService>();
+            services.AddScoped<IProductSelectiveConstraintsRepository, ProductSelectiveConstraintsRepository>();
 
             services.AddFromConfigurationFile(Configuration.GetSection("Services"));
 
@@ -111,8 +116,8 @@ namespace Diba.Core.Service
                 mc.AddProfile(new OrganizationMembershipManagementMappingProfile());
 
                 mc.AddProfile(new ProductMappingConfig());
-                //mc.AddProfile(new ConstraintMappingConfig());
-
+                mc.AddProfile(new ProductStringConstraintsConfig());
+                mc.AddProfile(new ProductSelectiveConstraintsConfig());
             });
 
             IMapper mapper = mappingConfig.CreateMapper();

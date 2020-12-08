@@ -1,8 +1,5 @@
 ﻿using Diba.Core.Domain.Products.ProductConstraints;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace Diba.Core.Domain.Products
 {
@@ -13,7 +10,7 @@ namespace Diba.Core.Domain.Products
 
         }
 
-        public virtual List<ProductConstraint> Constraints { get; set; }
+        public virtual ICollection<ProductConstraint> Constraints { get; set; }
 
         public string Name { get; private set; }
 

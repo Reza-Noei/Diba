@@ -2,7 +2,7 @@
 {
     public abstract class ProductConstraint: BaseEntity<int>
     {
-        public string Title { get; private set; }
+        public string Title { get; protected set; }
 
         public int ProductId { get; set; }
 

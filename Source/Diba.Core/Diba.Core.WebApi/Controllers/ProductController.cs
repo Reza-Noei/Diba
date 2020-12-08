@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Diba.Core.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/product")]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -18,9 +18,10 @@ namespace Diba.Core.WebApi.Controllers
             _productCommandService = productCommandService;
         }
 
+        //GET 
         [HttpGet]
         [AllowAnonymous]
-        [Route("/{id}")]
+        [Route("{id}")]
         public ServiceResult<ProductViewModel> Get(int id)
         {
             ServiceResult<ProductViewModel> product = _productQueryService.Get(id);
@@ -42,11 +43,20 @@ namespace Diba.Core.WebApi.Controllers
             return _productCommandService.Create(model);
         }
 
-        [HttpPut]
+        [HttpPatch]
         [AllowAnonymous]
+        [Route("{id}")]
         public ServiceResult<ProductViewModel> Update(int id, UpdateProductViewModel model)
         {
             return _productCommandService.Update(id, model);
+        }
+
+        [HttpDelete]
+        [AllowAnonymous]
+        [Route("{id}")]
+        public ServiceResult<ProductViewModel> Delete(int id)
+        {
+            return _productCommandService.Delete(id);
         }
 
         private readonly IProductCommandService _productCommandService;

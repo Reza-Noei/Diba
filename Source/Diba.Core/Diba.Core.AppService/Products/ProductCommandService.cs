@@ -28,11 +28,6 @@ namespace Diba.Core.AppService.Products
             return new ServiceResult<ProductViewModel>(_mapper.Map<ProductViewModel>(product));
         }
 
-        public ServiceResult<ProductViewModel> Delete(int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public ServiceResult<ProductViewModel> Update(int id, UpdateProductViewModel request)
         {
             Product product = _productRepository.GetById(id);
@@ -41,13 +36,24 @@ namespace Diba.Core.AppService.Products
                 return new ServiceResult<ProductViewModel>(StatusCode.NotFound);
 
             product.Update(name: request.Name);
-
+            //_productRepository.Update(product);
             _unitOfWork.Commit();
 
             return new ServiceResult<ProductViewModel>(_mapper.Map<ProductViewModel>(product));
         }
 
+        public ServiceResult<ProductViewModel> Delete(int id)
+        {
+            Product product = _productRepository.GetById(id);
 
+            if (product == null)
+                return new ServiceResult<ProductViewModel>(StatusCode.NotFound);
+
+            _productRepository.Delete(product);
+            _unitOfWork.Commit();
+
+            return new ServiceResult<ProductViewModel>(_mapper.Map<ProductViewModel>(product));
+        }
 
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;

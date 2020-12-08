@@ -31,6 +31,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diba.Desktop", "Source\Diba
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diba.Core.Domain.Unit.Test", "Test\Core.Domain.Unit.Test\Diba.Core.Domain.Unit.Test.csproj", "{C018CD93-D203-484E-AAB8-62C9E852F1FC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PostmanCollection", "PostmanCollection", "{C6459AB0-6935-4D03-9C9A-28B17080A120}"
+	ProjectSection(SolutionItems) = preProject
+		Document\PostmanCollection\Diba.postman_collection.json = Document\PostmanCollection\Diba.postman_collection.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +94,7 @@ Global
 		{CF2642E5-7344-47EB-86B9-C869D56068CD} = {915E936C-CCCB-4243-8770-69672C904C12}
 		{8CE124A3-D30C-4401-9559-7C6A56EDC90F} = {4E3B369A-D53E-4B0D-98D6-C379AEDE0DEE}
 		{C018CD93-D203-484E-AAB8-62C9E852F1FC} = {6B2CCF27-1C25-4F21-A4FC-8193762F12DD}
+		{C6459AB0-6935-4D03-9C9A-28B17080A120} = {1C409804-0E92-4995-8AE0-A6C08E89EDEA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7D03F541-7D55-4EE0-824F-1587C9A88CD7}
