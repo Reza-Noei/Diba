@@ -9,7 +9,27 @@
 			"name": "Product",
 			"item": [
 				{
-					"name": "Add Product",
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:60123/api/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "60123",
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -38,12 +58,21 @@
 					"response": []
 				},
 				{
-					"name": "Get All Product",
+					"name": "Update",
 					"request": {
-						"method": "GET",
+						"method": "PATCH",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"SSS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:60123/api/product",
+							"raw": "http://localhost:60123/api/product/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -51,7 +80,190 @@
 							"port": "60123",
 							"path": [
 								"api",
-								"product"
+								"product",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "StringConstraint",
+			"item": [
+				{
+					"name": "Get By Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:60123/api/product/2/StringConstraints",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "60123",
+							"path": [
+								"api",
+								"product",
+								"2",
+								"StringConstraints"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"Title\": \"another\",\r\n  \"MaxLength\" : 3,\r\n  \"Format\" : \"image\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:60123/api/product/2/StringConstraints",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "60123",
+							"path": [
+								"api",
+								"product",
+								"2",
+								"StringConstraints"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n  \"Title\": \"eee\",\r\n  \"MaxLength\" : 3,\r\n  \"Format\" : \"eeee\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:60123/api/product/2/StringConstraints/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "60123",
+							"path": [
+								"api",
+								"product",
+								"2",
+								"StringConstraints",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Selective Constraint",
+			"item": [
+				{
+					"name": "Get All By product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:60123/api/product/2/SelectiveConstraints",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "60123",
+							"path": [
+								"api",
+								"product",
+								"2",
+								"SelectiveConstraints"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"Title\": \"jadid\",\"Options\":[{\"key\":3,\"value\":\"hamid\"},{\"key\":3,\"value\":\"rezaee\"}]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:60123/api/product/2/SelectiveConstraints",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "60123",
+							"path": [
+								"api",
+								"product",
+								"2",
+								"SelectiveConstraints"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"title\":\"newname\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:60123/api/product/2/SelectiveConstraints/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "60123",
+							"path": [
+								"api",
+								"product",
+								"2",
+								"SelectiveConstraints",
+								"7"
 							]
 						}
 					},
