@@ -14,6 +14,10 @@ namespace Diba.Core.AppService.ProductConstraint
 
             CreateMap<CreateProductSelectiveConstraintsViewModel, ProductSelectiveConstraintsViewModel>().ForMember(x => x.Id, opt => opt.Ignore()); ;
             CreateMap<CreateProductSelectiveConstraintsViewModel, SelectiveConstraint>();
+
+            CreateMap<OptionViewModel, Option>();
+
+
         }
     }
 }

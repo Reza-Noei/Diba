@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,6 +11,11 @@ namespace Diba.Core.Domain.Products.ProductConstraints
         public SelectiveConstraint()
         {
             Options = new HashSet<Option>();
+        }
+
+        public void Update(string title)
+        {
+            Title = title;
         }
 
         //private static void GuardAgaintsDuplicateValueIn(List<Option> options)
