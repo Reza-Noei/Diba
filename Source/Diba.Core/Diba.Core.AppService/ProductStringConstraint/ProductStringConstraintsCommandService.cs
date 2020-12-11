@@ -18,42 +18,41 @@ namespace Diba.Core.AppService.Products
             _productStringConstraintsRepository = productStringConstraintsRepository;
         }
 
-        public ServiceResult<ProductStringConstraintsViewModel> Create(int productId, CreateProductStringConstraintsViewModel request)
+        public ServiceResult<ProductStringConstraintViewModel> Create(int productId, CreateProductStringConstraintsViewModel request)
         {
              var stringConstraint = _mapper.Map<StringConstraint>(request);
             stringConstraint.ProductId = productId;
             _productStringConstraintsRepository.Add(stringConstraint);
             _unitOfWork.Commit();
 
-            return new ServiceResult<ProductStringConstraintsViewModel>(_mapper.Map<ProductStringConstraintsViewModel>(stringConstraint));
+            return new ServiceResult<ProductStringConstraintViewModel>(_mapper.Map<ProductStringConstraintViewModel>(stringConstraint));
 
         }
 
-        public ServiceResult<ProductStringConstraintsViewModel> Update(int productId, int constraintId, UpdateProductStringConstraintsViewModel request)
+        public ServiceResult<ProductStringConstraintViewModel> Update(int productId, int constraintId, UpdateProductStringConstraintsViewModel request)
         {
             StringConstraint stringConstraint = _productStringConstraintsRepository.GetById(constraintId);
 
             if (stringConstraint == null)
-                return new ServiceResult<ProductStringConstraintsViewModel>(StatusCode.NotFound);
+                return new ServiceResult<ProductStringConstraintViewModel>(StatusCode.NotFound);
 
             stringConstraint.Update(title: request.Title, format: request.Format, maxLength: request.MaxLength);
-            _productStringConstraintsRepository.Update(stringConstraint);
             _unitOfWork.Commit();
 
-            return new ServiceResult<ProductStringConstraintsViewModel>(_mapper.Map<ProductStringConstraintsViewModel>(stringConstraint));
+            return new ServiceResult<ProductStringConstraintViewModel>(_mapper.Map<ProductStringConstraintViewModel>(stringConstraint));
         }
 
-        public ServiceResult<ProductStringConstraintsViewModel> Delete(int id)
+        public ServiceResult<ProductStringConstraintViewModel> Delete(int id)
         {
             StringConstraint stringConstraint = _productStringConstraintsRepository.GetById(id);
 
             if (stringConstraint == null)
-                return new ServiceResult<ProductStringConstraintsViewModel>(StatusCode.NotFound);
+                return new ServiceResult<ProductStringConstraintViewModel>(StatusCode.NotFound);
 
             _productStringConstraintsRepository.Delete(stringConstraint);
             _unitOfWork.Commit();
 
-            return new ServiceResult<ProductStringConstraintsViewModel>(_mapper.Map<ProductStringConstraintsViewModel>(stringConstraint));
+            return new ServiceResult<ProductStringConstraintViewModel>(_mapper.Map<ProductStringConstraintViewModel>(stringConstraint));
         }
 
         private readonly IUnitOfWork _unitOfWork;

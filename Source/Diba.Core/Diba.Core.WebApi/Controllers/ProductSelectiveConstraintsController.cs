@@ -30,7 +30,7 @@ namespace Diba.Core.WebApi.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("{id}/SelectiveConstraints")]
-        public ServiceResult<ProductSelectiveConstraintsViewModel> Create(int id, CreateProductSelectiveConstraintsViewModel model)
+        public ServiceResult<ProductSelectiveConstraintViewModel> Create(int id, CreateProductSelectiveConstraintsViewModel model)
         {
             return _productSelectiveConstraintsCommandService.Create(id, model);
         }
@@ -38,7 +38,7 @@ namespace Diba.Core.WebApi.Controllers
         [HttpPatch]
         [AllowAnonymous]
         [Route("{productId}/SelectiveConstraints/{constraintId}")]
-        public ServiceResult<ProductSelectiveConstraintsViewModel> Update(int productId, int constraintId, UpdateProductSelectiveConstraintsViewModel model)
+        public ServiceResult<ProductSelectiveConstraintViewModel> Update(int productId, int constraintId, UpdateProductSelectiveConstraintsViewModel model)
         {
             return _productSelectiveConstraintsCommandService.Update(productId, constraintId, model);
         }
@@ -47,7 +47,7 @@ namespace Diba.Core.WebApi.Controllers
         [AllowAnonymous]
 
         [Route("{productId}/SelectiveConstraints/{constraintId}")]
-        public ServiceResult<ProductSelectiveConstraintsViewModel> Delete(int id)
+        public ServiceResult<ProductSelectiveConstraintViewModel> Delete(int id)
         {
             return _productSelectiveConstraintsCommandService.Delete(id);
         }

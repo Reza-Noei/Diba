@@ -19,7 +19,7 @@ namespace Diba.Core.AppService.Products
             _productSelectiveConstraintsRepository = productSelectiveConstraintsRepository;
         }
 
-        public ServiceResult<ProductSelectiveConstraintsViewModel> Create(int productId, CreateProductSelectiveConstraintsViewModel request)
+        public ServiceResult<ProductSelectiveConstraintViewModel> Create(int productId, CreateProductSelectiveConstraintsViewModel request)
         {
 
             var selectiveConstraint = new SelectiveConstraint()
@@ -31,34 +31,34 @@ namespace Diba.Core.AppService.Products
             _productSelectiveConstraintsRepository.Add(selectiveConstraint);
             _unitOfWork.Commit();
 
-            return new ServiceResult<ProductSelectiveConstraintsViewModel>(_mapper.Map<ProductSelectiveConstraintsViewModel>(selectiveConstraint));
+            return new ServiceResult<ProductSelectiveConstraintViewModel>(_mapper.Map<ProductSelectiveConstraintViewModel>(selectiveConstraint));
 
         }
 
-        public ServiceResult<ProductSelectiveConstraintsViewModel> Update(int productId, int constraintId, UpdateProductSelectiveConstraintsViewModel request)
+        public ServiceResult<ProductSelectiveConstraintViewModel> Update(int productId, int constraintId, UpdateProductSelectiveConstraintsViewModel request)
         {
             SelectiveConstraint seletiveConstraint = _productSelectiveConstraintsRepository.GetById(constraintId);
 
             if (seletiveConstraint == null)
-                return new ServiceResult<ProductSelectiveConstraintsViewModel>(StatusCode.NotFound);
+                return new ServiceResult<ProductSelectiveConstraintViewModel>(StatusCode.NotFound);
 
             seletiveConstraint.Update(title: request.Title);
             _unitOfWork.Commit();
 
-            return new ServiceResult<ProductSelectiveConstraintsViewModel>(_mapper.Map<ProductSelectiveConstraintsViewModel>(seletiveConstraint));
+            return new ServiceResult<ProductSelectiveConstraintViewModel>(_mapper.Map<ProductSelectiveConstraintViewModel>(seletiveConstraint));
         }
 
-        public ServiceResult<ProductSelectiveConstraintsViewModel> Delete(int id)
+        public ServiceResult<ProductSelectiveConstraintViewModel> Delete(int id)
         {
             SelectiveConstraint stringConstraint = _productSelectiveConstraintsRepository.GetById(id);
 
             if (stringConstraint == null)
-                return new ServiceResult<ProductSelectiveConstraintsViewModel>(StatusCode.NotFound);
+                return new ServiceResult<ProductSelectiveConstraintViewModel>(StatusCode.NotFound);
 
             _productSelectiveConstraintsRepository.Delete(stringConstraint);
             _unitOfWork.Commit();
 
-            return new ServiceResult<ProductSelectiveConstraintsViewModel>(_mapper.Map<ProductSelectiveConstraintsViewModel>(stringConstraint));
+            return new ServiceResult<ProductSelectiveConstraintViewModel>(_mapper.Map<ProductSelectiveConstraintViewModel>(stringConstraint));
         }
 
 

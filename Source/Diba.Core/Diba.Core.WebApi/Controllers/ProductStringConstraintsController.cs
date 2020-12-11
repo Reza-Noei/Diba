@@ -30,7 +30,7 @@ namespace Diba.Core.WebApi.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("{id}/StringConstraints")]
-        public ServiceResult<ProductStringConstraintsViewModel> Create(int id , CreateProductStringConstraintsViewModel model)
+        public ServiceResult<ProductStringConstraintViewModel> Create(int id , CreateProductStringConstraintsViewModel model)
         {
             return _productStringConstraintsCommandService.Create(id, model);
         }
@@ -38,7 +38,7 @@ namespace Diba.Core.WebApi.Controllers
         [HttpPatch]
         [AllowAnonymous]
         [Route("{productId}/StringConstraints/{constraintId}")]
-        public ServiceResult<ProductStringConstraintsViewModel> Update(int productId, int constraintId, UpdateProductStringConstraintsViewModel model)
+        public ServiceResult<ProductStringConstraintViewModel> Update(int productId, int constraintId, UpdateProductStringConstraintsViewModel model)
         {
             return _productStringConstraintsCommandService.Update(productId, constraintId, model);
         }
@@ -47,7 +47,7 @@ namespace Diba.Core.WebApi.Controllers
         [AllowAnonymous]
 
         [Route("{productId}/StringConstraints/{constraintId}")]
-        public ServiceResult<ProductStringConstraintsViewModel> Delete(int id)
+        public ServiceResult<ProductStringConstraintViewModel> Delete(int id)
         {
             return _productStringConstraintsCommandService.Delete(id);
         }

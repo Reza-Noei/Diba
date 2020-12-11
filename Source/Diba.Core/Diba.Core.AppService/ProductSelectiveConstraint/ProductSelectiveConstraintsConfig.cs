@@ -9,14 +9,15 @@ namespace Diba.Core.AppService.ProductConstraint
     {
         public ProductSelectiveConstraintsConfig()
         {
-            CreateMap<SelectiveConstraint, ProductSelectiveConstraintsViewModel>();
-            CreateMap<ProductSelectiveConstraintsViewModel, SelectiveConstraint>();
+            CreateMap<SelectiveConstraint, ProductSelectiveConstraintViewModel>();
+            CreateMap<ProductSelectiveConstraintViewModel, SelectiveConstraint>();
 
-            CreateMap<CreateProductSelectiveConstraintsViewModel, ProductSelectiveConstraintsViewModel>().ForMember(x => x.Id, opt => opt.Ignore()); ;
+            CreateMap<CreateProductSelectiveConstraintsViewModel, ProductSelectiveConstraintsViewModel>();
             CreateMap<CreateProductSelectiveConstraintsViewModel, SelectiveConstraint>();
 
             CreateMap<OptionViewModel, Option>();
 
+            CreateMap<Option, OptionViewModel>();
 
         }
     }

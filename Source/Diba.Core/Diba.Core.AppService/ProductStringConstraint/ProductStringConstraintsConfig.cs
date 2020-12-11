@@ -9,10 +9,11 @@ namespace Diba.Core.AppService.ProductConstraint
     {
         public ProductStringConstraintsConfig()
         {
-            CreateMap<StringConstraint, ProductStringConstraintsViewModel>();
-            CreateMap<ProductStringConstraintsViewModel, StringConstraint>();
+            CreateMap<StringConstraint, ProductStringConstraintViewModel>();
 
-            CreateMap<CreateProductStringConstraintsViewModel, ProductStringConstraintsViewModel>().ForMember(x => x.Id, opt => opt.Ignore()); ;
+            CreateMap<ProductStringConstraintViewModel, StringConstraint>();
+
+            CreateMap<CreateProductStringConstraintsViewModel, ProductStringConstraintsViewModel>();
             CreateMap<CreateProductStringConstraintsViewModel, StringConstraint>();
         }
     }
