@@ -29,6 +29,27 @@
 					"response": []
 				},
 				{
+					"name": "Get By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:60123/api/product/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "60123",
+							"path": [
+								"api",
+								"product",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Add",
 					"request": {
 						"method": "POST",
@@ -86,6 +107,27 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:60123/api/product/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "60123",
+							"path": [
+								"api",
+								"product",
+								"3"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -122,7 +164,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"Title\": \"another\",\r\n  \"MaxLength\" : 3,\r\n  \"Format\" : \"image\"\r\n}",
+							"raw": "{\r\n  \"Title\": \"another1\",\r\n  \"MaxLength\" : 3,\r\n  \"Format\" : \"image\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -161,7 +203,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:60123/api/product/2/StringConstraints/6",
+							"raw": "http://localhost:60123/api/product/2/StringConstraints/11",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -172,8 +214,19 @@
 								"product",
 								"2",
 								"StringConstraints",
-								"6"
+								"11"
 							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": ""
 						}
 					},
 					"response": []
@@ -265,6 +318,17 @@
 								"SelectiveConstraints",
 								"7"
 							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": ""
 						}
 					},
 					"response": []
