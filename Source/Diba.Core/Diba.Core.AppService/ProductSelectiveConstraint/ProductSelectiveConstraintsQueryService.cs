@@ -21,10 +21,9 @@ namespace Diba.Core.AppService.ProductConstraint
         {
             IEnumerable<SelectiveConstraint> selectiveConstraint = _productSelectiveConstraintsRepository.GetMany(x => x.ProductId == id);
             var a = selectiveConstraint.ToList();
-
             var reponse = new ProductSelectiveConstraintsViewModel
             {
-                Constraints = _mapper.Map<IList<ProductSelectiveConstraintViewModel>>(selectiveConstraint)
+                Constraints = _mapper.Map<List<ProductSelectiveConstraintViewModel>>(a)
             };
             return new ServiceResult<ProductSelectiveConstraintsViewModel>(reponse);
         }
