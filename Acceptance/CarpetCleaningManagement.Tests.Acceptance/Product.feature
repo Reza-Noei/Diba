@@ -14,13 +14,11 @@ Scenario: define new a product
 		| Meterial    |
 		| Area        |
 	When 'reza' has define a product in system as following
-		| Title  |
+		| Name   |
 		| carpet |
 	And he has assigned the following constraint for it
-		| Title       | Type      | Options           |
-		| WeavingType | Selective | Machine, Handmade |
-		| Meterial    | Selective | silky,Wool        |
-		| Area        |           |                   |
+		| Title       | Type      | Options                 |
+		| WeavingType | Selective | 1= Machine, 2= Handmade |
 	Then It should be available in the list of products
 
 Scenario: modifying a product
@@ -32,18 +30,14 @@ Scenario: modifying a product
 		| Title  |
 		| carpet |
 	And he has assigned the following constraint for it
-		| Title       | Type      | Options           |
-		| WeavingType | Selective | Machine, Handmade |
-		| Meterial    | Selective | silky, Wool       |
-		| Area        |           |                   |
+		| Title    | Type      | Options          |
+		| Meterial | Selective | 1= silky, 2=Wool |
 	When he changes the measures given in the example above as following
-		| Title |
-		| rug   |
-	And he has assigned the following constraint for it
-		| Title       | Type      | Options |
-		| WeavingType | Selective | Machine |
-		| Meterial    | Selective | silky   |
-		| Area        |           |         |
+		| Title  |
+		| carpet |
+	And he has assigned the following constraint for it:
+		| Title       | Type      | Options          |
+		| WeavingType | Selective | 1= silky, 2=Wool |
 	Then The product has changed with the above information
 
 Scenario: deleting a product
@@ -56,9 +50,7 @@ Scenario: deleting a product
 		| Title  |
 		| carpet |
 	And he has assigned the following constraint for it
-		| Title       | Type      | Options           |
-		| WeavingType | Selective | Machine, Handmade |
-		| Meterial    | Selective | silky,Wool        |
-		| Area        |           |                   |
+		| Title       | Type      | Options                 |
+		| WeavingType | Selective | 1= Machine, 2= Handmade |
 	When he removes the product defined above
 	Then It should not appear in the list of products

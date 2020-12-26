@@ -19,8 +19,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Feature\Product\Tasks\Gets\" />
-    <Folder Include="Feature\Product\Tasks\Deletes\" />
-    <Folder Include="Feature\Product\Tasks\Puts\" />
-    <Folder Include="Feature\Product\Tasks\Posts\" />
   </ItemGroup>
 </Project>

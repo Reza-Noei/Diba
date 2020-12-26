@@ -136,7 +136,7 @@ this.FeatureBackground();
  testRunner.Given("there is constraints in system as following", ((string)(null)), table1, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Title"});
+                            "Name"});
                 table2.AddRow(new string[] {
                             "carpet"});
 #line 16
@@ -149,19 +149,11 @@ this.FeatureBackground();
                 table3.AddRow(new string[] {
                             "WeavingType",
                             "Selective",
-                            "Machine, Handmade"});
-                table3.AddRow(new string[] {
-                            "Meterial",
-                            "Selective",
-                            "silky,Wool"});
-                table3.AddRow(new string[] {
-                            "Area",
-                            "",
-                            ""});
+                            "1= Machine, 2= Handmade"});
 #line 19
  testRunner.And("he has assigned the following constraint for it", ((string)(null)), table3, "And ");
 #line hidden
-#line 24
+#line 22
  testRunner.Then("It should be available in the list of products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -176,7 +168,7 @@ this.FeatureBackground();
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("modifying a product", null, tagsOfScenario, argumentsOfScenario);
-#line 26
+#line 24
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -205,14 +197,14 @@ this.FeatureBackground();
                             "WeavingType"});
                 table4.AddRow(new string[] {
                             "Meterial"});
-#line 27
+#line 25
  testRunner.Given("there is constraints in system as following", ((string)(null)), table4, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "Title"});
                 table5.AddRow(new string[] {
                             "carpet"});
-#line 31
+#line 29
  testRunner.And("\'reza\' has define a product in system as following", ((string)(null)), table5, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -220,25 +212,17 @@ this.FeatureBackground();
                             "Type",
                             "Options"});
                 table6.AddRow(new string[] {
-                            "WeavingType",
-                            "Selective",
-                            "Machine, Handmade"});
-                table6.AddRow(new string[] {
                             "Meterial",
                             "Selective",
-                            "silky, Wool"});
-                table6.AddRow(new string[] {
-                            "Area",
-                            "",
-                            ""});
-#line 34
+                            "1= silky, 2=Wool"});
+#line 32
  testRunner.And("he has assigned the following constraint for it", ((string)(null)), table6, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "Title"});
                 table7.AddRow(new string[] {
-                            "rug"});
-#line 39
+                            "carpet"});
+#line 35
  testRunner.When("he changes the measures given in the example above as following", ((string)(null)), table7, "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
@@ -248,19 +232,11 @@ this.FeatureBackground();
                 table8.AddRow(new string[] {
                             "WeavingType",
                             "Selective",
-                            "Machine"});
-                table8.AddRow(new string[] {
-                            "Meterial",
-                            "Selective",
-                            "silky"});
-                table8.AddRow(new string[] {
-                            "Area",
-                            "",
-                            ""});
-#line 42
- testRunner.And("he has assigned the following constraint for it", ((string)(null)), table8, "And ");
+                            "1= silky, 2=Wool"});
+#line 38
+ testRunner.And("he has assigned the following constraint for it:", ((string)(null)), table8, "And ");
 #line hidden
-#line 47
+#line 41
  testRunner.Then("The product has changed with the above information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -275,7 +251,7 @@ this.FeatureBackground();
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("deleting a product", null, tagsOfScenario, argumentsOfScenario);
-#line 49
+#line 43
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -306,14 +282,14 @@ this.FeatureBackground();
                             "Meterial"});
                 table9.AddRow(new string[] {
                             "Area"});
-#line 50
+#line 44
  testRunner.Given("there is constraints in system as following", ((string)(null)), table9, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                             "Title"});
                 table10.AddRow(new string[] {
                             "carpet"});
-#line 55
+#line 49
  testRunner.And("\'reza\' has define a product in system as following", ((string)(null)), table10, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
@@ -323,22 +299,14 @@ this.FeatureBackground();
                 table11.AddRow(new string[] {
                             "WeavingType",
                             "Selective",
-                            "Machine, Handmade"});
-                table11.AddRow(new string[] {
-                            "Meterial",
-                            "Selective",
-                            "silky,Wool"});
-                table11.AddRow(new string[] {
-                            "Area",
-                            "",
-                            ""});
-#line 58
+                            "1= Machine, 2= Handmade"});
+#line 52
  testRunner.And("he has assigned the following constraint for it", ((string)(null)), table11, "And ");
 #line hidden
-#line 63
+#line 55
  testRunner.When("he removes the product defined above", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 64
+#line 56
  testRunner.Then("It should not appear in the list of products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

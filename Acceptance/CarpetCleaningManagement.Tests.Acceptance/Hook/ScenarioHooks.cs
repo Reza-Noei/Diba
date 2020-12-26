@@ -4,7 +4,7 @@ using Suzianna.Core.Screenplay;
 using Suzianna.Rest.Screenplay.Abilities;
 using TechTalk.SpecFlow;
 
-namespace CarpetCleaningManagement.Tests.Acceptance.Hook
+namespace Diba.Tests.Acceptance.Hook
 {
     [Binding]
     public class ScenarioHooks
@@ -18,7 +18,7 @@ namespace CarpetCleaningManagement.Tests.Acceptance.Hook
         [BeforeScenario]
         public void SetupStage()
         {
-            var cast = Cast.WhereEveryoneCan(new List<IAbility>() { CallAnApi.At("http://localhost:5000") });
+            var cast = Cast.WhereEveryoneCan(new List<IAbility>() { CallAnApi.At("http://localhost:60123") });
             var stage = new Stage(cast);
             _container.RegisterInstanceAs(stage);
         }
