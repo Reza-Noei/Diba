@@ -2,6 +2,7 @@
 {
     public class FinalFeeVisitor : IServiceVisitor
     {
+        //TODO: design suitable visitors for business
         private decimal _fee = 0;
 
         public void Visit(TransportationService transportationService)
