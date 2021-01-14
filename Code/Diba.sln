@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Douments", "Douments", "{1C409804-0E92-4995-8AE0-A6C08E89EDEA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{6B2CCF27-1C25-4F21-A4FC-8193762F12DD}"
+	ProjectSection(SolutionItems) = preProject
+		Test\Core.Domain.Unit.Test\Model\Products\ProductConstraints\SelectiveConstraintTests.cs = Test\Core.Domain.Unit.Test\Model\Products\ProductConstraints\SelectiveConstraintTests.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Diba.Core", "Diba.Core", "{915E936C-CCCB-4243-8770-69672C904C12}"
 EndProject

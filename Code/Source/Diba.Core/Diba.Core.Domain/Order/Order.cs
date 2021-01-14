@@ -12,7 +12,7 @@ namespace Diba.Core.Domain
         public Order()
         {
             this._services = new List<Service>();
-            this.State = new DraftState();
+            this.State = new CollectedState();
         }
         public void AddServices(List<Service> service)
         {
@@ -28,14 +28,5 @@ namespace Diba.Core.Domain
                 service.AcceptVisitor(visitor);
             }
         }
-        public void Cancel()
-        {
-            this.State = this.State.Cancel();
-        }
-        public void Confirm()
-        {
-            this.State = this.State.Confirm();
-        }
-
     }
 }
