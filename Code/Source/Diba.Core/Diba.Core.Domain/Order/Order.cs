@@ -10,8 +10,6 @@ namespace Diba.Core.Domain
         private List<OrderItem> _items;
         public IReadOnlyCollection<OrderItem> Items => _items.AsReadOnly();
 
-        //private List<Service> _services { get; set; }
-        //public IReadOnlyCollection<Service> Services => _services.AsReadOnly();
         public OrderState State { get; private set; }
         public Order()
         {
@@ -21,24 +19,30 @@ namespace Diba.Core.Domain
 
         public void UpdateItems(List<OrderItem> itmes)
         {
+            if (!State.CanModify())
+                throw new Exception();
+
             this._items.Update(itmes);
         }
 
-        //public void AddServices(List<Service> service)
-        //{
-        //    if (!State.CanModify())
-        //        throw new Exception();
+        public void Calculate()
+        {
+            this.State = this.State.Calculate();
+        }
 
-        //    this._services.AddRange(service);
-        //}
-        //public void AcceptServiceVisitor(IServiceVisitor visitor)
-        //{
-        //    foreach (var service in Services)
-        //    {
-        //        service.AcceptVisitor(visitor);
-        //    }
-        //}
+        public void Process()
+        {
+            this.State = this.State.Process();
+        }
+
+        public void Deliver()
+        {
+            this.State = this.State.Deliver();
+        }
+
+        public void Balance()
+        {
+            this.State = this.State.Balance();
+        }
     }
-
-
 }
