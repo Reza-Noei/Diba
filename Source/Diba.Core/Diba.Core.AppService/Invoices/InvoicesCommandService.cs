@@ -33,15 +33,15 @@ namespace Diba.Core.AppService.Invoices
             _mapper = mapper;
         }
 
-        public ServiceResult<InvoiceViewModel> Create(CreateInvoiceInputModel request)
+        public ServiceResult<InvoiceShortViewModel> Create(CreateInvoiceInputModel request)
         {
             var customer = _customerMembershipRepository.GetById(request.CustomerMembershipId);
             if (customer == null)
-                return new ServiceResult<InvoiceViewModel>(StatusCode.NotFound);
+                return new ServiceResult<InvoiceShortViewModel>(StatusCode.NotFound);
 
             var secretary = _secretaryMembershipRepository.GetMany(P => P.Id == request.SecretaryId).FirstOrDefault();
             if (secretary == null)
-                return new ServiceResult<InvoiceViewModel>(StatusCode.Forbidden);
+                return new ServiceResult<InvoiceShortViewModel>(StatusCode.Forbidden);
 
             Invoice invoice = new Invoice()
             {
@@ -63,10 +63,10 @@ namespace Diba.Core.AppService.Invoices
                 foreach (var order in request.Orders)
                 {
                     if (!MetricQNames.Any(P => P.Id == order.UnitId))
-                        return new ServiceResult<InvoiceViewModel>(StatusCode.BadRequest);
+                        return new ServiceResult<InvoiceShortViewModel>(StatusCode.BadRequest);
 
                     if (!ServiceTypeQNames.Any(P => P.Id == order.ServiceTypeId))
-                        return new ServiceResult<InvoiceViewModel>(StatusCode.BadRequest);
+                        return new ServiceResult<InvoiceShortViewModel>(StatusCode.BadRequest);
 
                     invoice.Orders.Add(new CustomerOrder()
                     {
@@ -85,19 +85,19 @@ namespace Diba.Core.AppService.Invoices
             _invoiceRepository.Add(invoice);
             _unitOfWork.Commit();
 
-            return new ServiceResult<InvoiceViewModel>()
+            return new ServiceResult<InvoiceShortViewModel>()
             {
-                Data = _mapper.Map<InvoiceViewModel>(invoice),
+                Data = _mapper.Map<InvoiceShortViewModel>(invoice),
                 StatusCode = StatusCode.Created
             };
         }
 
-        public ServiceResult<InvoiceViewModel> Delete(long id)
+        public ServiceResult<InvoiceShortViewModel> Delete(long id)
         {
             throw new NotImplementedException();
         }
 
-        public ServiceResult<InvoiceViewModel> Update(long id, UpdateInvoiceInputModel request)
+        public ServiceResult<InvoiceShortViewModel> Update(long id, UpdateInvoiceInputModel request)
         {
             throw new NotImplementedException();
         }

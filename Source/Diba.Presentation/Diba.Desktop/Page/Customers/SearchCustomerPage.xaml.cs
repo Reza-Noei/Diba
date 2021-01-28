@@ -1,11 +1,15 @@
 ﻿using Diba.Core.AppService.Contract;
+using Diba.Desktop.Common;
+using Diba.Desktop.Controls;
+using Diba.Desktop.DataGridViewModels;
 using Diba.Desktop.Internal.DibaCore;
-using Diba.Desktop.Page.Customers;
+using Diba.Desktop.Page.Receipts;
 using MaterialDesignThemes.Wpf;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using DataGridTextColumn = MaterialDesignThemes.Wpf.DataGridTextColumn;
 
 namespace Diba.Desktop.Page.Customer
 {
@@ -18,6 +22,11 @@ namespace Diba.Desktop.Page.Customer
         {
             InitializeComponent();
 
+            IntiateCustomersGridContextMenu();
+        }
+
+        private void IntiateCustomersGridContextMenu()
+        {
             var DataGridRowContext = new ContextMenu() { FontWeight = FontWeights.Medium };
 
             var DetailMenuItem = new MenuItem();
@@ -28,7 +37,7 @@ namespace Diba.Desktop.Page.Customer
                 Orientation = Orientation.Horizontal,
             };
 
-            DetailMenuItemContent.Children.Add(new MaterialDesignThemes.Wpf.PackIcon()
+            DetailMenuItemContent.Children.Add(new PackIcon()
             {
                 Kind = PackIconKind.Magnify,
                 VerticalAlignment = VerticalAlignment.Center,
@@ -51,7 +60,7 @@ namespace Diba.Desktop.Page.Customer
                 Orientation = Orientation.Horizontal
             };
 
-            NewOrderMenuItemContent.Children.Add(new MaterialDesignThemes.Wpf.PackIcon()
+            NewOrderMenuItemContent.Children.Add(new PackIcon()
             {
                 Kind = PackIconKind.Plus,
                 Width = 25,
@@ -75,6 +84,14 @@ namespace Diba.Desktop.Page.Customer
             DataGridRowContext.Items.Add(DetailMenuItem);
 
             DataGrid.SetContextMenu(DataGridRowContext);
+
+            InitialDataGrid(DataGrid);
+        }
+
+        private void InitialDataGrid(Table dataGrid)
+        {
+            CustomerGridViewModel viewModel = new CustomerGridViewModel();
+            viewModel.Initiate(dataGrid);
         }
 
         private async void DetailMenuItem_Click(object sender, RoutedEventArgs e)
@@ -83,10 +100,25 @@ namespace Diba.Desktop.Page.Customer
             this.ShowChild(new CustomerPage(Model));
         }
 
-
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            var dialogResult = await DialogHost.Show(new CreateNewCustomer());
+            CreateCustomerDialog CreateCustomerDialog = new CreateCustomerDialog();
+            var dialogResult = await DialogHost.Show(CreateCustomerDialog);
+            if (dialogResult is DialogResult result)
+            {
+                if (result.State == DialogState.Yes)
+                {
+                    ICustomerManagementCommand customerManagementCommand = new MockCustomerManagementCommand();
+                    var CreateResult = customerManagementCommand.Create(CreateCustomerDialog.CreateCustomerInputModel);
+
+                    var innerDialog = await DialogHost.Show(Controls.MessageBox.Build("آیا مایلید برای مشتری جدید سفارش ثبت کنید ؟", Controls.MessageBoxType.YesNo));
+                    if (innerDialog is DialogResult innerResult)
+                    {
+                        if (innerResult.State == DialogState.Yes)
+                            this.ShowChild(new CreateOrderPage(CreateResult.Data, ViewMode.Create));
+                    }
+                }
+            }
         }
 
         private void FormBase_MouseUp(object sender, MouseButtonEventArgs e)
@@ -107,13 +139,13 @@ namespace Diba.Desktop.Page.Customer
 
         private void FormBase_Loaded(object sender, RoutedEventArgs e)
         {
-            ICustomerManagementQuery customerManagementQuery = new MockCustomerManagementQuery();
-            var Result = customerManagementQuery.Search(new CustomerSearchInputModel()
-            {
-                Query = ""
-            });
+            //ICustomerManagementQuery customerManagementQuery = new MockCustomerManagementQuery();
+            //var Result = customerManagementQuery.Search(new CustomerSearchInputModel()
+            //{
+            //    Query = ""
+            //});
 
-            DataGrid.ConsumeData(Result.Data);
+            //DataGrid.ConsumeData(Result.Data);
         }
     }
 }

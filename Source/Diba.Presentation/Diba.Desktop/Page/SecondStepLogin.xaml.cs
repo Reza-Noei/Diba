@@ -125,6 +125,7 @@ namespace Diba.Desktop.Page
                 else
                 {
                     SessionManagement.AccessToken = Result.Data;
+                    
                     RedirectTo(new HomePage());
                 }
             }

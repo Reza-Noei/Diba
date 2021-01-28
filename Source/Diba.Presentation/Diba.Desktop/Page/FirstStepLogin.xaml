@@ -10,21 +10,38 @@
              FlowDirection="RightToLeft"
              mc:Ignorable="d" 
              Loaded="UserControl_Loaded"    
-             d:DesignHeight="600" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="1000">
     <Grid>
-        <materialDesign:Card Padding="20" Margin="16" Width="320" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <materialDesign:Card Padding="20" 
+                             Margin="16" 
+                             Width="1000" 
+                             Height="600"
+                             materialDesign:ShadowAssist.ShadowDepth="Depth4"
+                             VerticalAlignment="Center" 
+                             HorizontalAlignment="Center">
+            <materialDesign:Card.Background>
+                <ImageBrush ImageSource="Login.JPG"/>
+            </materialDesign:Card.Background>
             <Grid Height="auto">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-                
-                <Label Grid.Row="0" Grid.ColumnSpan="2" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Padding="10 10 10 20" >صفحه ورود</Label>
-                
+                <Grid.Background>
+                    <ImageBrush/>
+                </Grid.Background>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <Grid VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Padding="10 10 10 20" >ورود به سامانه</Label>
                 <TextBox x:Name="Username"
+                         Width="226"
                          Grid.Row="1" Margin="5 15 5 15"
                          Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
                          VerticalAlignment="Top"                            
@@ -33,15 +50,15 @@
                     <materialDesign:HintAssist.Hint>
                         <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
                             <materialDesign:PackIcon Kind="Account" />
-                            <TextBlock xml:space="preserve"> نام کاربری </TextBlock>
+                            <TextBlock xml:space="preserve"> نام کاربری</TextBlock>
                         </StackPanel>
                     </materialDesign:HintAssist.Hint>
                     Secretary
                 </TextBox>
-
                 <PasswordBox    x:Name="Password"
                                 Password="123456"
-                                Grid.Row="2"  Grid.Column="2" Margin="5 15 5 15" 
+                                Width="226"
+                                Grid.Row="2"  Margin="5 15 5 15" 
                                 materialDesign:TextFieldAssist.HasClearButton="True"
                                 Style="{StaticResource MaterialDesignOutlinedPasswordFieldPasswordBox}"
                                 VerticalAlignment="Top"
@@ -49,14 +66,16 @@
                     <materialDesign:HintAssist.Hint>
                         <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
                             <materialDesign:PackIcon Kind="KeyVariant" />
-                            <TextBlock xml:space="preserve"> رمز عبور </TextBlock>
+                            <TextBlock xml:space="preserve"> رمز عبور</TextBlock>
                         </StackPanel>
                     </materialDesign:HintAssist.Hint>
-                    
+
                 </PasswordBox>
-                <TextBlock Grid.Row="3" Margin="5 5 5 5" Foreground="Red" x:Name="ErrorMessage" Visibility="Hidden"></TextBlock>
-                <Button IsDefault="True" Grid.Row="4" Grid.Column="1" Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100" Height="40" HorizontalAlignment="Right" Margin="15 15 5 5" Click="Login_Click" >ورود</Button>
+                <TextBlock Grid.Row="4" Margin="5 5 5 5" Foreground="Red" x:Name="ErrorMessage" Visibility="Hidden"></TextBlock>
+                <CheckBox Grid.Row="3" Width="226" Margin="10 0 10 0"> مرا به خاطر بسپار </CheckBox>
+                <Button IsDefault="True" Width="220" Grid.Row="5" Style="{StaticResource MaterialDesignRaisedDarkButton}" Height="40" HorizontalAlignment="Center" Click="Login_Click" >ورود</Button>
             </Grid>
+    </Grid>
         </materialDesign:Card>
     </Grid>
 </Forms:FormBase>

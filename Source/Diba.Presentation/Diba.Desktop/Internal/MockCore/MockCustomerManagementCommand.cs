@@ -11,6 +11,19 @@ namespace Diba.Desktop.Internal.DibaCore
             {
                 StatusCode = StatusCode.Created,
                 Data = new CustomerViewModel()
+                {
+                    Id = 1,
+                    FirstName = request.FirstName,
+                    LastName = request.LastName,
+                    Address = request.ContactInfo.Address,
+                    Code = request.Code,
+                    District = request.District,
+                    EconomicCode = request.EconomicCode,
+                    NationalIdentifier = request.NationalIdentifier,
+                    RegistrationNumber = request.RegistrationNumber,
+                    PhoneNumber = request.ContactInfo.PhoneNumber,
+                    PostalCode = request.PostalCode                    
+                }
             };
         }
     }

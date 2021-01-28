@@ -2,8 +2,8 @@
 {
     public interface IInvoicesCommandService
     {
-        ServiceResult<InvoiceViewModel> Create(CreateInvoiceInputModel request);
-        ServiceResult<InvoiceViewModel> Update(long id, UpdateInvoiceInputModel request);
-        ServiceResult<InvoiceViewModel> Delete(long id);
+        ServiceResult<InvoiceShortViewModel> Create(CreateInvoiceInputModel request);
+        ServiceResult<InvoiceShortViewModel> Update(long id, UpdateInvoiceInputModel request);
+        ServiceResult<InvoiceShortViewModel> Delete(long id);
     }
 }

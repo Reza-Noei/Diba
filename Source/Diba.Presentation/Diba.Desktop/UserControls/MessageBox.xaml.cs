@@ -82,6 +82,8 @@ namespace Diba.Desktop.Controls
             {
                 State = SecondaryButtonDialogState
             }, null);
+
+            PrimaryButton.Focus();
         }
 
         public static MessageBox Build(string Message, MessageBoxType Type)
@@ -93,7 +95,6 @@ namespace Diba.Desktop.Controls
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
-
                 MaterialDesignThemes.Wpf.DialogHost.CloseDialogCommand.Execute(new DialogResult()
                 {
                     State = SecondaryButtonDialogState

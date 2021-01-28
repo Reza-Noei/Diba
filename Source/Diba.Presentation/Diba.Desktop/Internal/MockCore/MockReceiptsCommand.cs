@@ -13,6 +13,7 @@ namespace Diba.Desktop.Internal.DibaCore
                 Data = new ReceiptViewModel()
                 {
                     Id = 1,
+                    ReceptionDate = DateTime.Now.AddDays(-10),
                     State = ReceiptState.Submitted,
                     CustomerFullName = "محسن عباسی",
                     SecretaryFullName = "احمد رضا معصومی"
@@ -30,13 +31,25 @@ namespace Diba.Desktop.Internal.DibaCore
                 Data = new ReceiptViewModel()
                 {
                     Id = 1,
+                    ReceptionDate = DateTime.Now.AddDays(-100),
                     CollectingDueDate = DateTime.Now.AddDays(5),
                     CustomerFullName = "جمشید هاشم پور",
                     SecretaryFullName = "رضا سلطانی",
                     CollectorFullName = "محمد علیپور",
                     DeliveringDueDate = DateTime.Now.AddDays(30),
                     DeliveryFullName = "محمد علیپور",
-                    State = ReceiptState.Submitted,                    
+                    State = ReceiptState.Submitted,
+                    Items = new List<ReceiptItemViewModel>()
+                    {
+                        new ReceiptItemViewModel()
+                        {
+                            Description = "فرش دستباف ابریشمی 12 متری"
+                        },
+                        new ReceiptItemViewModel()
+                        {
+                            Description = "2 قطعه موکت 6 متری نخی"
+                        }
+                    }
                 }
             };
         }
@@ -50,39 +63,98 @@ namespace Diba.Desktop.Internal.DibaCore
                     new ReceiptViewModel()
                     {
                         Id = 1,
+                        ReceptionDate = DateTime.Now.AddDays(-50),
                         CustomerFullName = "کاظم محمود زاده",
                         SecretaryFullName = "شیوا بیگلو",
                         State = ReceiptState.Submitted,
-                        
+                        Items = new List<ReceiptItemViewModel>()
+                        {
+                            new ReceiptItemViewModel()
+                            {
+                                Description = "فرش ماشینی 12 متری"
+                            },
+                            new ReceiptItemViewModel()
+                            {
+                                Description = "فرش دستباف پشمی 6 متری"
+                            },
+                            new ReceiptItemViewModel()
+                            {
+                                Description = "دو قطعه فرش دستباف پشمی 12 متری"
+                            }
+                        }
                     },
                     new ReceiptViewModel()
                     {
                         Id = 2,
+                        ReceptionDate = DateTime.Now.AddDays(-30),
                         CustomerFullName = "جواد اکبری",
                         SecretaryFullName = "شیوا بیگلو",
                         State = ReceiptState.Collected,
                         CollectingDueDate = DateTime.Now.AddDays(-5),
                         CollectorFullName = "جعفر قرایی",
                         DeliveringDueDate = DateTime.Now.AddDays(5),
-                        DeliveryFullName = "محسن کریمی"
+                        DeliveryFullName = "محسن کریمی",
+                        Items = new List<ReceiptItemViewModel>()
+                        {
+                            new ReceiptItemViewModel()
+                            {
+                                Description = "فرش ماشینی 6 متری"
+                            },
+                            new ReceiptItemViewModel()
+                            {
+                                Description = "موکت پشمی 6 متری"
+                            },
+                            new ReceiptItemViewModel()
+                            {
+                                Description = "دو قطعه فرش دستباف پشمی 12 متری"
+                            }
+                        }
                     },
                     new ReceiptViewModel()
                     {
                         Id = 3,
+                        ReceptionDate = DateTime.Now.AddDays(-1),
                         CustomerFullName = "مهران میرزرگر",
                         SecretaryFullName = "شیوا بیگلو",
-                        State = ReceiptState.Submitted
+                        State = ReceiptState.Submitted,
+                        Items = new List<ReceiptItemViewModel>()
+                        {
+                            new ReceiptItemViewModel()
+                            {
+                                Description = "فرش ماشینی 18 متری"
+                            },
+                            new ReceiptItemViewModel()
+                            {
+                                Description = "موکت پلاستیک 12 متری"
+                            }
+                        }
                     },
                     new ReceiptViewModel()
                     {
                         Id = 4,
+                        ReceptionDate = DateTime.Now.AddDays(-15),
                         CustomerFullName = "ابراهیم قاسمی اقدم",
                         SecretaryFullName = "شهریار سرمست",
                         State = ReceiptState.Delivered,
                         CollectingDueDate = DateTime.Now.AddDays(-20),
                         CollectorFullName = "سلیمان نجاتی",
                         DeliveringDueDate = DateTime.Now.AddDays(-5),
-                        DeliveryFullName = "محسن کریمی"
+                        DeliveryFullName = "محسن کریمی",
+                        Items = new List<ReceiptItemViewModel>()
+                        {
+                            new ReceiptItemViewModel()
+                            {
+                                Description = "فرش صادراتی 6 متری"
+                            },
+                            new ReceiptItemViewModel()
+                            {
+                                Description = "موکت 8 متری"
+                            },
+                            new ReceiptItemViewModel()
+                            {
+                                Description = "دو قطعه فرش 12 متری"
+                            }
+                        }
                     }
                 }
             };
@@ -96,7 +168,7 @@ namespace Diba.Desktop.Internal.DibaCore
                 {
                     new ReceiptItemViewModel()
                     {
-                        Description = "2 عدد فرش 6 متری ماشینی" 
+                        Description = "2 عدد فرش 6 متری ماشینی"
                     },
                     new ReceiptItemViewModel()
                     {

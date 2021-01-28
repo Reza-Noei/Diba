@@ -1,0 +1,117 @@
+﻿<Forms:FormBase x:Class="Diba.Desktop.Page.Invoice.CreateInvoicePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Forms ="clr-namespace:Diba.Desktop.Common"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Diba.Desktop.Page.Invoice"
+             mc:Ignorable="d" 
+             FlowDirection="RightToLeft"
+             xmlns:Controls ="clr-namespace:Diba.Desktop.Controls"             
+             d:DesignHeight="2000" d:DesignWidth="900">
+    <Grid Background="#fafafa" Margin="0" Height="auto" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="White">
+            <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <StackPanel Margin="13" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal">
+                            <Border BorderThickness="1" CornerRadius="2" Padding="8 4 8 4" BorderBrush="SkyBlue">
+                                <TextBlock FontSize="17" FontWeight="Bold" Foreground="LightSalmon"> نرم افزار اتوماسیون قالیشویی دیبا</TextBlock>
+                            </Border>
+                            <TextBlock  Padding="8 4 8 4" FontSize="17" FontWeight="Bold" Foreground="LightSlateGray"> ثبت فاکتور</TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                    <Button Margin="0 0 16 0"
+                            Foreground="Green"
+                            BorderBrush="Green"
+                            Click="Button_Click"
+                            materialDesign:ButtonAssist.CornerRadius="15"
+                            Style="{StaticResource MaterialDesignOutlinedButton}"
+                            HorizontalAlignment="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="KeyboardReturn" />
+                            <TextBlock Margin="5 0 0 0"> بازگشت</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0 0 0 1" />
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <Border Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Height="50" Margin="15 15 15 0" >
+                    <TextBlock x:Name="PageTitle" Margin="10" FontSize="20" FontWeight="Bold" VerticalAlignment="Center">ثبت فاکتور جدید</TextBlock>
+                </Border>
+                
+                <materialDesign:Card Grid.Row="1" materialDesign:ShadowAssist.ShadowDepth="Depth1" Margin="20" Padding="20">
+                    <Grid>
+                        <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+                        <Controls:InvoiceControl x:Name="Invoice" Grid.Row="1"></Controls:InvoiceControl>
+                        <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+                    </Grid>
+                </materialDesign:Card>
+                
+                <Button x:Name="Submit"                         
+                        Grid.Row="2"
+                        Margin="20 20 20 50"
+                        Click="Submit_Click"
+                        materialDesign:ButtonAssist.CornerRadius="22"
+                        VerticalContentAlignment="Center"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Height="45"
+                        HorizontalAlignment="Center"
+                        xml:space="preserve">ثبت فاکتور</Button>
+
+                <materialDesign:Card Grid.Row="3" Background="#fffff2" materialDesign:ShadowAssist.ShadowDepth="Depth1" Padding="20" Margin="20" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Margin="15 10 15 10">
+                            <StackPanel Orientation="Horizontal" Grid.Column="0">
+                                <materialDesign:PackIcon VerticalAlignment="Center" Foreground="SlateGray"  Kind="CardAccountDetailsOutline" Width="25" Height="25"/>
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" FontSize="14">سفارش</TextBlock>
+                            </StackPanel>
+                        </Grid>
+                        <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+                        <Controls:OrderControl x:Name="Receipt" Grid.Row="1"></Controls:OrderControl>
+                        <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+                    </Grid>
+                </materialDesign:Card>
+
+                <materialDesign:Card Grid.Row="4" Background="#fffff2" materialDesign:ShadowAssist.ShadowDepth="Depth1" Padding="20" Margin="20" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Margin="15 10 15 10">
+                            <StackPanel Orientation="Horizontal" Grid.Column="0">
+                                <materialDesign:PackIcon VerticalAlignment="Center" Foreground="SlateGray"  Kind="CardAccountDetailsOutline" Width="25" Height="25"/>
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" FontSize="14">اطلاعات مشتری</TextBlock>
+                            </StackPanel>
+                        </Grid>
+                        <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+                        <Controls:CustomerControl x:Name="Customer" Grid.Row="1"></Controls:CustomerControl>
+                        <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+                    </Grid>
+                </materialDesign:Card>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Forms:FormBase>

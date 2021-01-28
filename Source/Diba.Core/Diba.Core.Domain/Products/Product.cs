@@ -8,18 +8,20 @@ namespace Diba.Core.Domain.Products
 {
     public class Product : BaseEntity<int>
     {
-        private List<ProductConstraint> _constraints;
-        //private List<ProductConstraint> constraints;
-
         public string Name { get; private set; }
-        public ReadOnlyCollection<ProductConstraint> Constraints => _constraints.AsReadOnly();
+        public virtual ICollection<ProductConstraint> Constraints { get; set; }
+
+        protected Product()
+        {
+            Constraints = new HashSet<ProductConstraint>();
+        }
 
         public Product(string name, List<ProductConstraint> constraints)
         {
             GuardAgainstDuplicateConstraint(constraints);
 
             this.Name = name;
-            this._constraints = constraints;
+            Constraints = new HashSet<ProductConstraint>();
         }
 
         public void Update(string name)
@@ -29,7 +31,7 @@ namespace Diba.Core.Domain.Products
 
         private static void GuardAgainstDuplicateConstraint(List<ProductConstraint> constraints)
         {
-            var anyDuplicate = constraints.GroupBy(a => a.ConstraintId, (key, value) => new { key, value })
+            var anyDuplicate = constraints.GroupBy(a => a.Id, (key, value) => new { key, value })
                 .Any(a => a.value.Count() > 1);
             if (anyDuplicate)
                 throw new DuplicateProductConstraintException();

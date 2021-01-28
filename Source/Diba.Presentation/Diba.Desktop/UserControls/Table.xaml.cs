@@ -32,9 +32,38 @@ namespace Diba.Desktop.Controls
         {
             InitializeComponent();
 
-            DataGrid.AutoGenerateColumns = true;
-            DataGrid.AutoGeneratingColumn += DataGrid_AutoGeneratingColumn;
+            DataGrid.AutoGenerateColumns = false;
             DataGrid.IsReadOnly = true;
+            DataGrid.PreviewMouseWheel += DataGrid_PreviewMouseWheel;
+        }
+
+        // TODO: This Code will Ignores Scrolls on the current DataGrid. 
+        // First Problem of this Code is that it's not calibrated.
+        // If you scroll over an DataGrid using this code it will jumps over whole DataGrid by a few scrolling.
+        // Second problem is optimization. This code is not optimal. 
+        // we should find all scrollviewer parrent on initialization time not on event triggering.
+        private void DataGrid_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (sender is FrameworkElement Element)
+            {
+                FrameworkElement Pointer = Element;
+                while (Pointer.Parent != null)
+                {
+                    if (Pointer.Parent is FrameworkElement ParentElement)
+                    {
+                        if (ParentElement is ScrollViewer Scroll)
+                        {
+                            Scroll.ScrollToVerticalOffset(Scroll.VerticalOffset - e.Delta);
+                        }
+
+                        Pointer = ParentElement;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
         }
 
         public void SetContextMenu(ContextMenu ContextMenu)
@@ -62,7 +91,7 @@ namespace Diba.Desktop.Controls
                     if (HeaderAttribute != null)
                     {
                         e.Column.Header = HeaderAttribute.Text;
-                        if (HeaderAttribute.View == View.Form)
+                        if (HeaderAttribute.View == View.Form || HeaderAttribute.View == View.None)
                             e.Column.Visibility = Visibility.Collapsed;
                     }
                 }

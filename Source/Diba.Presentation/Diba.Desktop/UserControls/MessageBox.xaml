@@ -9,7 +9,7 @@
              KeyDown="UserControl_KeyDown"
              FlowDirection="RightToLeft"
              d:DesignHeight="130" d:DesignWidth="500">
-    <Grid Margin="10" MinWidth="300">
+    <Grid Margin="20" MinWidth="300">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>

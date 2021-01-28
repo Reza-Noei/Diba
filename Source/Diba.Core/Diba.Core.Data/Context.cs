@@ -33,7 +33,7 @@ namespace Diba.Core.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=Diba; Integrated Security=True; MultipleActiveResultSets=True;");
+            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=DibaTT; Integrated Security=True; MultipleActiveResultSets=True;");
             //optionsBuilder.UseSqlServer(@"Server=DESKTOP-LOCCOLD\DIBA;Database=DibaTest;UserId=sa;password=325896;Trusted_Connection=True;");
             optionsBuilder.UseLazyLoadingProxies();
             optionsBuilder.EnableSensitiveDataLogging(true);

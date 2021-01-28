@@ -8,7 +8,6 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Diba.Desktop.Page.Home"
              xmlns:popUps="clr-namespace:Diba.Desktop.Page.Home.PopUp"
-             SnapsToDevicePixels ="True"
              Loaded="FormBase_Loaded"
              mc:Ignorable="d" 
              FlowDirection="RightToLeft"
@@ -34,6 +33,7 @@
                         DockPanel.Dock="Top"
                         Margin="16, 4"
                         Width="200"
+                        TextChanged="TextBox_TextChanged"
                         BorderThickness="0"
                         materialDesign:HintAssist.Hint="جستجو"
                         materialDesign:HintAssist.IsFloating="True"
@@ -41,21 +41,14 @@
                         materialDesign:TextFieldAssist.HasOutlinedTextField="True"
                         materialDesign:TextFieldAssist.DecorationVisibility="Collapsed"
                         materialDesign:TextFieldAssist.TextFieldCornerRadius="4"/>
-
                     <ListBox 
-                        x:Name="DemoItemsListBox" 
+                        x:Name="MenuItemsListBox" 
                         Margin="0 16 0 16"
                         SelectedIndex="0"
-                        SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}"
-                        ItemsSource="{Binding DemoItems}">
+                        SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}">
                         <ListBox.Resources>
                             <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
                         </ListBox.Resources>
-                        <ListBox.ItemTemplate>
-                            <DataTemplate DataType="domain:DemoItem">
-                                <TextBlock Text="{Binding Name}" Margin="32 0 32 0" />
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
                     </ListBox>
                 </DockPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>

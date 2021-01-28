@@ -44,16 +44,8 @@ namespace Diba.Desktop.Common
         /// </summary>
         /// <param name="Page">زیر صفحه یا فرزند جانشین</param>
         /// <param name="ClearStack">اگر بخواهیم زیر صفحه جایگزین کنیم پشته ی نسل قبلی باید پاک شود. اگر بخواهیم فرزند اضافه کنیم نباید پشته نسل جاری را پاک کنیم.</param>
-        private void ShowPage(FormBase Page, bool ClearStack)
+        private void ShowPage(FormBase Page)
         {
-            if (ClearStack)
-            {
-                PageStack.Clear();
-            }
-
-            // برای جلوگیری از کلیک های متعدد ابتدا فرم را غیر فعال میکنیم
-            MainGrid.IsEnabled = false;
-
             Page.OnRedirectTo -= Page_RedirectTo;
             Page.OnRedirectTo += Page_RedirectTo;
             Page.OnShowChild -= Page_ShowChildPage;
@@ -61,46 +53,8 @@ namespace Diba.Desktop.Common
             Page.OnClosePageAsChild -= Page_CloseChildPage;
             Page.OnClosePageAsChild += Page_CloseChildPage;
 
-            PageStack.Push(Page);
-
-            // TODO: باید تمام کنترل های گرید اصلی بجز دیالوگ جدید ما غیر فعال و پس از خروج از دیالوگ فعال شوند
-
-            var fade = new DoubleAnimation()
-            {
-                From = 1,
-                To = 0,
-                Duration = TimeSpan.FromMilliseconds(300),
-            };
-
-            Storyboard.SetTarget(fade, MainGrid);
-            Storyboard.SetTargetProperty(fade, new PropertyPath(UIElement.OpacityProperty));
-
-            var sb = new Storyboard();
-            sb.Children.Add(fade);
-            sb.Completed += (sender, e) =>
-            {
-                MainGrid.Children.Clear();
-                MainGrid.Children.Add(Page);
-
-                // پس از اتمام عملیات فرم را فعال میکنیم.
-                MainGrid.IsEnabled = true;
-
-                var Fade2 = new DoubleAnimation()
-                {
-                    From = 0,
-                    To = 1,
-                    Duration = TimeSpan.FromMilliseconds(300),
-                };
-
-                Storyboard.SetTarget(Fade2, MainGrid);
-                Storyboard.SetTargetProperty(Fade2, new PropertyPath(UIElement.OpacityProperty));
-
-                var Sb2 = new Storyboard();
-                Sb2.Children.Add(Fade2);
-                Sb2.Begin();
-            };
-            sb.Begin();
-
+            MainGrid.Children.Clear();
+            MainGrid.Children.Add(Page);
         }
 
 
@@ -116,7 +70,7 @@ namespace Diba.Desktop.Common
                 if (PageStack.Count > 0)
                 {
                     var Page = PageStack.Pop();
-                    ShowPage(PageStack.Peek(), false);
+                    ShowPage(PageStack.Peek());
                 }
             }
         }
@@ -129,7 +83,10 @@ namespace Diba.Desktop.Common
         private void Page_ShowChildPage(FormBase Page)
         {
             Page.IsChild = true;
-            ShowPage(Page, false);
+
+            PageStack.Push(Page);
+            
+            ShowPage(Page);
         }
 
 
@@ -139,7 +96,10 @@ namespace Diba.Desktop.Common
         /// <param name="Page">زیر صفحه مقصد</param>
         private void Page_RedirectTo(FormBase Page)
         {
-            ShowPage(Page, true);
+            PageStack.Clear();
+            PageStack.Push(Page);
+
+            ShowPage(Page);
         }
 
 
@@ -149,7 +109,10 @@ namespace Diba.Desktop.Common
         /// <param name="TargetPage">زیر صفحه مقصد</param>
         public void RedirectPage(FormBase TargetPage)
         {
-            ShowPage(TargetPage, true);
+            PageStack.Clear();
+            PageStack.Push(TargetPage);
+
+            ShowPage(TargetPage);
         }
     }
 }

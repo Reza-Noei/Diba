@@ -2,10 +2,11 @@
 {
     public abstract class ProductConstraint
     {
-        public long ConstraintId { get; set; }
-        protected ProductConstraint(long constraintId)
+        public long Id { get; set; }
+
+        protected ProductConstraint()
         {
-            ConstraintId = constraintId;
+
         }
     }
 }
