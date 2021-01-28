@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Constraint\**" />
+    <EmbeddedResource Remove="Constraint\**" />
+    <None Remove="Constraint\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.0.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.7.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Diba.Core.AppService.Contract\Diba.Core.AppService.Contract.csproj" />
+    <ProjectReference Include="..\Diba.Core.Common\Diba.Core.Common.csproj" />
+    <ProjectReference Include="..\Diba.Core.Data\Diba.Core.Data.csproj" />
+    <ProjectReference Include="..\Diba.Core.Domain\Diba.Core.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
