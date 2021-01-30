@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Diba.Core.AppService.Contract.BindingModels;
+using Diba.Core.AppService.Contract.ViewModels;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Diba.Core.AppService.Contract
 {
-    public class IUserManagementQuery
+    public interface IUserManagementQuery
     {
-
+        ServiceResult<UserViewModel> Get(GetUserBindingModel request);
+        ServiceResult<IList<UserViewModel>> GetAll(GetAllUserBindingModel getAllUserBindingModel);
     }
 }

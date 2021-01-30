@@ -4,6 +4,7 @@ using Diba.Core.AppService.Contract.BindingModels;
 using Diba.Core.AppService.Contract.ViewModels;
 using Diba.Core.Common.Infrastructure;
 using Diba.Core.Data.Repository.Interfaces;
+using Diba.Core.Domain;
 
 namespace Diba.Core.AppService
 {
@@ -28,6 +29,33 @@ namespace Diba.Core.AppService
             _unitOfWork.Commit();
 
             return new ServiceResult<UserViewModel>(_mapper.Map<UserViewModel>(User));
+        }
+
+        public ServiceResult<UserViewModel> Delete(DeleteUserBindingModel request)
+        {
+            User user = _userRepository.GetById(request.Id);
+
+            if (user == null)
+                return new ServiceResult<UserViewModel>(StatusCode.NotFound);
+
+            _userRepository.Delete(user);
+            _unitOfWork.Commit();
+
+            return new ServiceResult<UserViewModel>(_mapper.Map<UserViewModel>(user));
+        }
+
+        public ServiceResult<UserViewModel> Update(UpdateUserBindingModel request)
+        {
+            User user = _userRepository.GetById(request.Id);
+
+            if (user == null)
+                return new ServiceResult<UserViewModel>(StatusCode.NotFound);
+
+            user.Username = request.Username;
+
+            _unitOfWork.Commit();
+
+            return new ServiceResult<UserViewModel>(_mapper.Map<UserViewModel>(user));
         }
     }
 }

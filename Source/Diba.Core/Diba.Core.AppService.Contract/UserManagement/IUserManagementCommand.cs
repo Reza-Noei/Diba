@@ -7,5 +7,8 @@ namespace Diba.Core.AppService.Contract
     public interface IUserManagementCommand
     {
         ServiceResult<UserViewModel> Create(CreateUserBindingModel request);
+        ServiceResult<UserViewModel> Update(UpdateUserBindingModel request);
+        ServiceResult<UserViewModel> Delete(DeleteUserBindingModel request);
+
     }
 }
