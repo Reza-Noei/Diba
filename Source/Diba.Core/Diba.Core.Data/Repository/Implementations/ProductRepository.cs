@@ -5,14 +5,14 @@ using Diba.Core.Domain.Products;
 
 namespace Diba.Core.Data.Repository.Implementations
 {
-    public class ProductRepository : RepositoryBase<ProductClass>, IProductRepository
+    public class ProductRepository : RepositoryBase<Product>, IProductRepository
     {
         public ProductRepository(IDatabaseFactory databaseFactory, IUnitOfWork unitOfWork) : base(databaseFactory, unitOfWork)
         {
 
         }
 
-        public ProductClass GetById(int id)
+        public Product GetById(int id)
         {
             return dbSet.Find(id);
         }

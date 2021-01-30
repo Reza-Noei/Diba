@@ -28,7 +28,7 @@ namespace Diba.Core.Data
         public DbSet<Secretary> Secretaries { get; set; }
         public DbSet<BaseRole> Roles { get; set; }
         public DbSet<CustomerOrder> Orders { get; set; }
-        public DbSet<ProductClass> Products { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         public DbSet<StringConstraint> StringConstraints { get; set; }
 

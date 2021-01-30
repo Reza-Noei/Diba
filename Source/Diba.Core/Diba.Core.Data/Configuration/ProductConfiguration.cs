@@ -5,26 +5,26 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Diba.Core.Data.Configuration
 {
-    public class ProductConfiguration : IEntityTypeConfiguration<ProductClass>
+    public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
-        public void Configure(EntityTypeBuilder<ProductClass> builder)
+        public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder.ToTable("Products");
 
             builder.HasKey(x => x.Id);
 
-            builder.HasMany(x => x.Constraints).WithOne(z => z.Product).HasForeignKey(z => z.ProductId);
+            builder.HasMany((System.Linq.Expressions.Expression<System.Func<Product, System.Collections.Generic.IEnumerable<ProductConstraint>>>)(x => (System.Collections.Generic.IEnumerable<ProductConstraint>)x.Constraints)).WithOne(z => z.Product).HasForeignKey(z => z.ProductId);
         }
     }
 
-    public class ProductConstraintConfiguration : IEntityTypeConfiguration<ProductClassConstraint>
+    public class ProductConstraintConfiguration : IEntityTypeConfiguration<ProductConstraint>
     {
-        public void Configure(EntityTypeBuilder<ProductClassConstraint> builder)
+        public void Configure(EntityTypeBuilder<ProductConstraint> builder)
         {
             builder.ToTable("ProductConstraints");
             builder.HasKey(x => x.Id);
 
-            builder.HasOne(x => x.Product).WithMany(z => z.Constraints).HasForeignKey(x => x.ProductId);
+            builder.HasOne(x => x.Product).WithMany((System.Linq.Expressions.Expression<System.Func<Product, System.Collections.Generic.IEnumerable<ProductConstraint>>>)(z => (System.Collections.Generic.IEnumerable<ProductConstraint>)z.Constraints)).HasForeignKey(x => x.ProductId);
         }
     }
 

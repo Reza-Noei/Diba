@@ -21,7 +21,7 @@ namespace Diba.Core.AppService.Products
 
         public ServiceResult<ProductViewModel> Create(CreateProductViewModel request)
         {
-            var product = _mapper.Map<ProductClass>(request);
+            var product = _mapper.Map<Product>(request);
             _productRepository.Add(product);
             _unitOfWork.Commit();
 
@@ -30,7 +30,7 @@ namespace Diba.Core.AppService.Products
 
         public ServiceResult<ProductViewModel> Update(int id, UpdateProductViewModel request)
         {
-            ProductClass product = _productRepository.GetById(id);
+            Product product = _productRepository.GetById(id);
 
             if (product == null)
                 return new ServiceResult<ProductViewModel>(StatusCode.NotFound);
@@ -44,7 +44,7 @@ namespace Diba.Core.AppService.Products
 
         public ServiceResult<ProductViewModel> Delete(int id)
         {
-            ProductClass product = _productRepository.GetById(id);
+            Product product = _productRepository.GetById(id);
 
             if (product == null)
                 return new ServiceResult<ProductViewModel>(StatusCode.NotFound);

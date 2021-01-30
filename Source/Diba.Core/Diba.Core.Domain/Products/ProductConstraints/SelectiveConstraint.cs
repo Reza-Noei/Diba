@@ -6,7 +6,12 @@ namespace Diba.Core.Domain.Products.ProductConstraints
     public class SelectiveConstraint : ProductConstraint
     {
         private List<Option> options;
-        public IReadOnlyList<Option> Options => options.AsReadOnly();
+        public virtual IReadOnlyList<Option> Options => options.AsReadOnly();
+
+        protected SelectiveConstraint()
+        {
+
+        }
 
         public SelectiveConstraint(IEnumerable<Option> options)
         {

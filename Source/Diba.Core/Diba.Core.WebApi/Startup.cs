@@ -86,11 +86,10 @@ namespace Diba.Core.Service
             services.AddScoped<IProductQueryService, ProductQueryService>();
             services.AddScoped<IProductRepository, ProductRepository>();
 
-
             services.AddScoped<IProductStringConstraintsQueryService, ProductStringConstraintsQueryService>();
             services.AddScoped<IProductStringConstraintsCommandService, ProductStringConstraintsCommandService>();
             services.AddScoped<IProductStringConstraintsRepository, ProductStringConstraintsRepository>();
-
+            
             services.AddScoped<IProductSelectiveConstraintsQueryService, ProductSelectiveConstraintsQueryService>();
             services.AddScoped<IProductSelectiveConstraintsCommandService, ProductSelectiveConstraintsCommandService>();
             services.AddScoped<IProductSelectiveConstraintsRepository, ProductSelectiveConstraintsRepository>();
@@ -99,6 +98,7 @@ namespace Diba.Core.Service
 
             ServiceProvider serviceProvider = services.BuildServiceProvider();
             IAuthenticationCommand authenticationCommand = serviceProvider.GetService<IAuthenticationCommand>();
+
             IAuthenticationQuery authenticationQuery = serviceProvider.GetService<IAuthenticationQuery>();
             IAuthenticationInformation authenticationInformation = serviceProvider.GetService<IAuthenticationInformation>();
 

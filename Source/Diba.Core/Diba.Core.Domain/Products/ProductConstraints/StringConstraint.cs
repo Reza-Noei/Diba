@@ -2,7 +2,7 @@ using System;
 
 namespace Diba.Core.Domain.Products.ProductConstraints
 {
-    public class StringConstraint : ProductClassConstraint
+    public class StringConstraint : ProductConstraint
     {
         public int MaxLength { get; private set; }
         public string Format { get; private set; }
