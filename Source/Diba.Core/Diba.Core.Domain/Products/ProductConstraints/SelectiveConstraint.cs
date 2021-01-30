@@ -8,14 +8,14 @@ namespace Diba.Core.Domain.Products.ProductConstraints
         private List<Option> options;
         public IReadOnlyList<Option> Options => options.AsReadOnly();
 
-        public SelectiveConstraint(List<Option> options)
+        public SelectiveConstraint(IEnumerable<Option> options)
         {
             GuardAgaintsDuplicateValueIn(options);
 
-            this.options = options;
+            this.options = options.ToList();
         }
 
-        private static void GuardAgaintsDuplicateValueIn(List<Option> options)
+        private static void GuardAgaintsDuplicateValueIn(IEnumerable<Option> options)
         {
             var hasDuplicateValue = options
                 .GroupBy(product => product.Key,
@@ -25,6 +25,8 @@ namespace Diba.Core.Domain.Products.ProductConstraints
             if (hasDuplicateValue)
                 throw new DuplicateOptionException();
         }
+
+        public void Update(string title) => this.Title = title;
 
         public bool Validate(int value)
         {
