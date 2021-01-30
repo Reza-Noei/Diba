@@ -1,5 +1,6 @@
 ﻿using Diba.Core.Domain.Base;
 using System;
+using System.Collections.Generic;
 
 namespace Diba.Core.Domain
 {
@@ -15,14 +16,20 @@ namespace Diba.Core.Domain
         public DateTime Creation { get; set; }
         #endregion
 
+        public ICollection<Role> Roles { get; set; }
+
+        public virtual ICollection<ContactInfo> ContactInfos { get; set; }
+
         public User(User creator):this()
         {
             Creator = creator;
+            ContactInfos = new HashSet<ContactInfo>();
         }
 
         public User()
         {
             Creation = DateTime.Now;
+            ContactInfos = new HashSet<ContactInfo>();
         }
     }
 }

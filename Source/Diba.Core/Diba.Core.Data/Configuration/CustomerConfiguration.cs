@@ -10,7 +10,7 @@ namespace Diba.Core.Data.Configuration
         {
             builder.ToTable("Customers");
             builder.HasOne(P => P.Role).WithOne();
-            builder.HasOne(P => P.Referer).WithMany().HasForeignKey(P => P.RefererId);
+            builder.HasOne(P => P.Organization).WithMany().HasForeignKey(P => P.Organization);
             builder.HasMany(P => P.ContactInfos).WithOne(Q => Q.Customer).HasForeignKey(Q=>Q.CustomerId);
             builder.HasMany(P => P.Memberships).WithOne(Q => Q.Customer).HasForeignKey(Q => Q.CustomerId);
         }

@@ -54,7 +54,7 @@ namespace Diba.Core.AppService
                 NationalIdentifier = request.NationalIdentifier,
                 RegistrationNumber = request.RegistrationNumber,
                 PostalCode = request.PostalCode,                
-                Referer = organization, 
+                Organization = organization, 
                 Role = role,
                 Description = request.Description,
                 Code = customerCode,                

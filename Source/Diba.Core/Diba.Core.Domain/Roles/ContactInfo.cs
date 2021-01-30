@@ -3,11 +3,10 @@ using System.Text;
 
 namespace Diba.Core.Domain
 {
-    public class ContactInfo
+    public class ContactInfo: BaseEntity<long>
     {
-        public long Id { get; set; }
-        public long CustomerId { get; set; }
-        public virtual Customer Customer { get; set; }
+        public long UserId { get; set; }
+        public virtual User User { get; set; }
         public string CalleeName { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }

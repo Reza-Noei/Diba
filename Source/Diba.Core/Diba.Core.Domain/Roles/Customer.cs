@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Diba.Core.Domain
 {
-    public class Customer
+
+    public class Customer: Role
     {
-        public long Id { get; set; }
-
-        public long RoleId { get; set; }
-
-        public virtual BaseRole Role { get; set; }
-
         public string Code { get; set; }
 
         public string FirstName { get; set; }
@@ -43,16 +37,14 @@ namespace Diba.Core.Domain
         /// </summary>
         public string RegistrationNumber { get; set; }
 
-        public long RefererId { get; set; }
-        public virtual Organization Referer { get; set; }
-        
-        public virtual ICollection<ContactInfo> ContactInfos { get; set; }
-        public virtual ICollection<CustomerMembership> Memberships { get; set; }
+        public long OrganizationId { get; set; }
 
+        public virtual Organization Organization { get; set; }
+        
+        
         public Customer()
         {
-            Memberships = new HashSet<CustomerMembership>();
-            ContactInfos = new HashSet<ContactInfo>();
+
         }
     }
 }

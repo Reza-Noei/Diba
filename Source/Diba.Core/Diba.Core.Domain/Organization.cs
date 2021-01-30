@@ -11,12 +11,7 @@ namespace Diba.Core.Domain
         public string Title { get; set; }
         public string Prefix { get; set; }
 
-        public virtual ICollection<SecretaryMembership> SecretaryMemberships { get; set; }
-        public virtual ICollection<SuperAdminMembership> SuperAdminMemberships { get; set; }
-        public virtual ICollection<AdminMembership> AdminMemberships { get; set; }
-        public virtual ICollection<CustomerMembership> CustomerMemberships { get; set; }
-        public virtual ICollection<DeliveryMembership> DeliveryMemberships { get; set; }
-        public virtual ICollection<CollectorMembership> CollectorMemberships { get; set; }        
+        public virtual ICollection<Customer> Customers { get; set; }
 
         #region Editable ...
         public long? ModifierId { get; set; }
@@ -28,21 +23,18 @@ namespace Diba.Core.Domain
         public DateTime Creation { get; set; }
         #endregion
 
-        public Organization(string title): this()
+        public Organization(string title)
         {
             Title = title;
+            Creation = DateTime.UtcNow;
+            Customers = new HashSet<Customer>();
         }
 
         public Organization()
         {
             Creation = DateTime.Now;
-
-            SecretaryMemberships = new HashSet<SecretaryMembership>();
-            SuperAdminMemberships = new HashSet<SuperAdminMembership>();
-            AdminMemberships = new HashSet<AdminMembership>();
-            CustomerMemberships = new HashSet<CustomerMembership>();
-            DeliveryMemberships = new HashSet<DeliveryMembership>();
-            CollectorMemberships = new HashSet<CollectorMembership>();
+            Creation = DateTime.UtcNow;
+            Customers = new HashSet<Customer>();
         }
-}
+    }
 }
