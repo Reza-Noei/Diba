@@ -16,7 +16,7 @@ namespace Diba.Core.Domain.Unit.Test.Model.Orders.States
         {
             return new List<object[]>
             {
-                new object[] { new Func<OrderState,OrderState>(a=> a.Process()), typeof(UnderProcessedState) },
+                new object[] { new Func<OrderState,OrderState>(a=> a.Process()), typeof(ProcessedState) },
             };
         }
 

@@ -10,7 +10,7 @@ namespace Diba.Core.Domain.Unit.Test.Model.Orders.States
         public OrderState _OrderState;
         public OrderStateTest_WhenUnderProcessed()
         {
-            _OrderState = new UnderProcessedState();
+            _OrderState = new ProcessedState();
         }
         public static IEnumerable<object[]> ValidStates()
         {

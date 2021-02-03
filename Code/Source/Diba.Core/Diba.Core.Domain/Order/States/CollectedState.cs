@@ -2,7 +2,12 @@
 {
     public class CollectedState : OrderState
     {
-        public override bool CanModify()
+        public override bool ItemsCanModify()
+        {
+            return true;
+        }
+
+        public override bool DelivelerCanModify()
         {
             return true;
         }

@@ -4,9 +4,24 @@ namespace Diba.Core.Domain
 {
     public abstract class OrderState
     {
-        public virtual bool CanModify()
+        public virtual bool ItemsCanModify()
         {
             return false;
+        }
+
+        public virtual bool CollectorCanModify()
+        {
+            return false;
+        }
+
+        public virtual bool DelivelerCanModify()
+        {
+            return false;
+        }
+
+        public virtual OrderState Collect()
+        {
+            throw new NotSupportedException();
         }
 
         public virtual OrderState Calculate()
@@ -25,6 +40,11 @@ namespace Diba.Core.Domain
         }
 
         public virtual OrderState Balance()
+        {
+            throw new NotSupportedException();
+        }
+
+        public virtual OrderState Cancel()
         {
             throw new NotSupportedException();
         }
