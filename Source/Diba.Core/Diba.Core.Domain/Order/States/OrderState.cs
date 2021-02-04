@@ -28,6 +28,11 @@ namespace Diba.Core.Domain
         {
             throw new NotSupportedException();
         }
+        public virtual bool RequireCalculation()
+        {
+            return false;
+        }
+
         public virtual OrderState Calculate()
         {
             throw new NotSupportedException();
