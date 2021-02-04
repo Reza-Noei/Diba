@@ -113,7 +113,6 @@ namespace Diba.Core.Service
                 mc.AddProfile(new UserManagementMappingProfile());
                 mc.AddProfile(new CustomerManagementMappingProfile());
                 mc.AddProfile(new OrganizationManagementMappingProfile());
-                mc.AddProfile(new OrganizationMembershipManagementMappingProfile());
 
                 mc.AddProfile(new ProductMappingConfig());
                 mc.AddProfile(new ProductStringConstraintsConfig());
