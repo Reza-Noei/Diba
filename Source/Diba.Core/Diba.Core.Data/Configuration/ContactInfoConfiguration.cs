@@ -14,8 +14,6 @@ namespace Diba.Core.Data.Configuration
             builder.ToTable("ContactInfos");
             builder.HasKey(P => P.Id);
             builder.Property(P => P.Id).ValueGeneratedOnAdd();
-
-            builder.HasOne(P => P.User).WithMany(Q => Q.ContactInfos).HasForeignKey(P => P.UserId);
         }
     }
 }

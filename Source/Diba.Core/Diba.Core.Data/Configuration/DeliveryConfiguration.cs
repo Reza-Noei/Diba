@@ -11,12 +11,7 @@ namespace Diba.Core.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Delivery> builder)
         {
-            //builder.ToTable("Deliveries");
-            //builder.HasKey(P => P.Id);
-            //builder.Property(P => P.Id).ValueGeneratedOnAdd();
-
-            //builder.HasMany(P => P.Memberships).WithOne(Q => Q.Delivery).HasForeignKey(Q => Q.DeliveryId);
-            //builder.HasOne(P => P.Role).WithOne();
+            builder.ToTable("Deliveries");
         }
     }
 }

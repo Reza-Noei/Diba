@@ -11,12 +11,8 @@ namespace Diba.Core.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<SuperAdmin> builder)
         {
-            //builder.ToTable("SuerAdmins");
-            //builder.HasKey(P => P.Id);
-            //builder.Property(P => P.Id).ValueGeneratedOnAdd();
+            builder.ToTable("SuerAdmins");
 
-            //builder.HasMany(P => P.Memberships).WithOne(Q => Q.SuperAdmin).HasForeignKey(Q => Q.SuperAdminId);
-            //builder.HasOne(P => P.Role).WithOne();
         }
     }
 }

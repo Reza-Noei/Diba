@@ -2,7 +2,7 @@
 {
     public class DeliverdState : OrderState
     {
-        public override bool CanModify()
+        public override bool ItemsCanModify()
         {
             return true;
         }

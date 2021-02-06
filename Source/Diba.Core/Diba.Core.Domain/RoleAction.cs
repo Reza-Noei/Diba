@@ -6,7 +6,6 @@ namespace Diba.Core.Domain
     public class RolePermission
     {
         public long Id { get; set; }
-        //public virtual RoleEnum Role { get; set; }
         public ActionEnum Action { get; set; }
         public bool IsGranted { get; set; }
 
