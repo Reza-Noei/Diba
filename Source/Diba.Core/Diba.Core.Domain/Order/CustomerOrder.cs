@@ -56,11 +56,11 @@
         /// </summary>
         public decimal TotalPriceAfterApplyingDiscountAndTax => TotalPriceAfterApplyingDiscount + Tax;
 
-        public long? DeliveryMembershipId { get; set; }
-        public virtual DeliveryMembership DeliveryMembership { get; set; }
+       // public long? DeliveryMembershipId { get; set; }
+        //public virtual DeliveryMembership DeliveryMembership { get; set; }
 
-        public long? CollectorMembershipId { get; set; }
-        public virtual CollectorMembership CollectorMembership { get; set; }
+       // public long? CollectorMembershipId { get; set; }
+       // public virtual CollectorMembership CollectorMembership { get; set; }
 
         public PaymentType PaymentType { get; set; }
 

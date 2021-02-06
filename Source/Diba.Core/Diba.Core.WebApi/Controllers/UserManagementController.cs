@@ -16,8 +16,8 @@ namespace Diba.Core.Service.Controllers
     [ApiController]
     public class UserManagementController : ControllerBase
     {
-        private readonly IUserManagementCommand _userManagementCommand;
-        public UserManagementController(IUserManagementCommand userManagementCommand)
+        private readonly IUsersCommandService _userManagementCommand;
+        public UserManagementController(IUsersCommandService userManagementCommand)
         {
             _userManagementCommand = userManagementCommand;
         }

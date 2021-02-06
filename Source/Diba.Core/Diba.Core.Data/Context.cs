@@ -19,14 +19,15 @@ namespace Diba.Core.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Organization> Organizations { get; set; }
         public DbSet<Authority> Memberships { get; set; }
-        public DbSet<SecretaryMembership> SecretaryMemberships { get; set; }
+       // public DbSet<SecretaryMembership> SecretaryMemberships { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<SuperAdmin> SuperAdmins { get; set; }
         public DbSet<Collector> Collectors { get; set; }
         public DbSet<Delivery> Deliveries { get; set; }
         public DbSet<Secretary> Secretaries { get; set; }
-        public DbSet<BaseRole> Roles { get; set; }
+        //public DbSet<Role> Roles { get; set; }
+
         public DbSet<CustomerOrder> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
 
@@ -47,17 +48,18 @@ namespace Diba.Core.Data
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
 
-            modelBuilder.ApplyConfiguration(new BaseRoleConfiguration());
+            //modelBuilder.ApplyConfiguration(new BaseRoleConfiguration());
 
             modelBuilder.ApplyConfiguration(new OrganizationConfiguration());
 
-            modelBuilder.ApplyConfiguration(new SecretaryMembershipConfiguration());
-            modelBuilder.ApplyConfiguration(new SuperAdminMembershipConfiguration());
-            modelBuilder.ApplyConfiguration(new AdminMembershipConfiguration());
-            modelBuilder.ApplyConfiguration(new DeliveryMembershipConfiguration());
-            modelBuilder.ApplyConfiguration(new CustomerMembershipConfiguration());
-            modelBuilder.ApplyConfiguration(new CollectorMembershipConfiguration());
+            //modelBuilder.ApplyConfiguration(new SecretaryMembershipConfiguration());
+            //modelBuilder.ApplyConfiguration(new SuperAdminMembershipConfiguration());
+            //modelBuilder.ApplyConfiguration(new AdminMembershipConfiguration());
+            //modelBuilder.ApplyConfiguration(new DeliveryMembershipConfiguration());
+            //modelBuilder.ApplyConfiguration(new CustomerMembershipConfiguration());
+            //modelBuilder.ApplyConfiguration(new CollectorMembershipConfiguration());
 
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
             modelBuilder.ApplyConfiguration(new RolePermissionConfiguration());
             modelBuilder.ApplyConfiguration(new AuthorityPermissionConfiguration());
 
@@ -81,45 +83,45 @@ namespace Diba.Core.Data
             modelBuilder.ApplyConfiguration(new QNameConfiguration());
 
             var RoleActions = new List<RolePermission>();
-            RoleActions.Add(new RolePermission()
-            {
-                Id = 1,
-                Role = RoleEnum.SuperAdmin,
-                Action = ActionEnum.CreateUser,
-                IsGranted = true
-            });
+            //RoleActions.Add(new RolePermission()
+            //{
+            //    Id = 1,
+            //    Role = RoleEnum.SuperAdmin,
+            //    Action = ActionEnum.CreateUser,
+            //    IsGranted = true
+            //});
 
-            RoleActions.Add(new RolePermission()
-            {
-                Id = 2,
-                Role = RoleEnum.SuperAdmin,
-                Action = ActionEnum.Login,
-                IsGranted = true
-            });
+            //RoleActions.Add(new RolePermission()
+            //{
+            //    Id = 2,
+            //    Role = RoleEnum.SuperAdmin,
+            //    Action = ActionEnum.Login,
+            //    IsGranted = true
+            //});
 
-            RoleActions.Add(new RolePermission()
-            {
-                Id = 3,
-                Role = RoleEnum.SuperAdmin,
-                Action = ActionEnum.EditUser,
-                IsGranted = true
-            });
+            //RoleActions.Add(new RolePermission()
+            //{
+            //    Id = 3,
+            //    Role = RoleEnum.SuperAdmin,
+            //    Action = ActionEnum.EditUser,
+            //    IsGranted = true
+            //});
 
-            RoleActions.Add(new RolePermission()
-            {
-                Id = 4,
-                Role = RoleEnum.SuperAdmin,
-                Action = ActionEnum.DeleteUser,
-                IsGranted = true
-            });
+            //RoleActions.Add(new RolePermission()
+            //{
+            //    Id = 4,
+            //    Role = RoleEnum.SuperAdmin,
+            //    Action = ActionEnum.DeleteUser,
+            //    IsGranted = true
+            //});
 
-            RoleActions.Add(new RolePermission()
-            {
-                Id = 5,
-                Role = RoleEnum.Secretary,
-                Action = ActionEnum.Login,
-                IsGranted = true
-            });
+            //RoleActions.Add(new RolePermission()
+            //{
+            //    Id = 5,
+            //    Role = RoleEnum.Secretary,
+            //    Action = ActionEnum.Login,
+            //    IsGranted = true
+            //});
 
             modelBuilder.Entity<RolePermission>().HasData(RoleActions);
 
@@ -133,37 +135,37 @@ namespace Diba.Core.Data
             modelBuilder.Entity<User>().HasData(SecretaryUser);
 
 
-            var SecretaryRole = new BaseRole(RoleEnum.Secretary)
-            {
-                Id = 1,
-                UserId = SecretaryUserId
-            };
+            //var SecretaryRole = new BaseRole(RoleEnum.Secretary)
+            //{
+            //    Id = 1,
+            //    UserId = SecretaryUserId
+            //};
 
-            modelBuilder.Entity<BaseRole>().HasData(SecretaryRole);
+            //modelBuilder.Entity<BaseRole>().HasData(SecretaryRole);
 
-            var SuperAdminRole = new BaseRole(RoleEnum.SuperAdmin)
-            {
-                Id = 2,
-                UserId = SuperAdminUserId
-            };
+            //var SuperAdminRole = new BaseRole(RoleEnum.SuperAdmin)
+            //{
+            //    Id = 2,
+            //    UserId = SuperAdminUserId
+            //};
 
-            modelBuilder.Entity<BaseRole>().HasData(SuperAdminRole);
+            //modelBuilder.Entity<BaseRole>().HasData(SuperAdminRole);
 
-            SuperAdmin SuperAdmin = new SuperAdmin()
-            {
-                Id = 1,
-                RoleId = SuperAdminRole.Id
-            };
+            //SuperAdmin SuperAdmin = new SuperAdmin()
+            //{
+            //    Id = 1,
+            //    RoleId = SuperAdminRole.Id
+            //};
 
-            modelBuilder.Entity<SuperAdmin>().HasData(SuperAdmin);
+            //modelBuilder.Entity<SuperAdmin>().HasData(SuperAdmin);
 
-            var Secretary = new Secretary()
-            {
-                Id = 2,
-                RoleId = SecretaryRole.Id
-            };
+            //var Secretary = new Secretary()
+            //{
+            //    Id = 2,
+            //    RoleId = SecretaryRole.Id
+            //};
 
-            modelBuilder.Entity<Secretary>().HasData(Secretary);
+            //modelBuilder.Entity<Secretary>().HasData(Secretary);
 
             var SecretaryAuthority = new Authority()
             {
@@ -191,21 +193,21 @@ namespace Diba.Core.Data
 
             modelBuilder.Entity<Organization>().HasData(Organization);
 
-            modelBuilder.Entity<SuperAdminMembership>().HasData(new SuperAdminMembership()
-            {
-                Id = 1,
-                AuthorityId = SuperAdminAuthority.Id,
-                SuperAdminId = SuperAdmin.Id,
-                OrganizationId = Organization.Id
-            });
+            //modelBuilder.Entity<SuperAdminMembership>().HasData(new SuperAdminMembership()
+            //{
+            //    Id = 1,
+            //    AuthorityId = SuperAdminAuthority.Id,
+            //    SuperAdminId = SuperAdmin.Id,
+            //    OrganizationId = Organization.Id
+            //});
 
-            modelBuilder.Entity<SecretaryMembership>().HasData(new SecretaryMembership()
-            {
-                Id = 2,
-                AuthorityId = SecretaryAuthority.Id,
-                SecretaryId = Secretary.Id,
-                OrganizationId = Organization.Id
-            });
+            //modelBuilder.Entity<SecretaryMembership>().HasData(new SecretaryMembership()
+            //{
+            //    Id = 2,
+            //    AuthorityId = SecretaryAuthority.Id,
+            //    SecretaryId = Secretary.Id,
+            //    OrganizationId = Organization.Id
+            //});
 
              base.OnModelCreating(modelBuilder);
         }

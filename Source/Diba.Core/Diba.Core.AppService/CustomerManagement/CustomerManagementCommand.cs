@@ -40,10 +40,10 @@ namespace Diba.Core.AppService
                 Password = customerCode
             };
 
-            var role = new BaseRole(RoleEnum.Customer)
-            {
-                User = customerUser
-            };
+            //var role = new BaseRole(RoleEnum.Customer)
+            //{
+            //    User = customerUser
+            //};
 
             var customer = new Customer()
             {
@@ -55,17 +55,17 @@ namespace Diba.Core.AppService
                 RegistrationNumber = request.RegistrationNumber,
                 PostalCode = request.PostalCode,                
                 Organization = organization, 
-                Role = role,
+                //Role = role,
                 Description = request.Description,
                 Code = customerCode,                
             };
 
-            customer.ContactInfos.Add(new ContactInfo()
-            {
-                Address = request.ContactInfo.Address,
-                PhoneNumber = request.ContactInfo.PhoneNumber,
-                IsActive = true
-            });
+            //customer.ContactInfos.Add(new ContactInfo()
+            //{
+            //    Address = request.ContactInfo.Address,
+            //    PhoneNumber = request.ContactInfo.PhoneNumber,
+            //    IsActive = true
+            //});
 
             _customerRepository.Add(customer);
             _unitOfWork.Commit();

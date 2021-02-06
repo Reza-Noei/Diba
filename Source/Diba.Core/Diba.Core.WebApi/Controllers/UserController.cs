@@ -1,5 +1,4 @@
 ﻿using Diba.Core.AppService.Contract;
-using Diba.Core.AppService.Contract.BindingModels;
 using Diba.Core.AppService.Contract.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,21 +10,23 @@ namespace Diba.Core.WebApi.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserManagementCommand _userManagementCommand;
-        private readonly IUserManagementQuery _userManagementQuery;
+        private readonly IUsersCommandService _usersCommandService;
+        private readonly IUsersQueryService _usersQueryService;
 
-        public UserController(IUserManagementCommand userManagementCommand, IUserManagementQuery userManagementQuery)
+        public UserController(IUsersCommandService usersCommandService, IUsersQueryService usersQueryService)
         {
-            _userManagementCommand = userManagementCommand;
-            _userManagementQuery = userManagementQuery;
+            _usersCommandService = usersCommandService;
+            _usersQueryService = usersQueryService;
         }
+
+        #region user
 
         [HttpGet]
         [AllowAnonymous]
         [Route("{id}")]
         public ServiceResult<UserViewModel> Get(long id)
         {
-            var user = _userManagementQuery.Get(new GetUserBindingModel() { Id = id });
+            var user = _usersQueryService.Get(new GetUserInputModel() { Id = id });
             return user;
         }
 
@@ -33,23 +34,23 @@ namespace Diba.Core.WebApi.Controllers
         [AllowAnonymous]
         public ServiceResult<IList<UserViewModel>> GetAll()
         {
-            ServiceResult<IList<UserViewModel>> users = _userManagementQuery.GetAll(new GetAllUserBindingModel() { });
+            ServiceResult<IList<UserViewModel>> users = _usersQueryService.GetAll(new GetAllUserInputModel() { });
             return users;
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public ServiceResult<UserViewModel> Create(CreateUserBindingModel model)
+        public ServiceResult<UserViewModel> Create(CreateUserInputModel model)
         {
-            ServiceResult<UserViewModel> response = _userManagementCommand.Create(model);
+            ServiceResult<UserViewModel> response = _usersCommandService.Create(model);
             return response;
         }
 
         [HttpPatch]
         [AllowAnonymous]
-        public ServiceResult<UserViewModel> Update(UpdateUserBindingModel model)
+        public ServiceResult<UserViewModel> Update(UpdateUserInputModel model)
         {
-            ServiceResult<UserViewModel> response = _userManagementCommand.Update(model);
+            ServiceResult<UserViewModel> response = _usersCommandService.Update(model);
             return response;
         }
 
@@ -58,8 +59,86 @@ namespace Diba.Core.WebApi.Controllers
         [Route("{id}")]
         public ServiceResult<UserViewModel> Delete(long id)
         {
-            var user = _userManagementCommand.Delete(new DeleteUserBindingModel() { Id = id });
+            var user = _usersCommandService.Delete(new DeleteUserInputModel() { Id = id });
             return user;
         }
+
+        #endregion
+
+        #region customer
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("Customers")]
+        public ServiceResult<IList<CustomerViewModel>> GetAllCustomer(GetAllCustomersInputModel model)
+        {
+            ServiceResult<IList<CustomerViewModel>> response = _usersQueryService.GetAllCustomer(model);
+            return response;
+        }
+
+        public void UpdateCustomer()
+        {
+
+        }
+
+        public void DeleteCustomer()
+        {
+
+        }
+
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[Route("{userId}/Customer")]
+        public ServiceResult<CustomerViewModel> CreateCustomer(int userId, CreateCustomerInputModel model)
+        {
+            model.UserId = userId;
+            ServiceResult<CustomerViewModel> response = _usersCommandService.CreateCustomer(model);
+            return response;
+        }
+        #endregion
+
+        #region Admin
+        public void GetAllAdmin()
+        {
+
+        }
+
+        public void CreateAdmin()
+        {
+
+        }
+
+        public void UpdateAdmin()
+        {
+
+        }
+
+
+        public void DeleteAdmin()
+        {
+
+        }
+
+        #endregion
+
+
+        #region Secretary
+
+        #endregion
+
+
+        #region Secretary
+
+        #endregion
+
+
+        #region Collector
+
+        #endregion
+
+
+        #region Delivery
+
+        #endregion
+
     }
 }

@@ -12,11 +12,10 @@ namespace Diba.Core.Data.Configuration
         public void Configure(EntityTypeBuilder<ContactInfo> builder)
         {
             builder.ToTable("ContactInfos");
-
             builder.HasKey(P => P.Id);
             builder.Property(P => P.Id).ValueGeneratedOnAdd();
 
-            builder.HasOne(P => P.Customer).WithMany(Q => Q.ContactInfos).HasForeignKey(P => P.CustomerId);
+            builder.HasOne(P => P.User).WithMany(Q => Q.ContactInfos).HasForeignKey(P => P.UserId);
         }
     }
 }

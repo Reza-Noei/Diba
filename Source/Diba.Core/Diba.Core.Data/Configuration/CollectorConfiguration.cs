@@ -1,9 +1,6 @@
 ﻿using Diba.Core.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Diba.Core.Data.Configuration
 {
@@ -11,10 +8,12 @@ namespace Diba.Core.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Collector> builder)
         {
-            builder.ToTable("Collectors");
+            //builder.ToTable("Collectors");
+            //builder.HasKey(P => P.Id);
+            //builder.Property(P => P.Id).ValueGeneratedOnAdd();
 
-            builder.HasMany(P => P.Memberships).WithOne(Q => Q.Collector).HasForeignKey(Q => Q.CollectorId);
-            builder.HasOne(P => P.Role).WithOne();
+            //builder.HasMany(P => P.Memberships).WithOne(Q => Q.Collector).HasForeignKey(Q => Q.CollectorId);
+            //builder.HasOne(P => P.Role).WithOne();
         }
     }
 }

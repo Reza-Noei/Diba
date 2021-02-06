@@ -18,12 +18,12 @@ namespace Diba.Core.Data.Configuration
             builder.HasKey(P => P.Id);
             builder.Property(P => P.Id).ValueGeneratedOnAdd();
 
-            builder.HasMany(P => P.SecretaryMemberships).WithOne(Q => Q.Organization).HasForeignKey(Q => Q.OrganizationId).OnDelete(DeleteBehavior.NoAction);
-            builder.HasMany(P => P.SuperAdminMemberships).WithOne(Q => Q.Organization).HasForeignKey(Q => Q.OrganizationId).OnDelete(DeleteBehavior.NoAction);
-            builder.HasMany(P => P.AdminMemberships).WithOne(Q => Q.Organization).HasForeignKey(Q => Q.OrganizationId).OnDelete(DeleteBehavior.NoAction);
-            builder.HasMany(P => P.CollectorMemberships).WithOne(Q => Q.Organization).HasForeignKey(Q => Q.OrganizationId).OnDelete(DeleteBehavior.NoAction);
-            builder.HasMany(P => P.CustomerMemberships).WithOne(Q => Q.Organization).HasForeignKey(Q => Q.OrganizationId).OnDelete(DeleteBehavior.NoAction);
-            builder.HasMany(P => P.DeliveryMemberships).WithOne(Q => Q.Organization).HasForeignKey(Q => Q.OrganizationId).OnDelete(DeleteBehavior.NoAction);
+            //builder.HasMany(P => P.SecretaryMemberships).WithOne(Q => Q.Organization).HasForeignKey(Q => Q.OrganizationId).OnDelete(DeleteBehavior.NoAction);
+            //builder.HasMany(P => P.SuperAdminMemberships).WithOne(Q => Q.Organization).HasForeignKey(Q => Q.OrganizationId).OnDelete(DeleteBehavior.NoAction);
+            //builder.HasMany(P => P.AdminMemberships).WithOne(Q => Q.Organization).HasForeignKey(Q => Q.OrganizationId).OnDelete(DeleteBehavior.NoAction);
+            //builder.HasMany(P => P.CollectorMemberships).WithOne(Q => Q.Organization).HasForeignKey(Q => Q.OrganizationId).OnDelete(DeleteBehavior.NoAction);
+            //builder.HasMany(P => P.CustomerMemberships).WithOne(Q => Q.Organization).HasForeignKey(Q => Q.OrganizationId).OnDelete(DeleteBehavior.NoAction);
+            //builder.HasMany(P => P.DeliveryMemberships).WithOne(Q => Q.Organization).HasForeignKey(Q => Q.OrganizationId).OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(P => P.Creator).WithMany().HasForeignKey(P=>P.CreatorId).IsRequired(false);
             builder.HasOne(P => P.Modifier).WithMany().HasForeignKey(P=>P.ModifierId).IsRequired(false);            

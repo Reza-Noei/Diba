@@ -16,7 +16,7 @@ namespace Diba.Core.Domain
         public DateTime Creation { get; set; }
         #endregion
 
-        public ICollection<Role> Roles { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
 
         public virtual ICollection<ContactInfo> ContactInfos { get; set; }
 

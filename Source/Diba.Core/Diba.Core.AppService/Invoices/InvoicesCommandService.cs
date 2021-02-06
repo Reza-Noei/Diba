@@ -13,21 +13,21 @@ namespace Diba.Core.AppService.Invoices
     public class InvoicesCommandService : IInvoicesCommandService
     {
         public InvoicesCommandService(IInvoiceRepository invoiceRepository,
-                                      ICustomerMembershipRepository customerMembershipRepository,
-                                      IDeliveryMembershipRepository deliveryMembershipRepository,
-                                      ICollectorMembershipRepository collectorMembershipRepository,
+                                      //ICustomerMembershipRepository customerMembershipRepository,
+                                      //IDeliveryMembershipRepository deliveryMembershipRepository,
+                                      //ICollectorMembershipRepository collectorMembershipRepository,
                                       IQuickAccessListRepository quickAccessListRepository,
                                       IQNameRepository qnameRepository,
-                                      ISecretaryMembershipRepository secretaryMembershipRepository,
+                                      //ISecretaryMembershipRepository secretaryMembershipRepository,
                                       IUnitOfWork unitOfWork,
                                       IMapper mapper)
         {
             _invoiceRepository = invoiceRepository;
-            _customerMembershipRepository = customerMembershipRepository;
-            _deliveryMembershipRepository = deliveryMembershipRepository;
-            _collectorMembershipRepository = collectorMembershipRepository;
+            //_customerMembershipRepository = customerMembershipRepository;
+            //_deliveryMembershipRepository = deliveryMembershipRepository;
+            //_collectorMembershipRepository = collectorMembershipRepository;
             _quickAccessListRepository = quickAccessListRepository;
-            _secretaryMembershipRepository = secretaryMembershipRepository;
+            //_secretaryMembershipRepository = secretaryMembershipRepository;
 
             _unitOfWork = unitOfWork;
             _mapper = mapper;
@@ -35,13 +35,13 @@ namespace Diba.Core.AppService.Invoices
 
         public ServiceResult<InvoiceShortViewModel> Create(CreateInvoiceInputModel request)
         {
-            var customer = _customerMembershipRepository.GetById(request.CustomerMembershipId);
-            if (customer == null)
-                return new ServiceResult<InvoiceShortViewModel>(StatusCode.NotFound);
+            //var customer = _customerMembershipRepository.GetById(request.CustomerMembershipId);
+            //if (customer == null)
+            //    return new ServiceResult<InvoiceShortViewModel>(StatusCode.NotFound);
 
-            var secretary = _secretaryMembershipRepository.GetMany(P => P.Id == request.SecretaryId).FirstOrDefault();
-            if (secretary == null)
-                return new ServiceResult<InvoiceShortViewModel>(StatusCode.Forbidden);
+            //var secretary = _secretaryMembershipRepository.GetMany(P => P.Id == request.SecretaryId).FirstOrDefault();
+            //if (secretary == null)
+            //    return new ServiceResult<InvoiceShortViewModel>(StatusCode.Forbidden);
 
             Invoice invoice = new Invoice()
             {
@@ -103,11 +103,11 @@ namespace Diba.Core.AppService.Invoices
         }
 
         private readonly IInvoiceRepository _invoiceRepository;
-        private readonly ICustomerMembershipRepository _customerMembershipRepository;
-        private readonly IDeliveryMembershipRepository _deliveryMembershipRepository;
-        private readonly ICollectorMembershipRepository _collectorMembershipRepository;
+        //private readonly ICustomerMembershipRepository _customerMembershipRepository;
+        //private readonly IDeliveryMembershipRepository _deliveryMembershipRepository;
+        //private readonly ICollectorMembershipRepository _collectorMembershipRepository;
         private readonly IQuickAccessListRepository _quickAccessListRepository;
-        private readonly ISecretaryMembershipRepository _secretaryMembershipRepository;
+        //private readonly ISecretaryMembershipRepository _secretaryMembershipRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
     }

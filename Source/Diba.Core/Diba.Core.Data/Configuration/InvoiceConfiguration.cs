@@ -12,7 +12,6 @@ namespace Diba.Core.Data.Configuration
         public void Configure(EntityTypeBuilder<Invoice> builder)
         {
             builder.ToTable("Invoices");
-
             builder.HasKey(P => P.Id);
             builder.Property(P => P.Id).ValueGeneratedOnAdd();
         }
