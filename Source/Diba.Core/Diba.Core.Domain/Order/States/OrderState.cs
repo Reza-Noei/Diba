@@ -9,7 +9,7 @@ namespace Diba.Core.Domain
             return false;
         }
 
-        public virtual bool CollectorCanModify()
+        public virtual bool CollectionInfoCanModify()
         {
             return false;
         }
@@ -19,7 +19,7 @@ namespace Diba.Core.Domain
             return false;
         }
 
-        public virtual bool DelivelerCanModify()
+        public virtual bool DeliveryInfoCanModify()
         {
             return false;
         }

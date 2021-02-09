@@ -4,7 +4,6 @@ namespace Diba.Core.Domain
 {
     public class Request
     {
-
         public string Items { get; private set; }
 
         public decimal AnnouncedPrice { get; private set; }

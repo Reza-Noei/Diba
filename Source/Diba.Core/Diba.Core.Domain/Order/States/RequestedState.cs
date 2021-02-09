@@ -3,12 +3,12 @@
     public class RequestedState : OrderState
     {
 
-        public override bool DelivelerCanModify()
+        public override bool DeliveryInfoCanModify()
         {
             return true;
         }
 
-        public override bool CollectorCanModify()
+        public override bool CollectionInfoCanModify()
         {
             return true;
         }
