@@ -42,7 +42,7 @@ namespace Diba.Core.AppService
             return new ServiceResult<CustomerViewModel>(_mapper.Map<CustomerViewModel>(customer));
         }
 
-        public ServiceResult<IList<CustomerViewModel>> GetAllCustomer(GetAllCustomersInputModel request)
+        public ServiceResult<IList<CustomerViewModel>> GetAllCustomer()
         {
             IEnumerable<Customer> customers = _customerRepository.GetAll();
             return new ServiceResult<IList<CustomerViewModel>>(_mapper.Map<IList<CustomerViewModel>>(customers));

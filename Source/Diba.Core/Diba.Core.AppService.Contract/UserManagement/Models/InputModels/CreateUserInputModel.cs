@@ -29,9 +29,15 @@ namespace Diba.Core.AppService.Contract
 
     public class UpdateUserInputModel
     {
+        public string Username { get; set; }
+    }
+
+    public class UpdateUserRequest
+    {
         public long Id { get; set; }
         public string Username { get; set; }
     }
+
 
     public class DeleteUserInputModel
     {

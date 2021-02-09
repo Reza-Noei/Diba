@@ -8,7 +8,7 @@ namespace Diba.Core.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Collector> builder)
         {
-            builder.ToTable("Collectors");
+            //builder.ToTable("Collectors");
         }
     }
 }

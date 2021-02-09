@@ -11,7 +11,7 @@ namespace Diba.Core.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Secretary> builder)
         {
-            builder.ToTable("Secretaries");
+            //builder.ToTable("Secretaries");
         }
     }
 }
