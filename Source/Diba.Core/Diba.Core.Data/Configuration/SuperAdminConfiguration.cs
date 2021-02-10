@@ -11,7 +11,7 @@ namespace Diba.Core.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<SuperAdmin> builder)
         {
-            builder.ToTable("SuerAdmins");
+            //builder.ToTable("SuerAdmins");
 
         }
     }

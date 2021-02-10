@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Diba.Core.Data.Configuration;
+﻿using Diba.Core.Data.Configuration;
 using Diba.Core.Domain;
 using Diba.Core.Domain.Products;
 using Diba.Core.Domain.Products.ProductConstraints;
@@ -65,12 +62,14 @@ namespace Diba.Core.Data
             modelBuilder.ApplyConfiguration(new DeliveryConfiguration());
             modelBuilder.ApplyConfiguration(new SecretaryConfiguration());
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+            modelBuilder.ApplyConfiguration(new OrganizationConfiguration());
 
             modelBuilder.ApplyConfiguration(new AuthorityConfiguration());
 
             modelBuilder.ApplyConfiguration(new CustomerOrderConfiguration());
             modelBuilder.ApplyConfiguration(new QuickAccessListConfiguration());
             modelBuilder.ApplyConfiguration(new QNameConfiguration());
+
         }
     }
 }

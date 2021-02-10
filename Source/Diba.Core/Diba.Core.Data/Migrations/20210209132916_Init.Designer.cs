@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Diba.Core.Data.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210131185121_Init")]
+    [Migration("20210209132916_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,22 +50,6 @@ namespace Diba.Core.Data.Migrations
                     b.HasIndex("ModifierId");
 
                     b.ToTable("Authorities");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            Active = true,
-                            Creation = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Modification = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            Active = true,
-                            Creation = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Modification = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("Diba.Core.Domain.AuthorityPermission", b =>
@@ -88,7 +72,7 @@ namespace Diba.Core.Data.Migrations
 
                     b.HasIndex("AuthorityId");
 
-                    b.ToTable("AuthorityPermissions");
+                    b.ToTable("AuthorityPermission");
                 });
 
             modelBuilder.Entity("Diba.Core.Domain.ContactInfo", b =>
@@ -127,8 +111,14 @@ namespace Diba.Core.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long?>("CollectorId")
+                        .HasColumnType("bigint");
+
                     b.Property<int>("Count")
                         .HasColumnType("int");
+
+                    b.Property<long?>("DeliveryId")
+                        .HasColumnType("bigint");
 
                     b.Property<decimal>("Discount")
                         .HasColumnType("decimal(18,2)");
@@ -152,6 +142,10 @@ namespace Diba.Core.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CollectorId");
+
+                    b.HasIndex("DeliveryId");
 
                     b.HasIndex("ServiceTypeId");
 
@@ -192,17 +186,6 @@ namespace Diba.Core.Data.Migrations
                     b.HasIndex("ModifierId");
 
                     b.ToTable("Organizations");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            Creation = new DateTime(2021, 1, 31, 18, 51, 20, 578, DateTimeKind.Utc).AddTicks(1925),
-                            CreatorId = 1L,
-                            Modification = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Prefix = "935",
-                            Title = "Default Organization"
-                        });
                 });
 
             modelBuilder.Entity("Diba.Core.Domain.Products.Product", b =>
@@ -369,22 +352,6 @@ namespace Diba.Core.Data.Migrations
                     b.HasIndex("CreatorId");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            Creation = new DateTime(2021, 1, 31, 22, 21, 20, 573, DateTimeKind.Local).AddTicks(670),
-                            Password = "123456",
-                            Username = "SuperAdmin"
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            Creation = new DateTime(2021, 1, 31, 22, 21, 20, 577, DateTimeKind.Local).AddTicks(553),
-                            Password = "123456",
-                            Username = "Secretary"
-                        });
                 });
 
             modelBuilder.Entity("Diba.Core.Domain.Products.ProductConstraints.SelectiveConstraint", b =>
@@ -515,6 +482,14 @@ namespace Diba.Core.Data.Migrations
 
             modelBuilder.Entity("Diba.Core.Domain.CustomerOrder", b =>
                 {
+                    b.HasOne("Diba.Core.Domain.Collector", "Collector")
+                        .WithMany()
+                        .HasForeignKey("CollectorId");
+
+                    b.HasOne("Diba.Core.Domain.Delivery", "Delivery")
+                        .WithMany()
+                        .HasForeignKey("DeliveryId");
+
                     b.HasOne("Diba.Core.Domain.QName", "ServiceType")
                         .WithMany()
                         .HasForeignKey("ServiceTypeId")

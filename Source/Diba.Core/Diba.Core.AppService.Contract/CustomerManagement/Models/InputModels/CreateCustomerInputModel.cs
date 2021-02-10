@@ -22,8 +22,6 @@ namespace Diba.Core.AppService.Contract
     }
     public class UpdateCustomerInputModel
     {
-        public int Id { get; set; }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -32,8 +30,6 @@ namespace Diba.Core.AppService.Contract
     public class CreateCustomerInputModel
     {
         public long OrganizationId { get; set; }
-
-        public long UserId { get; set; }
 
         public string FirstName { get; set; }
 

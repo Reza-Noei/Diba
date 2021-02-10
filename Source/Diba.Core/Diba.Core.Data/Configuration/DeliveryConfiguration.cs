@@ -11,7 +11,7 @@ namespace Diba.Core.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Delivery> builder)
         {
-            builder.ToTable("Deliveries");
+            //builder.ToTable("Deliveries");
         }
     }
 }

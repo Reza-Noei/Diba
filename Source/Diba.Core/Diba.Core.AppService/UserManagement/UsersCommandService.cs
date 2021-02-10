@@ -5,6 +5,7 @@ using Diba.Core.AppService.Contract.ViewModels;
 using Diba.Core.Common.Infrastructure;
 using Diba.Core.Data.Repository.Interfaces;
 using Diba.Core.Domain;
+using System.Collections.Generic;
 
 namespace Diba.Core.AppService
 {
@@ -27,7 +28,7 @@ namespace Diba.Core.AppService
             _customerRepository = customerRepository;
         }
 
-        #region
+        #region user
         public ServiceResult<UserViewModel> Create(CreateUserInputModel request)
         {
             var user = _mapper.Map<User>(request);
@@ -52,7 +53,7 @@ namespace Diba.Core.AppService
             return new ServiceResult<UserViewModel>(_mapper.Map<UserViewModel>(user));
         }
 
-        public ServiceResult<UserViewModel> Update(UpdateUserInputModel request)
+        public ServiceResult<UserViewModel> Update(UpdateUserRequest request)
         {
             User user = _userRepository.GetById(request.Id);
 
@@ -68,8 +69,8 @@ namespace Diba.Core.AppService
 
         #endregion
 
-        #region role
-        public ServiceResult<CustomerViewModel> CreateCustomer(CreateCustomerInputModel request)
+        #region customer
+        public ServiceResult<CustomerViewModel> CreateCustomer(int userId, CreateCustomerInputModel request)
         {
             var customer = _mapper.Map<Customer>(request);
             _customerRepository.Add(customer);
@@ -77,9 +78,9 @@ namespace Diba.Core.AppService
             return new ServiceResult<CustomerViewModel>(_mapper.Map<CustomerViewModel>(customer));
         }
 
-        public ServiceResult<CustomerViewModel> UpdateCustomer(UpdateCustomerInputModel request)
+        public ServiceResult<CustomerViewModel> UpdateCustomer(long userId, UpdateCustomerInputModel request)
         {
-            var customer = _customerRepository.GetById(request.Id);
+            var customer = _customerRepository.GetById(userId);
 
             if (customer == null)
                 return new ServiceResult<CustomerViewModel>(StatusCode.NotFound);
@@ -90,9 +91,9 @@ namespace Diba.Core.AppService
             return new ServiceResult<CustomerViewModel>(_mapper.Map<CustomerViewModel>(customer));
         }
 
-        public ServiceResult<CustomerViewModel> DeleteCustomer(DeleteCustomerInputModel request)
+        public ServiceResult<CustomerViewModel> DeleteCustomer(long userId)
         {
-            var customer = _customerRepository.GetById(request.Id);
+            var customer = _customerRepository.GetById(userId);
 
             if (customer == null)
                 return new ServiceResult<CustomerViewModel>(StatusCode.NotFound);
@@ -100,6 +101,31 @@ namespace Diba.Core.AppService
             _customerRepository.Delete(customer);
             return new ServiceResult<CustomerViewModel>(_mapper.Map<CustomerViewModel>(customer));
         }
+
+        #endregion
+
+        #region admin
+
+        public ServiceResult<IList<AdminViewModel>> GetAllAdmins()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ServiceResult<AdminViewModel> CreateAdmin(long userId, CreateAdminInputModel model)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ServiceResult<AdminViewModel> UpdateAdmin(long userId, UpdateAdminInputModel model)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ServiceResult<AdminViewModel> DeleteAdmin(long userId)
+        {
+            throw new System.NotImplementedException();
+        }
+
 
         #endregion
     }

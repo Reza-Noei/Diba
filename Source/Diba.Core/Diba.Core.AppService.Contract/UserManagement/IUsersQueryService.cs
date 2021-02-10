@@ -10,6 +10,6 @@ namespace Diba.Core.AppService.Contract
         ServiceResult<IList<UserViewModel>> GetAll(GetAllUserInputModel request);
 
         ServiceResult<CustomerViewModel> GetCustomer(GetCustomerInputModel request);
-        ServiceResult<IList<CustomerViewModel>> GetAllCustomer(GetAllCustomersInputModel request);
+        ServiceResult<IList<CustomerViewModel>> GetAllCustomer();
     }
 }

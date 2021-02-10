@@ -215,37 +215,7 @@ namespace Diba.Core.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CustomerOrders",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ServiceDescription = table.Column<string>(nullable: true),
-                    ServiceTypeId = table.Column<long>(nullable: false),
-                    Count = table.Column<int>(nullable: false),
-                    UnitId = table.Column<long>(nullable: false),
-                    PricePerUnit = table.Column<decimal>(nullable: false),
-                    Discount = table.Column<decimal>(nullable: false),
-                    Tax = table.Column<decimal>(nullable: false),
-                    PaymentType = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CustomerOrders", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_CustomerOrders_QNames_ServiceTypeId",
-                        column: x => x.ServiceTypeId,
-                        principalTable: "QNames",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_CustomerOrders_QNames_UnitId",
-                        column: x => x.UnitId,
-                        principalTable: "QNames",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AuthorityPermissions",
+                name: "AuthorityPermission",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
@@ -256,9 +226,9 @@ namespace Diba.Core.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AuthorityPermissions", x => x.Id);
+                    table.PrimaryKey("PK_AuthorityPermission", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AuthorityPermissions_Authorities_AuthorityId",
+                        name: "FK_AuthorityPermission_Authorities_AuthorityId",
                         column: x => x.AuthorityId,
                         principalTable: "Authorities",
                         principalColumn: "Id",
@@ -302,28 +272,49 @@ namespace Diba.Core.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Authorities",
-                columns: new[] { "Id", "Active", "Creation", "CreatorId", "Modification", "ModifierId" },
-                values: new object[,]
+            migrationBuilder.CreateTable(
+                name: "CustomerOrders",
+                columns: table => new
                 {
-                    { 1L, true, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 2L, true, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "Creation", "CreatorId", "Password", "Username" },
-                values: new object[,]
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ServiceDescription = table.Column<string>(nullable: true),
+                    ServiceTypeId = table.Column<long>(nullable: false),
+                    Count = table.Column<int>(nullable: false),
+                    UnitId = table.Column<long>(nullable: false),
+                    PricePerUnit = table.Column<decimal>(nullable: false),
+                    Discount = table.Column<decimal>(nullable: false),
+                    Tax = table.Column<decimal>(nullable: false),
+                    DeliveryId = table.Column<long>(nullable: true),
+                    CollectorId = table.Column<long>(nullable: true),
+                    PaymentType = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
                 {
-                    { 1L, new DateTime(2021, 1, 31, 22, 21, 20, 573, DateTimeKind.Local).AddTicks(670), null, "123456", "SuperAdmin" },
-                    { 2L, new DateTime(2021, 1, 31, 22, 21, 20, 577, DateTimeKind.Local).AddTicks(553), null, "123456", "Secretary" }
+                    table.PrimaryKey("PK_CustomerOrders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CustomerOrders_Role_CollectorId",
+                        column: x => x.CollectorId,
+                        principalTable: "Role",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_CustomerOrders_Role_DeliveryId",
+                        column: x => x.DeliveryId,
+                        principalTable: "Role",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_CustomerOrders_QNames_ServiceTypeId",
+                        column: x => x.ServiceTypeId,
+                        principalTable: "QNames",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_CustomerOrders_QNames_UnitId",
+                        column: x => x.UnitId,
+                        principalTable: "QNames",
+                        principalColumn: "Id");
                 });
-
-            migrationBuilder.InsertData(
-                table: "Organizations",
-                columns: new[] { "Id", "Creation", "CreatorId", "Modification", "ModifierId", "Prefix", "Title" },
-                values: new object[] { 1L, new DateTime(2021, 1, 31, 18, 51, 20, 578, DateTimeKind.Utc).AddTicks(1925), 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "935", "Default Organization" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Authorities_CreatorId",
@@ -336,14 +327,24 @@ namespace Diba.Core.Data.Migrations
                 column: "ModifierId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AuthorityPermissions_AuthorityId",
-                table: "AuthorityPermissions",
+                name: "IX_AuthorityPermission_AuthorityId",
+                table: "AuthorityPermission",
                 column: "AuthorityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ContactInfos_UserId",
                 table: "ContactInfos",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CustomerOrders_CollectorId",
+                table: "CustomerOrders",
+                column: "CollectorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CustomerOrders_DeliveryId",
+                table: "CustomerOrders",
+                column: "DeliveryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CustomerOrders_ServiceTypeId",
@@ -399,7 +400,7 @@ namespace Diba.Core.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AuthorityPermissions");
+                name: "AuthorityPermission");
 
             migrationBuilder.DropTable(
                 name: "ContactInfos");
@@ -411,13 +412,13 @@ namespace Diba.Core.Data.Migrations
                 name: "Option");
 
             migrationBuilder.DropTable(
-                name: "Role");
-
-            migrationBuilder.DropTable(
                 name: "RolePermissions");
 
             migrationBuilder.DropTable(
                 name: "Authorities");
+
+            migrationBuilder.DropTable(
+                name: "Role");
 
             migrationBuilder.DropTable(
                 name: "QNames");
