@@ -50,6 +50,11 @@ namespace Diba.Core.Common.Infrastructure
             return dbSet.Find(id);
         }
 
+        public virtual T Get(Expression<Func<T, bool>> where)
+        {
+            return dbSet.FirstOrDefault(where);
+        }
+
         public virtual IEnumerable<T> GetAll()
         {
             return dbSet.ToList();

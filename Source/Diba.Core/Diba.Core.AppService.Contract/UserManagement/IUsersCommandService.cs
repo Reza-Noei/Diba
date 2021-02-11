@@ -1,6 +1,4 @@
-﻿using Diba.Core.AppService.Contract.BindingModels;
-using Diba.Core.AppService.Contract.ViewModels;
-using System;
+﻿using Diba.Core.AppService.Contract.ViewModels;
 using System.Collections.Generic;
 
 namespace Diba.Core.AppService.Contract
@@ -29,6 +27,26 @@ namespace Diba.Core.AppService.Contract
         ServiceResult<SecretaryViewModel> CreateSecretary(int userId, CreateSecretaryInputModel model);
         ServiceResult<SecretaryViewModel> UpdateSecretary(long userId, UpdateSecretaryInputModel model);
         ServiceResult<SecretaryViewModel> DeleteSecretary(long userId);
+
+        ServiceResult<DeliveryViewModel> GetDeliveryByUserId(long userId);
+        ServiceResult<IList<DeliveryViewModel>> GetAllDeliverys();
+        ServiceResult<DeliveryViewModel> CreateDelivery(int userId, CreateDeliveryInputModel model);
+        ServiceResult<DeliveryViewModel> UpdateDelivery(long userId, UpdateDeliveryInputModel model);
+        ServiceResult<DeliveryViewModel> DeleteDelivery(long userId);
+
+        ServiceResult<CollectorViewModel> GetCollectorByUserId(long userId);
+        ServiceResult<IList<CollectorViewModel>> GetAllCollectors();
+        ServiceResult<CollectorViewModel> CreateCollector(int userId, CreateCollectorInputModel model);
+        ServiceResult<CollectorViewModel> UpdateCollector(long userId, UpdateCollectorInputModel model);
+        ServiceResult<CollectorViewModel> DeleteCollector(long userId); 
+        
+        ServiceResult<SuperAdminViewModel> GetSuperAdminByUserId(long userId);
+        ServiceResult<IList<SuperAdminViewModel>> GetAllSuperAdmins();
+        ServiceResult<SuperAdminViewModel> CreateSuperAdmin(int userId, CreateSuperAdminInputModel model);
+        ServiceResult<SuperAdminViewModel> UpdateSuperAdmin(long userId, UpdateSuperAdminInputModel model);
+        ServiceResult<SuperAdminViewModel> DeleteSuperAdmin(long userId);
+
+
 
 
     }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace Diba.Core.Common.Infrastructure
 {
@@ -12,6 +11,7 @@ namespace Diba.Core.Common.Infrastructure
         void Delete(T entity);
         T GetById(long id);
         IEnumerable<T> GetAll();
+        T Get(Expression<Func<T, bool>> where);
         IEnumerable<T> GetMany(Expression<Func<T, bool>> where);
     }
 }
