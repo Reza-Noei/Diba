@@ -110,10 +110,10 @@ namespace Diba.Core.Service
 
             var mappingConfig = new MapperConfiguration(mc =>
             {
+                mc.AddProfile(new RoleMappingProfile());
                 mc.AddProfile(new UserManagementMappingProfile());
                 mc.AddProfile(new CustomerManagementMappingProfile());
                 mc.AddProfile(new OrganizationManagementMappingProfile());
-
                 mc.AddProfile(new ProductMappingConfig());
                 mc.AddProfile(new ProductStringConstraintsConfig());
                 mc.AddProfile(new ProductSelectiveConstraintsConfig());

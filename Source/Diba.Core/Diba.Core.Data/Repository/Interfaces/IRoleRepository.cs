@@ -3,8 +3,7 @@ using Diba.Core.Domain;
 
 namespace Diba.Core.Data.Repository.Interfaces
 {
-    public interface IUserRepository: IRepository<User>
+    public interface IRoleRepository : IRepository<Role>
     {
-
     }
 }

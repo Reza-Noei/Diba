@@ -122,7 +122,7 @@ namespace Diba.Core.WebApi.Controllers
         [Route("{userId}/admin")]
         public ServiceResult<AdminViewModel> CreateAdmin(long userId , CreateAdminInputModel model)
         {
-            ServiceResult<AdminViewModel> response = _usersCommandService.CreateAdmin(userId , model);
+            ServiceResult<AdminViewModel> response = _usersCommandService.CreateAdmin(userId);
             return response;
         }
 
