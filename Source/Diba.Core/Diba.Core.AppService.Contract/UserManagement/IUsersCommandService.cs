@@ -18,36 +18,35 @@ namespace Diba.Core.AppService.Contract
 
         ServiceResult<CustomerViewModel> GetCustomerByUserId(long userId);
         ServiceResult<IList<CustomerViewModel>> GetAllCustomers();
-        ServiceResult<CustomerViewModel> CreateCustomer(int userId, CreateCustomerInputModel model);
+        ServiceResult<CustomerViewModel> CreateCustomer(long userId, CreateCustomerInputModel model);
         ServiceResult<CustomerViewModel> UpdateCustomer(long userId, UpdateCustomerInputModel model);
         ServiceResult<CustomerViewModel> DeleteCustomer(long userId);
 
         ServiceResult<SecretaryViewModel> GetSecretaryByUserId(long userId);
         ServiceResult<IList<SecretaryViewModel>> GetAllSecretarys();
-        ServiceResult<SecretaryViewModel> CreateSecretary(int userId, CreateSecretaryInputModel model);
-        ServiceResult<SecretaryViewModel> UpdateSecretary(long userId, UpdateSecretaryInputModel model);
+        ServiceResult<SecretaryViewModel> CreateSecretary(long userId);
+        ServiceResult<SecretaryViewModel> UpdateSecretary(long userId);
         ServiceResult<SecretaryViewModel> DeleteSecretary(long userId);
 
         ServiceResult<DeliveryViewModel> GetDeliveryByUserId(long userId);
         ServiceResult<IList<DeliveryViewModel>> GetAllDeliverys();
-        ServiceResult<DeliveryViewModel> CreateDelivery(int userId, CreateDeliveryInputModel model);
-        ServiceResult<DeliveryViewModel> UpdateDelivery(long userId, UpdateDeliveryInputModel model);
+        ServiceResult<DeliveryViewModel> CreateDelivery(long userId);
+        ServiceResult<DeliveryViewModel> UpdateDelivery(long userId);
         ServiceResult<DeliveryViewModel> DeleteDelivery(long userId);
+
 
         ServiceResult<CollectorViewModel> GetCollectorByUserId(long userId);
         ServiceResult<IList<CollectorViewModel>> GetAllCollectors();
-        ServiceResult<CollectorViewModel> CreateCollector(int userId, CreateCollectorInputModel model);
-        ServiceResult<CollectorViewModel> UpdateCollector(long userId, UpdateCollectorInputModel model);
+        ServiceResult<CollectorViewModel> CreateCollector(long userId);
+        ServiceResult<CollectorViewModel> UpdateCollector(long userId);
         ServiceResult<CollectorViewModel> DeleteCollector(long userId); 
         
+
         ServiceResult<SuperAdminViewModel> GetSuperAdminByUserId(long userId);
         ServiceResult<IList<SuperAdminViewModel>> GetAllSuperAdmins();
-        ServiceResult<SuperAdminViewModel> CreateSuperAdmin(int userId, CreateSuperAdminInputModel model);
-        ServiceResult<SuperAdminViewModel> UpdateSuperAdmin(long userId, UpdateSuperAdminInputModel model);
+        ServiceResult<SuperAdminViewModel> CreateSuperAdmin(long userId);
+        ServiceResult<SuperAdminViewModel> UpdateSuperAdmin(long userId);
         ServiceResult<SuperAdminViewModel> DeleteSuperAdmin(long userId);
-
-
-
 
     }
 }

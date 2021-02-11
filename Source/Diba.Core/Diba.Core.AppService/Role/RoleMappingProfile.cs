@@ -9,6 +9,10 @@ namespace Diba.Core.AppService
         public RoleMappingProfile()
         {
             CreateMap<Admin, AdminViewModel>();
+            CreateMap<Secretary, SecretaryViewModel>();
+            CreateMap<SuperAdmin, SuperAdminViewModel>();
+            CreateMap<Collector, CollectorViewModel>();
+            CreateMap<Delivery, DeliveryViewModel>();
         }
     }
 }

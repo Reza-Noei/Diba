@@ -88,7 +88,7 @@ namespace Diba.Core.AppService
             return new ServiceResult<IList<CustomerViewModel>>(_mapper.Map<IList<CustomerViewModel>>(roles));
         }
 
-        public ServiceResult<CustomerViewModel> CreateCustomer(int userId, CreateCustomerInputModel request)
+        public ServiceResult<CustomerViewModel> CreateCustomer(long userId, CreateCustomerInputModel request)
         {
             try
             {
@@ -204,7 +204,7 @@ namespace Diba.Core.AppService
             return new ServiceResult<IList<SecretaryViewModel>>(_mapper.Map<IList<SecretaryViewModel>>(secretaries));
         }
 
-        public ServiceResult<SecretaryViewModel> CreateSecretary(int userId, CreateSecretaryInputModel model)
+        public ServiceResult<SecretaryViewModel> CreateSecretary(long userId)
         {
             try
             {
@@ -219,7 +219,7 @@ namespace Diba.Core.AppService
             }
         }
 
-        public ServiceResult<SecretaryViewModel> UpdateSecretary(long userId, UpdateSecretaryInputModel model)
+        public ServiceResult<SecretaryViewModel> UpdateSecretary(long userId)
         {
             Secretary admin = _roleRepository.Get(x => x is Secretary && x.UserId == userId) as Secretary;
             if (admin == null)
@@ -260,7 +260,7 @@ namespace Diba.Core.AppService
             return new ServiceResult<IList<DeliveryViewModel>>(_mapper.Map<IList<DeliveryViewModel>>(deliveries));
         }
 
-        public ServiceResult<DeliveryViewModel> CreateDelivery(int userId, CreateDeliveryInputModel model)
+        public ServiceResult<DeliveryViewModel> CreateDelivery(long userId)
         {
             try
             {
@@ -275,7 +275,7 @@ namespace Diba.Core.AppService
             }
         }
 
-        public ServiceResult<DeliveryViewModel> UpdateDelivery(long userId, UpdateDeliveryInputModel model)
+        public ServiceResult<DeliveryViewModel> UpdateDelivery(long userId)
         {
             Delivery delivery = _roleRepository.Get(x => x is Delivery && x.UserId == userId) as Delivery;
 
@@ -317,7 +317,7 @@ namespace Diba.Core.AppService
             return new ServiceResult<IList<CollectorViewModel>>(_mapper.Map<IList<CollectorViewModel>>(collectors));
         }
 
-        public ServiceResult<CollectorViewModel> CreateCollector(int userId, CreateCollectorInputModel model)
+        public ServiceResult<CollectorViewModel> CreateCollector(long userId)
         {
             try
             {
@@ -332,7 +332,7 @@ namespace Diba.Core.AppService
             }
         }
 
-        public ServiceResult<CollectorViewModel> UpdateCollector(long userId, UpdateCollectorInputModel model)
+        public ServiceResult<CollectorViewModel> UpdateCollector(long userId)
         {
             Collector collector = _roleRepository.Get(x => x is Collector && x.UserId == userId) as Collector;
 
@@ -374,7 +374,7 @@ namespace Diba.Core.AppService
             return new ServiceResult<IList<SuperAdminViewModel>>(_mapper.Map<IList<SuperAdminViewModel>>(superAdmins));
         }
 
-        public ServiceResult<SuperAdminViewModel> CreateSuperAdmin(int userId, CreateSuperAdminInputModel model)
+        public ServiceResult<SuperAdminViewModel> CreateSuperAdmin(long userId)
         {
             try
             {
@@ -389,7 +389,7 @@ namespace Diba.Core.AppService
             }
         }
 
-        public ServiceResult<SuperAdminViewModel> UpdateSuperAdmin(long userId, UpdateSuperAdminInputModel model)
+        public ServiceResult<SuperAdminViewModel> UpdateSuperAdmin(long userId)
         {
             Role superAdmin = _roleRepository.Get(x => x is SuperAdmin && x.UserId == userId) as SuperAdmin;
             if (superAdmin == null)
