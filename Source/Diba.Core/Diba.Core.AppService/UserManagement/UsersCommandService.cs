@@ -46,19 +46,6 @@ namespace Diba.Core.AppService
             }
         }
 
-        public ServiceResult<UserViewModel> Delete(DeleteUserInputModel request)
-        {
-            User user = _userRepository.GetById(request.Id);
-
-            if (user == null)
-                return new ServiceResult<UserViewModel>(StatusCode.NotFound);
-
-            _userRepository.Delete(user);
-            _unitOfWork.Commit();
-
-            return new ServiceResult<UserViewModel>(_mapper.Map<UserViewModel>(user));
-        }
-
         public ServiceResult<UserViewModel> Update(UpdateUserRequest request)
         {
             User user = _userRepository.GetById(request.Id);
@@ -68,6 +55,19 @@ namespace Diba.Core.AppService
 
             user.Username = request.Username;
 
+            _unitOfWork.Commit();
+
+            return new ServiceResult<UserViewModel>(_mapper.Map<UserViewModel>(user));
+        }
+        
+        public ServiceResult<UserViewModel> Delete(DeleteUserInputModel request)
+        {
+            User user = _userRepository.GetById(request.Id);
+
+            if (user == null)
+                return new ServiceResult<UserViewModel>(StatusCode.NotFound);
+
+            _userRepository.Delete(user);
             _unitOfWork.Commit();
 
             return new ServiceResult<UserViewModel>(_mapper.Map<UserViewModel>(user));
@@ -90,6 +90,13 @@ namespace Diba.Core.AppService
 
         public ServiceResult<CustomerViewModel> CreateCustomer(long userId, CreateCustomerInputModel request)
         {
+            {
+                Role roles = _roleRepository.GetMany(x => x is Customer && x.UserId == userId).FirstOrDefault();
+
+                if (roles != null)
+                    return new ServiceResult<CustomerViewModel>(StatusCode.InternalServerError);
+            }
+
             try
             {
                 var customer = _mapper.Map<Customer>(request);
@@ -124,6 +131,8 @@ namespace Diba.Core.AppService
                 return new ServiceResult<CustomerViewModel>(StatusCode.NotFound);
 
             _customerRepository.Delete(customer);
+            _unitOfWork.Commit();
+
             return new ServiceResult<CustomerViewModel>(_mapper.Map<CustomerViewModel>(customer));
         }
 
@@ -148,6 +157,12 @@ namespace Diba.Core.AppService
 
         public ServiceResult<AdminViewModel> CreateAdmin(long userId)
         {
+            {
+                IEnumerable<Role> roles = _roleRepository.GetMany(x => x is Collector && x.UserId == userId);
+
+                if (roles.Any())
+                    return new ServiceResult<AdminViewModel>(StatusCode.BadRequest);
+            }
             try
             {
                 var admin = new Admin() { UserId = userId };
@@ -206,6 +221,12 @@ namespace Diba.Core.AppService
 
         public ServiceResult<SecretaryViewModel> CreateSecretary(long userId)
         {
+            {
+                IEnumerable<Role> roles = _roleRepository.GetMany(x => x is Collector && x.UserId == userId);
+
+                if (roles.Any())
+                    return new ServiceResult<SecretaryViewModel>(StatusCode.BadRequest);
+            }
             try
             {
                 var secretary = new Secretary() { UserId = userId };
@@ -238,6 +259,8 @@ namespace Diba.Core.AppService
                 return new ServiceResult<SecretaryViewModel>(StatusCode.NotFound);
 
             _roleRepository.Delete(secretary);
+            _unitOfWork.Commit();
+
             return new ServiceResult<SecretaryViewModel>(_mapper.Map<SecretaryViewModel>(secretary));
         }
         #endregion
@@ -262,6 +285,12 @@ namespace Diba.Core.AppService
 
         public ServiceResult<DeliveryViewModel> CreateDelivery(long userId)
         {
+            {
+                IEnumerable<Role> roles = _roleRepository.GetMany(x => x is Collector && x.UserId == userId);
+
+                if (roles.Any())
+                    return new ServiceResult<DeliveryViewModel>(StatusCode.BadRequest);
+            }
             try
             {
                 var delivery = new Delivery() { UserId = userId };
@@ -295,6 +324,8 @@ namespace Diba.Core.AppService
                 return new ServiceResult<DeliveryViewModel>(StatusCode.NotFound);
             
             _roleRepository.Delete(delivery);
+            _unitOfWork.Commit();
+
             return new ServiceResult<DeliveryViewModel>(_mapper.Map<DeliveryViewModel>(delivery));
         }
         #endregion
@@ -319,6 +350,12 @@ namespace Diba.Core.AppService
 
         public ServiceResult<CollectorViewModel> CreateCollector(long userId)
         {
+            {
+                IEnumerable<Role> roles = _roleRepository.GetMany(x => x is Collector && x.UserId == userId);
+
+                if (roles.Any())
+                    return new ServiceResult<CollectorViewModel>(StatusCode.BadRequest);
+            }
             try
             {
                 var collector = new Collector() { UserId = userId };
@@ -352,6 +389,8 @@ namespace Diba.Core.AppService
                 return new ServiceResult<CollectorViewModel>(StatusCode.NotFound);
 
             _roleRepository.Delete(collector);
+            _unitOfWork.Commit();
+
             return new ServiceResult<CollectorViewModel>(_mapper.Map<CollectorViewModel>(collector));
         }
         #endregion
@@ -376,6 +415,13 @@ namespace Diba.Core.AppService
 
         public ServiceResult<SuperAdminViewModel> CreateSuperAdmin(long userId)
         {
+            {
+                IEnumerable<Role> roles = _roleRepository.GetMany(x => x is SuperAdmin && x.UserId == userId);
+
+                if (roles.Any())
+                    return new ServiceResult<SuperAdminViewModel>(StatusCode.BadRequest);
+            }
+
             try
             {
                 SuperAdmin superAdmin = new SuperAdmin() { UserId = userId };
@@ -408,6 +454,8 @@ namespace Diba.Core.AppService
                 return new ServiceResult<SuperAdminViewModel>(StatusCode.NotFound);
 
             _roleRepository.Delete(superAdmin);
+            _unitOfWork.Commit();
+
             return new ServiceResult<SuperAdminViewModel>(_mapper.Map<SuperAdminViewModel>(superAdmin));
         }
 
