@@ -1,18 +1,10 @@
-﻿using Diba.Core.AppService;
-using Diba.Core.AppService.Contract;
+﻿using Diba.Core.AppService.Contract;
 using Diba.Core.AppService.Contract.BindingModels;
 using Diba.Core.AppService.Contract.ViewModels;
 using Diba.Core.Common.Attributes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Diba.Core.WebApi.Controllers
 {
@@ -41,20 +33,20 @@ namespace Diba.Core.WebApi.Controllers
         [AllowAnonymous]
         public ServiceResult<string> Post(UserAuthenticationBindingModel request)
         {
-            return _authenticationCommand.FirstStepLogin(request);
+            return _authenticationCommand.Login(request);
         }
 
-        /// <summary>
-        /// ورود مرحله دوم به سامانه
-        /// </summary>
-        /// <param name="request">درخواست</param>
-        /// <returns>توکن</returns>
-        [HttpPatch]
-        [FirstStepLoginAuthorization]
-        public ServiceResult<string> Patch(MembershipAuthenticationBindingModel request)
-        {
-            return _authenticationCommand.SecondStepLogin(request);
-        }
+        ///// <summary>
+        ///// ورود مرحله دوم به سامانه
+        ///// </summary>
+        ///// <param name="request">درخواست</param>
+        ///// <returns>توکن</returns>
+        //[HttpPatch]
+        //[FirstStepLoginAuthorization]
+        //public ServiceResult<string> Patch(MembershipAuthenticationBindingModel request)
+        //{
+        //    return _authenticationCommand.SecondStepLogin(request);
+        //}
 
         /// <summary>
         /// بازیابی عضویت های کاربر

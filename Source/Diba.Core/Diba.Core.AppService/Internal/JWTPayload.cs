@@ -10,9 +10,7 @@ namespace Diba.Core.AppService
         private const string EXPIRE = "exp";
         private const string ISSUER = "iss";
         private const string NOT_VALID_BEFORE = "nbf";
-        private const string ORGANIZATION_ID = "od";
-        private const string ORGANIZATION_TITLE = "ot";
-        private const string ROLE_TITLE = "ro";
+        private const string ROLE_TITLES = "ro";
         private const string USER_DISPLAYNAME = "udn";
         private const string USER_ID = "ud";
         private const string DEFAULT_ISSUER = "Diba.WebApi";
@@ -21,9 +19,7 @@ namespace Diba.Core.AppService
         {
             this[USER_ID] = token[USER_ID];
             this[USER_DISPLAYNAME] = token[USER_DISPLAYNAME];
-            this[ORGANIZATION_TITLE] = token[ORGANIZATION_TITLE];
-            this[ORGANIZATION_ID] = token[ORGANIZATION_ID];
-            this[ROLE_TITLE] = token[ROLE_TITLE];
+            this[ROLE_TITLES] = token[ROLE_TITLES];
 
             this[NOT_VALID_BEFORE] = token[NOT_VALID_BEFORE];
             this[EXPIRE] = token[EXPIRE];
@@ -32,38 +28,15 @@ namespace Diba.Core.AppService
 
         public JWTPayload(long userId,
                           string userDisplayName,
-                          long? organizationId,
-                          string organizationTitle,
-                          string role,
+                          IEnumerable<string> roles,
                           DateTime? expires) : base(DEFAULT_ISSUER, string.Empty, null, DateTime.UtcNow, expires)
         {
             this[USER_ID] = userId;
             this[USER_DISPLAYNAME] = userDisplayName;
-            this[ORGANIZATION_ID] = organizationId;
-            this[ROLE_TITLE] = role;
-            this[ORGANIZATION_TITLE] = organizationTitle;
+            this[ROLE_TITLES] = roles;
         }
 
-        public long OrganizationId
-        {
-            get
-            {
-                long organizationId;
-                long.TryParse(base[ORGANIZATION_ID]?.ToString(), out organizationId);
-                return organizationId;
-            }
-
-            set { base[ORGANIZATION_ID] = value; }
-        }
-
-        public string OrganizationTitle
-        {
-            get { return base[ORGANIZATION_TITLE]?.ToString(); }
-
-            set { base[ORGANIZATION_TITLE] = value; }
-        }
-
-        public string RoleTitle { get { return base[ROLE_TITLE]?.ToString(); } set { base[ROLE_TITLE] = value; } }
+        public IEnumerable<string> MyProperty { get; set; }
 
         public string UserDisplayName
         {
