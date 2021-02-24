@@ -8,11 +8,9 @@ namespace Diba.Core.Domain
     {
         public long Id { get; private set; }
 
-        public int ClientId { get; private set; }
+        public int CustomerId { get; private set; }
 
         private List<OrderItem> _items;
-
-        public bool IsCalculationRequired { get; set; }
 
         public IReadOnlyCollection<OrderItem> Items => _items.AsReadOnly();
 
@@ -25,20 +23,20 @@ namespace Diba.Core.Domain
         public DeliveryInfo DeliveryInfo { get; private set; }
 
 
-        public Order(int clientId, Request request)
+        public Order(int customerId, Request request)
         {
             this._items = new List<OrderItem>();
 
-            this.ClientId = clientId;
+            this.CustomerId = customerId;
 
             this.Request = request;
 
             this.State = new RequestedState();
         }
 
-        public void Update(int clientId, Request request, CollectionInfo collectionInfo, DeliveryInfo deliveryInfo)
+        public void Update(int customerId, Request request, CollectionInfo collectionInfo, DeliveryInfo deliveryInfo)
         {
-            this.ClientId = clientId;
+            this.CustomerId = customerId;
 
             this.Request = request;
 

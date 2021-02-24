@@ -14,11 +14,6 @@ namespace Diba.Core.Domain
             return false;
         }
 
-        public virtual bool RequireCalculation()
-        {
-            return false;
-        }
-
         public virtual bool DeliveryInfoCanModify()
         {
             return false;
