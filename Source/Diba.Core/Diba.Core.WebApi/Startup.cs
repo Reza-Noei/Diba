@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using AutoMapper;
 using Diba.Core.AppService;
 using Diba.Core.AppService.Contract;
-using Diba.Core.AppService.Contract.Constraint;
 using Diba.Core.AppService.Contract.Product;
 using Diba.Core.AppService.Contract.ProductConstraint;
 using Diba.Core.AppService.CustomerManagement;
@@ -20,13 +16,9 @@ using Diba.Core.WebApi.Internal.Extension;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 
 namespace Diba.Core.Service
@@ -110,10 +102,10 @@ namespace Diba.Core.Service
 
             var mappingConfig = new MapperConfiguration(mc =>
             {
+                mc.AddProfile(new RoleMappingProfile());
                 mc.AddProfile(new UserManagementMappingProfile());
                 mc.AddProfile(new CustomerManagementMappingProfile());
                 mc.AddProfile(new OrganizationManagementMappingProfile());
-
                 mc.AddProfile(new ProductMappingConfig());
                 mc.AddProfile(new ProductStringConstraintsConfig());
                 mc.AddProfile(new ProductSelectiveConstraintsConfig());

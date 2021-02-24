@@ -4,9 +4,9 @@ using Diba.Core.Domain;
 
 namespace Diba.Core.Data.Repository.Implementations
 {
-    public class UserRepository : RepositoryBase<User>, IUserRepository
+    public class RoleRepository : RepositoryBase<Role>,IRoleRepository
     {
-        public UserRepository(IDatabaseFactory databaseFactory, IUnitOfWork unitOfWork) :base(databaseFactory, unitOfWork)
+        public RoleRepository(IDatabaseFactory databaseFactory, IUnitOfWork unitOfWork) : base(databaseFactory, unitOfWork)
         {
 
         }

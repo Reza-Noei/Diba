@@ -61,12 +61,10 @@ namespace Diba.Core.AppService
             }
         }
 
-        public string GenerateToken(long Id, string UserDisplayName, long? OrganizationId, string OrganizationTitle, string RoleTitle)
+        public string GenerateToken(long Id, string UserDisplayName,  IEnumerable<string> RoleTitle)
         {
             var Payload = new JWTPayload(Id,
                                          UserDisplayName,
-                                         OrganizationId,
-                                         OrganizationTitle,
                                          RoleTitle,
                                          DateTime.UtcNow.AddMinutes(JsonWebTokenSetting.LifeTime));
 

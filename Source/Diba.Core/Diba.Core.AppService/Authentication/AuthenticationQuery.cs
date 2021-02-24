@@ -1,11 +1,6 @@
 ﻿using Diba.Core.AppService.Contract;
 using Diba.Core.AppService.Dependencies;
 using Diba.Core.AppService.Internal;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
 
 namespace Diba.Core.AppService
 {
@@ -39,8 +34,8 @@ namespace Diba.Core.AppService
                     };
 
                 UserId = Payload.UserId;
-                OrganizationId = Payload.OrganizationId;
-                Role = Payload.RoleTitle;
+                //OrganizationId = Payload.OrganizationId;
+                //Role = Payload.RoleTitle;
 
                 return new ServiceResult<bool>(true);
             }

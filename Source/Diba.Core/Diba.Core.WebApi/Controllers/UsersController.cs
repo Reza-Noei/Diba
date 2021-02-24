@@ -110,6 +110,15 @@ namespace Diba.Core.WebApi.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+        [Route("{userId}/admins")]
+        public ServiceResult<AdminViewModel> GetAdminByUserId(long userId)
+        {
+            ServiceResult<AdminViewModel> response = _usersCommandService.GetAdminByUserId(userId);
+            return response;
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
         [Route("admins")]
         public ServiceResult<IList<AdminViewModel>> GetAllAdmins()
         {
@@ -122,7 +131,7 @@ namespace Diba.Core.WebApi.Controllers
         [Route("{userId}/admin")]
         public ServiceResult<AdminViewModel> CreateAdmin(long userId , CreateAdminInputModel model)
         {
-            ServiceResult<AdminViewModel> response = _usersCommandService.CreateAdmin(userId , model);
+            ServiceResult<AdminViewModel> response = _usersCommandService.CreateAdmin(userId);
             return response;
         }
 
@@ -146,25 +155,197 @@ namespace Diba.Core.WebApi.Controllers
 
         #endregion
 
-
         #region Secretary
 
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("{userId}/secretarys")]
+        public ServiceResult<SecretaryViewModel> GetSecretaryByUserId(long userId)
+        {
+            ServiceResult<SecretaryViewModel> response = _usersCommandService.GetSecretaryByUserId(userId);
+            return response;
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("secretarys")]
+        public ServiceResult<IList<SecretaryViewModel>> GetAllSecretarys()
+        {
+            ServiceResult<IList<SecretaryViewModel>> response = _usersCommandService.GetAllSecretarys();
+            return response;
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("{userId}/secretary")]
+        public ServiceResult<SecretaryViewModel> CreateSecretary(long userId)
+        {
+            ServiceResult<SecretaryViewModel> response = _usersCommandService.CreateSecretary(userId);
+            return response;
+        }
+
+        [HttpPatch]
+        [AllowAnonymous]
+        [Route("{userId}/secretary")]
+        public ServiceResult<SecretaryViewModel> UpdateSecretary(long userId)
+        {
+            ServiceResult<SecretaryViewModel> response = _usersCommandService.UpdateSecretary(userId);
+            return response;
+        }
+
+        [HttpDelete]
+        [AllowAnonymous]
+        [Route("{userId}/secretary")]
+        public ServiceResult<SecretaryViewModel> DeleteSecretary(long userId)
+        {
+            ServiceResult<SecretaryViewModel> response = _usersCommandService.DeleteSecretary(userId);
+            return response;
+        }
+
         #endregion
-
-
-        #region Secretary
-
-        #endregion
-
 
         #region Collector
 
-        #endregion
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("{userId}/collectors")]
+        public ServiceResult<CollectorViewModel> GetCollectorByUserId(long userId)
+        {
+            ServiceResult<CollectorViewModel> response = _usersCommandService.GetCollectorByUserId(userId);
+            return response;
+        }
 
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("collectors")]
+        public ServiceResult<IList<CollectorViewModel>> GetAllCollectors()
+        {
+            ServiceResult<IList<CollectorViewModel>> response = _usersCommandService.GetAllCollectors();
+            return response;
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("{userId}/collector")]
+        public ServiceResult<CollectorViewModel> CreateCollector(long userId)
+        {
+            ServiceResult<CollectorViewModel> response = _usersCommandService.CreateCollector(userId);
+            return response;
+        }
+
+        [HttpPatch]
+        [AllowAnonymous]
+        [Route("{userId}/collector")]
+        public ServiceResult<CollectorViewModel> UpdateCollector(long userId)
+        {
+            ServiceResult<CollectorViewModel> response = _usersCommandService.UpdateCollector(userId);
+            return response;
+        }
+
+        [HttpDelete]
+        [AllowAnonymous]
+        [Route("{userId}/collector")]
+        public ServiceResult<CollectorViewModel> DeleteCollector(long userId)
+        {
+            ServiceResult<CollectorViewModel> response = _usersCommandService.DeleteCollector(userId);
+            return response;
+        }
+        #endregion
 
         #region Delivery
 
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("{userId}/deliverys")]
+        public ServiceResult<DeliveryViewModel> GetDeliveryByUserId(long userId)
+        {
+            ServiceResult<DeliveryViewModel> response = _usersCommandService.GetDeliveryByUserId(userId);
+            return response;
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("deliverys")]
+        public ServiceResult<IList<DeliveryViewModel>> GetAllDeliverys()
+        {
+            ServiceResult<IList<DeliveryViewModel>> response = _usersCommandService.GetAllDeliverys();
+            return response;
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("{userId}/delivery")]
+        public ServiceResult<DeliveryViewModel> CreateDelivery(long userId)
+        {
+            ServiceResult<DeliveryViewModel> response = _usersCommandService.CreateDelivery(userId);
+            return response;
+        }
+
+        [HttpPatch]
+        [AllowAnonymous]
+        [Route("{userId}/delivery")]
+        public ServiceResult<DeliveryViewModel> UpdateDelivery(long userId)
+        {
+            ServiceResult<DeliveryViewModel> response = _usersCommandService.UpdateDelivery(userId);
+            return response;
+        }
+
+        [HttpDelete]
+        [AllowAnonymous]
+        [Route("{userId}/delivery")]
+        public ServiceResult<DeliveryViewModel> DeleteDelivery(long userId)
+        {
+            ServiceResult<DeliveryViewModel> response = _usersCommandService.DeleteDelivery(userId);
+            return response;
+        }
         #endregion
 
+        #region SuperAdmin
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("{userId}/superAdmins")]
+        public ServiceResult<SuperAdminViewModel> GetSuperAdminByUserId(long userId)
+        {
+            ServiceResult<SuperAdminViewModel> response = _usersCommandService.GetSuperAdminByUserId(userId);
+            return response;
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("superAdmins")]
+        public ServiceResult<IList<SuperAdminViewModel>> GetAllSuperAdmins()
+        {
+            ServiceResult<IList<SuperAdminViewModel>> response = _usersCommandService.GetAllSuperAdmins();
+            return response;
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("{userId}/superAdmin")]
+        public ServiceResult<SuperAdminViewModel> CreateSuperAdmin(long userId)
+        {
+            ServiceResult<SuperAdminViewModel> response = _usersCommandService.CreateSuperAdmin(userId);
+            return response;
+        }
+
+        [HttpPatch]
+        [AllowAnonymous]
+        [Route("{userId}/superAdmin")]
+        public ServiceResult<SuperAdminViewModel> UpdateSuperAdmin(long userId)
+        {
+            ServiceResult<SuperAdminViewModel> response = _usersCommandService.UpdateSuperAdmin(userId);
+            return response;
+        }
+
+        [HttpDelete]
+        [AllowAnonymous]
+        [Route("{userId}/superAdmin")]
+        public ServiceResult<SuperAdminViewModel> DeleteSuperAdmin(long userId)
+        {
+            ServiceResult<SuperAdminViewModel> response = _usersCommandService.DeleteSuperAdmin(userId);
+            return response;
+        }
+        #endregion
     }
 }
