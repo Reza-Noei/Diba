@@ -8,11 +8,9 @@ namespace Diba.Core.Domain
     {
         public long Id { get; private set; }
 
+        public int CustomerId { get; private set; }
 
         private List<OrderItem> _items;
-
-        public bool IsCalculationRequired { get; set; }
-
 
         public IReadOnlyCollection<OrderItem> Items => _items.AsReadOnly();
 
@@ -20,46 +18,33 @@ namespace Diba.Core.Domain
 
         public Request Request { get; private set; }
 
-        public int ClientId { get; private set; }
+        public CollectionInfo CollectionInfo { get; private set; }
 
-        public int? CollectorId { get; private set; }
+        public DeliveryInfo DeliveryInfo { get; private set; }
 
-        public DateTime CollectionDate { get; private set; }
 
-        public string CollectionLocation { get; private set; }
-
-        public int? DelivelerId { get; private set; }
-
-        public DateTime DeliveryDate { get; private set; }
-
-        public string DeliveryLocation { get; private set; }
-
-        public Order(int clientId, Request request)
+        public Order(int customerId, Request request)
         {
             this._items = new List<OrderItem>();
 
-            this.ClientId = clientId;
+            this.CustomerId = customerId;
 
             this.Request = request;
 
             this.State = new RequestedState();
         }
 
-        public void Update(Request request, int clientId, int? collectorId, DateTime collectionDate, string collectionLocation, int? delivelerId, DateTime deliveryDate, string deliveryLocation)
+        public void Update(int customerId, Request request, CollectionInfo collectionInfo, DeliveryInfo deliveryInfo)
         {
+            this.CustomerId = customerId;
+
             this.Request = request;
-            this.ClientId = clientId;
-            this.CollectorId = collectorId;
-            this.CollectionDate = collectionDate;
-            this.CollectionLocation = collectionLocation;
-            this.DeliveryDate = deliveryDate;
-            this.DeliveryLocation = deliveryLocation;
 
-            if (State.CollectorCanModify())
-                this.CollectorId = collectorId;
+            if (State.CollectionInfoCanModify())
+                this.CollectionInfo = collectionInfo;
 
-            if (State.DelivelerCanModify())
-                this.DelivelerId = delivelerId;
+            if (State.DeliveryInfoCanModify())
+                this.DeliveryInfo = deliveryInfo;
         }
 
         public void UpdateItems(List<OrderItem> itmes)
@@ -72,7 +57,7 @@ namespace Diba.Core.Domain
 
         public void Collect()
         {
-            if (this.CollectorId.IsNullOrValue(0))
+            if (this.CollectionInfo.IsComplete)
                 this.State = State.Collect();
         }
 
@@ -88,7 +73,7 @@ namespace Diba.Core.Domain
 
         public void Deliver()
         {
-            if (this.DelivelerId.IsNullOrValue(0))
+            if (this.DeliveryInfo.IsComplete)
                 this.State = this.State.Deliver();
         }
 

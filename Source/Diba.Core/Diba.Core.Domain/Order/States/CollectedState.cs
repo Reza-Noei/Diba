@@ -7,7 +7,7 @@
             return true;
         }
 
-        public override bool DelivelerCanModify()
+        public override bool DeliveryInfoCanModify()
         {
             return true;
         }
