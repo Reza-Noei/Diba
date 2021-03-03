@@ -1,5 +1,6 @@
 ﻿using Diba.Core.AppService.Contract;
 using Diba.Core.AppService.Contract.ViewModels;
+using Diba.Core.WebApi.Internal;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -22,7 +23,6 @@ namespace Diba.Core.WebApi.Controllers
         #region user
 
         [HttpGet]
-        [AllowAnonymous]
         [Route("{id}")]
         public ServiceResult<UserViewModel> Get(long id)
         {
@@ -38,8 +38,8 @@ namespace Diba.Core.WebApi.Controllers
             return users;
         }
 
+        [Scope("addUser")]
         [HttpPost]
-        [AllowAnonymous]
         public ServiceResult<UserViewModel> Create(CreateUserInputModel model)
         {
             ServiceResult<UserViewModel> response = _usersCommandService.Create(model);
@@ -91,7 +91,7 @@ namespace Diba.Core.WebApi.Controllers
         [Route("{userId}/Customer")]
         public ServiceResult<CustomerViewModel> UpdateCustomer(long userId, UpdateCustomerInputModel model)
         {
-            ServiceResult<CustomerViewModel> response = _usersCommandService.UpdateCustomer(userId , model);
+            ServiceResult<CustomerViewModel> response = _usersCommandService.UpdateCustomer(userId, model);
             return response;
         }
 
@@ -99,7 +99,7 @@ namespace Diba.Core.WebApi.Controllers
         [AllowAnonymous]
         [Route("{userId}/Customer")]
         public ServiceResult<CustomerViewModel> DeleteCustomer(long userId)
-        { 
+        {
             ServiceResult<CustomerViewModel> response = _usersCommandService.DeleteCustomer(userId);
             return response;
         }
@@ -129,7 +129,7 @@ namespace Diba.Core.WebApi.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("{userId}/admin")]
-        public ServiceResult<AdminViewModel> CreateAdmin(long userId , CreateAdminInputModel model)
+        public ServiceResult<AdminViewModel> CreateAdmin(long userId, CreateAdminInputModel model)
         {
             ServiceResult<AdminViewModel> response = _usersCommandService.CreateAdmin(userId);
             return response;

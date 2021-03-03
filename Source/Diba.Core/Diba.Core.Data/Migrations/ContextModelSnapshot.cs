@@ -19,60 +19,6 @@ namespace Diba.Core.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Diba.Core.Domain.Authority", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("Creation")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("Modification")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("ModifierId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatorId");
-
-                    b.HasIndex("ModifierId");
-
-                    b.ToTable("Authorities");
-                });
-
-            modelBuilder.Entity("Diba.Core.Domain.AuthorityPermission", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Action")
-                        .HasColumnType("int");
-
-                    b.Property<long>("AuthorityId")
-                        .HasColumnType("bigint");
-
-                    b.Property<bool>("IsGranted")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorityId");
-
-                    b.ToTable("AuthorityPermission");
-                });
-
             modelBuilder.Entity("Diba.Core.Domain.ContactInfo", b =>
                 {
                     b.Property<long>("Id")
@@ -184,6 +130,24 @@ namespace Diba.Core.Data.Migrations
                     b.HasIndex("ModifierId");
 
                     b.ToTable("Organizations");
+                });
+
+            modelBuilder.Entity("Diba.Core.Domain.Permission", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("RoleName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Scope")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Permissions");
                 });
 
             modelBuilder.Entity("Diba.Core.Domain.Products.Product", b =>
@@ -308,24 +272,6 @@ namespace Diba.Core.Data.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Role");
                 });
 
-            modelBuilder.Entity("Diba.Core.Domain.RolePermission", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Action")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsGranted")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("RolePermissions");
-                });
-
             modelBuilder.Entity("Diba.Core.Domain.User", b =>
                 {
                     b.Property<long>("Id")
@@ -447,26 +393,6 @@ namespace Diba.Core.Data.Migrations
                     b.HasBaseType("Diba.Core.Domain.Role");
 
                     b.HasDiscriminator().HasValue("SuperAdmin");
-                });
-
-            modelBuilder.Entity("Diba.Core.Domain.Authority", b =>
-                {
-                    b.HasOne("Diba.Core.Domain.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId");
-
-                    b.HasOne("Diba.Core.Domain.User", "Modifier")
-                        .WithMany()
-                        .HasForeignKey("ModifierId");
-                });
-
-            modelBuilder.Entity("Diba.Core.Domain.AuthorityPermission", b =>
-                {
-                    b.HasOne("Diba.Core.Domain.Authority", "Authority")
-                        .WithMany("Permissions")
-                        .HasForeignKey("AuthorityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Diba.Core.Domain.ContactInfo", b =>

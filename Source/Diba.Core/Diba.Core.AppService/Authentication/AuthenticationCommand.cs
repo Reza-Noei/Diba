@@ -7,7 +7,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Diba.Core.AppService.Authentication
+namespace Diba.Core.AppService
 {
     public class AuthenticationCommand : IAuthenticationCommand
     {
@@ -25,9 +25,11 @@ namespace Diba.Core.AppService.Authentication
         {
             // TODO: Hash user password in user creation process and login process.
             var user = _userRepository.Get(P => P.Username == model.Username && P.Password == model.Password);
-            IEnumerable<string> roles = user.Roles.ToList().Select(x => nameof(x));
+            List<Domain.Role> t = user.Roles.ToList();
 
-            if (user == null)
+            IEnumerable<string> roles = t.Select(x => x.RoleName);
+            var a = roles.ToList();
+            if (user != null)
                 return new ServiceResult<string>()
                 {
                     Data = _jsonWebTokenEngine.GenerateToken(user.Id, user.Username, roles),

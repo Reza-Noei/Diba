@@ -20,7 +20,7 @@ namespace Diba.Core.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Organization> Organizations { get; set; }
-        public DbSet<Authority> Memberships { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<SuperAdmin> SuperAdmins { get; set; }
@@ -48,7 +48,7 @@ namespace Diba.Core.Data
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             
-            modelBuilder.ApplyConfiguration(new RolePermissionConfiguration());
+            //modelBuilder.ApplyConfiguration(new RolePermissionConfiguration());
 
             modelBuilder.ApplyConfiguration(new ContactInfoConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
@@ -64,7 +64,7 @@ namespace Diba.Core.Data
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
             modelBuilder.ApplyConfiguration(new OrganizationConfiguration());
 
-            modelBuilder.ApplyConfiguration(new AuthorityConfiguration());
+            //modelBuilder.ApplyConfiguration(new AuthorityConfiguration());
 
             modelBuilder.ApplyConfiguration(new CustomerOrderConfiguration());
             modelBuilder.ApplyConfiguration(new QuickAccessListConfiguration());

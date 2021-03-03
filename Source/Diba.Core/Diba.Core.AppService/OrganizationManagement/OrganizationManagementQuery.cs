@@ -25,10 +25,7 @@ namespace Diba.Core.AppService
 
         public ServiceResult<OrganizationViewModel> MyOrganization()
         {
-            var organizationId = base.AuthenticationInformation.OrganizationId;
-            var organization = _organizationRepository.GetMany(P => P.Id == organizationId).FirstOrDefault();
-
-            return new ServiceResult<OrganizationViewModel>(_mapper.Map<OrganizationViewModel>(organization));
+            throw new NotImplementedException();
         }
     }
 }
