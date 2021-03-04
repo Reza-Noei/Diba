@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Diba.Core.Common;
 
+
 namespace Diba.Core.Domain
 {
     public class Order
@@ -16,29 +17,29 @@ namespace Diba.Core.Domain
 
         public OrderState State { get; private set; }
 
-        public Request Request { get; private set; }
+        public virtual ICollection<RequestItem> RequestItems { get; private set; }
 
         public CollectionInfo CollectionInfo { get; private set; }
 
         public DeliveryInfo DeliveryInfo { get; private set; }
 
 
-        public Order(int customerId, Request request)
+        public Order(int customerId, List<RequestItem> requestItems)
         {
             this._items = new List<OrderItem>();
 
             this.CustomerId = customerId;
 
-            this.Request = request;
+            this.RequestItems = requestItems;
 
             this.State = new RequestedState();
         }
 
-        public void Update(int customerId, Request request, CollectionInfo collectionInfo, DeliveryInfo deliveryInfo)
+        public void Update(int customerId, List<RequestItem> requestItems, CollectionInfo collectionInfo, DeliveryInfo deliveryInfo)
         {
             this.CustomerId = customerId;
 
-            this.Request = request;
+            this.RequestItems = requestItems;
 
             if (State.CollectionInfoCanModify())
                 this.CollectionInfo = collectionInfo;

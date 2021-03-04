@@ -9,11 +9,11 @@ namespace Diba.Core.AppService.Products
     {
         public ProductMappingConfig()
         {
-            CreateMap<Product, ProductViewModel>();
-            CreateMap<ProductViewModel, Product>();
+            CreateMap<ProductClass, ProductViewModel>();
+            CreateMap<ProductViewModel, ProductClass>();
 
             CreateMap<CreateProductViewModel, ProductViewModel>().ForMember(x => x.Id, opt => opt.Ignore()); ;
-            CreateMap<CreateProductViewModel, Product>();
+            CreateMap<CreateProductViewModel, ProductClass>();
         }
     }
 }
