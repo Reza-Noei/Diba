@@ -2,12 +2,12 @@
 
 namespace Diba.Core.Domain.Products
 {
-    public abstract class ConrstraintValue
+    public abstract class ConstraintValue
     {
         public virtual ProductConstraint Constraint { get; set; }
     }
 
-    public class StringConstraintValue: ConrstraintValue
+    public class StringConstraintValue: ConstraintValue
     {
         public string Value { get; set; }
     }

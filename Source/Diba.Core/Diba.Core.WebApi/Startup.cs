@@ -13,6 +13,7 @@ using Diba.Core.AppService.Products;
 using Diba.Core.Data.Repository.Implementations;
 using Diba.Core.Data.Repository.Interfaces;
 using Diba.Core.WebApi.Internal.Extension;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -81,23 +82,28 @@ namespace Diba.Core.Service
             services.AddScoped<IProductStringConstraintsQueryService, ProductStringConstraintsQueryService>();
             services.AddScoped<IProductStringConstraintsCommandService, ProductStringConstraintsCommandService>();
             services.AddScoped<IProductStringConstraintsRepository, ProductStringConstraintsRepository>();
-            
+
             services.AddScoped<IProductSelectiveConstraintsQueryService, ProductSelectiveConstraintsQueryService>();
             services.AddScoped<IProductSelectiveConstraintsCommandService, ProductSelectiveConstraintsCommandService>();
             services.AddScoped<IProductSelectiveConstraintsRepository, ProductSelectiveConstraintsRepository>();
 
             services.AddFromConfigurationFile(Configuration.GetSection("Services"));
 
-            ServiceProvider serviceProvider = services.BuildServiceProvider();
-            IAuthenticationCommand authenticationCommand = serviceProvider.GetService<IAuthenticationCommand>();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer();
 
+            services.AddAuthorization(config => { });
+            ServiceProvider serviceProvider = services.BuildServiceProvider();
+
+            //IAuthenticationCommand authenticationCommand = serviceProvider.GetService<IAuthenticationCommand>();
+            IPermissionQuery permissionQuery = serviceProvider.GetService<IPermissionQuery>();
             IAuthenticationQuery authenticationQuery = serviceProvider.GetService<IAuthenticationQuery>();
             IAuthenticationInformation authenticationInformation = serviceProvider.GetService<IAuthenticationInformation>();
 
             services.AddControllers(config =>
             {
-                config.Filters.Add(new AuthenticationFilter(authenticationInformation, authenticationCommand, authenticationQuery));
-                config.Filters.Add(new ActionFilterExample());
+                config.Filters.Add(new AuthenticationFilter(authenticationInformation, authenticationQuery, permissionQuery));
+                //config.Filters.Add(new ActionFilterExample());
             });
 
             var mappingConfig = new MapperConfiguration(mc =>
@@ -138,6 +144,17 @@ namespace Diba.Core.Service
             app.UseStaticFiles();
             app.UseRouting();
             app.UseCors();
+            //app.UseMiddleware<JwtMiddleware>();
+            //app.UseAuthorization();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapRazorPages();
+            });
 
             app.UseEndpoints(endpoints =>
             {

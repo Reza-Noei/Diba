@@ -21,9 +21,15 @@ namespace Diba.Core.AppService
         {
             try
             {
-                var SecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JsonWebTokenSetting.Secret));
-                var Handler = new JwtSecurityTokenHandler();
+                if (!string.IsNullOrWhiteSpace(TokenString))
+                    TokenString = TokenString.Substring(TokenString.IndexOf(' ') + 1);
+                // OK
+
+                var Handler = new JwtSecurityTokenHandler(); 
+
                 var token = Handler.ReadJwtToken(TokenString);
+
+                var SecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JsonWebTokenSetting.Secret));
 
                 var validationParams = new TokenValidationParameters()
                 {
@@ -31,13 +37,13 @@ namespace Diba.Core.AppService
                     LifetimeValidator =
                     (nbf, exp, securityKey, validationpara) =>
                     {
-                        if (nbf.HasValue)
-                            if (DateTime.UtcNow < nbf.Value)
-                                return false;
+                        //if (nbf.HasValue)
+                        //    if (DateTime.UtcNow < nbf.Value)
+                        //        return false;
 
-                        if (exp.HasValue)
-                            if (DateTime.UtcNow > exp.Value)
-                                return false;
+                        //if (exp.HasValue)
+                        //    if (DateTime.UtcNow > exp.Value)
+                        //        return false;
 
                         return true;
                     },
@@ -50,7 +56,7 @@ namespace Diba.Core.AppService
                 SecurityToken validatedToken;
                 var validate = Handler.ValidateToken(TokenString, validationParams, out validatedToken);
 
-                var a = token.ValidFrom;
+                //var a = token.ValidFrom;
                 Payload = new JWTPayload(token.Payload);
                 return true;
             }
@@ -61,17 +67,18 @@ namespace Diba.Core.AppService
             }
         }
 
-        public string GenerateToken(long Id, string UserDisplayName,  IEnumerable<string> RoleTitle)
+        public string GenerateToken(long Id, string UserDisplayName, IEnumerable<string> RoleTitles)
         {
             var Payload = new JWTPayload(Id,
                                          UserDisplayName,
-                                         RoleTitle,
+                                         RoleTitles,
                                          DateTime.UtcNow.AddMinutes(JsonWebTokenSetting.LifeTime));
 
             var Token = new JwtSecurityToken(JWTHeader.DefaultHeader(JsonWebTokenSetting.Secret), Payload);
             var Handler = new JwtSecurityTokenHandler();
 
-            return Handler.WriteToken(Token);
+            var token = Handler.WriteToken(Token);
+            return token;
         }
     }
 }

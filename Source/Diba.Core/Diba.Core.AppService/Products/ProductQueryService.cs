@@ -18,13 +18,13 @@ namespace Diba.Core.AppService.Products
 
         public ServiceResult<ProductViewModel> Get(int id)
         {
-            Product product = _productRepository.GetById(id);
+            ProductClass product = _productRepository.GetById(id);
             return new ServiceResult<ProductViewModel>(_mapper.Map<ProductViewModel>(product));
         }
 
         public ServiceResult<IEnumerable<ProductViewModel>> GetList()
         {
-            IEnumerable<Product> products = _productRepository.GetAll();
+            IEnumerable<ProductClass> products = _productRepository.GetAll();
             return new ServiceResult<IEnumerable<ProductViewModel>>(_mapper.Map<IEnumerable<ProductViewModel>>(products));
         }
 

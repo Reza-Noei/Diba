@@ -8,6 +8,20 @@ namespace Diba.Core.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Permissions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleName = table.Column<string>(nullable: true),
+                    Scope = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Permissions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -31,20 +45,6 @@ namespace Diba.Core.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_QuickAccessLists", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RolePermissions",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Action = table.Column<int>(nullable: false),
-                    IsGranted = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RolePermissions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -109,35 +109,6 @@ namespace Diba.Core.Data.Migrations
                         column: x => x.QuickAccessListId,
                         principalTable: "QuickAccessLists",
                         principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Authorities",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Active = table.Column<bool>(nullable: false),
-                    ModifierId = table.Column<long>(nullable: true),
-                    Modification = table.Column<DateTime>(nullable: false),
-                    CreatorId = table.Column<long>(nullable: true),
-                    Creation = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Authorities", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Authorities_Users_CreatorId",
-                        column: x => x.CreatorId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Authorities_Users_ModifierId",
-                        column: x => x.ModifierId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -210,27 +181,6 @@ namespace Diba.Core.Data.Migrations
                         name: "FK_Option_ProductConstraints_SelectiveConstraintId",
                         column: x => x.SelectiveConstraintId,
                         principalTable: "ProductConstraints",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AuthorityPermission",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AuthorityId = table.Column<long>(nullable: false),
-                    Action = table.Column<int>(nullable: false),
-                    IsGranted = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AuthorityPermission", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AuthorityPermission_Authorities_AuthorityId",
-                        column: x => x.AuthorityId,
-                        principalTable: "Authorities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -317,21 +267,6 @@ namespace Diba.Core.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Authorities_CreatorId",
-                table: "Authorities",
-                column: "CreatorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Authorities_ModifierId",
-                table: "Authorities",
-                column: "ModifierId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AuthorityPermission_AuthorityId",
-                table: "AuthorityPermission",
-                column: "AuthorityId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ContactInfos_UserId",
                 table: "ContactInfos",
                 column: "UserId");
@@ -400,9 +335,6 @@ namespace Diba.Core.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AuthorityPermission");
-
-            migrationBuilder.DropTable(
                 name: "ContactInfos");
 
             migrationBuilder.DropTable(
@@ -412,10 +344,7 @@ namespace Diba.Core.Data.Migrations
                 name: "Option");
 
             migrationBuilder.DropTable(
-                name: "RolePermissions");
-
-            migrationBuilder.DropTable(
-                name: "Authorities");
+                name: "Permissions");
 
             migrationBuilder.DropTable(
                 name: "Role");

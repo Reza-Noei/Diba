@@ -14,14 +14,14 @@ namespace Diba.Core.WebApi.Controllers
     {
         private readonly IAuthenticationCommand _authenticationCommand;
         private readonly IAuthenticationQuery _authenticationQuery;
-        private readonly IOrganizationMembershipManagementQuery _organizationMembershipManagementQuery;
+        //private readonly IOrganizationMembershipManagementQuery _organizationMembershipManagementQuery;
         public AuthenticationController(IAuthenticationCommand authenticationCommand,
-                                        IAuthenticationQuery authenticationQuery,
-                                        IOrganizationMembershipManagementQuery organizationMembershipManagementQuery)
+                                        IAuthenticationQuery authenticationQuery
+                                        /*,IOrganizationMembershipManagementQuery organizationMembershipManagementQuery*/)
         {
             _authenticationCommand = authenticationCommand;
             _authenticationQuery = authenticationQuery;
-            _organizationMembershipManagementQuery = organizationMembershipManagementQuery;
+            //_organizationMembershipManagementQuery = organizationMembershipManagementQuery;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Diba.Core.WebApi.Controllers
         [FirstStepLoginAuthorization]
         public ServiceResult<IEnumerable<OrganizationMembershipViewModel>> Get()
         {
-            return _organizationMembershipManagementQuery.GetUserMemberships();
+            return null;// _organizationMembershipManagementQuery.GetUserMemberships();
         }
     }
 }

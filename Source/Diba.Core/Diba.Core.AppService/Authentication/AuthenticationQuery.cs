@@ -1,6 +1,7 @@
 ﻿using Diba.Core.AppService.Contract;
 using Diba.Core.AppService.Dependencies;
 using Diba.Core.AppService.Internal;
+using System.Collections.Generic;
 
 namespace Diba.Core.AppService
 {
@@ -8,24 +9,23 @@ namespace Diba.Core.AppService
     {
         private readonly IJsonWebTokenEngine _jsonWebTokenEngine;
 
-            public AuthenticationQuery(IAuthenticationInformation authenticationInformation,
-                                       IJsonWebTokenEngine jsonWebTokenEngine)
-                                       :base(authenticationInformation)
+        public AuthenticationQuery(IAuthenticationInformation authenticationInformation,
+                                   IJsonWebTokenEngine jsonWebTokenEngine)
+                                   : base(authenticationInformation)
         {
             _jsonWebTokenEngine = jsonWebTokenEngine;
         }
 
-        public ServiceResult<bool> ValidToken(string Token, out long UserId, out long? OrganizationId, out string Role)
+        public ServiceResult<bool> ValidToken(string Token, out long UserId, out IEnumerable<string> Role)
         {
             UserId = 0;
-            OrganizationId = null;
+            Role = new List<string> { };
 
             try
             {
                 JWTPayload Payload;
-                Role = string.Empty;
 
-                var result =  _jsonWebTokenEngine.ValidateToken(Token, out Payload);
+                var result = _jsonWebTokenEngine.ValidateToken(Token, out Payload);
                 if (!result)
                     return new ServiceResult<bool>(false)
                     {
@@ -34,14 +34,13 @@ namespace Diba.Core.AppService
                     };
 
                 UserId = Payload.UserId;
-                //OrganizationId = Payload.OrganizationId;
-                //Role = Payload.RoleTitle;
+                Role = Payload.RoleTitle;
 
                 return new ServiceResult<bool>(true);
             }
             catch
             {
-                Role = string.Empty;
+                Role = new List<string> { };
                 return new ServiceResult<bool>(false)
                 {
                     Message = new InvalidTokenMessage(),

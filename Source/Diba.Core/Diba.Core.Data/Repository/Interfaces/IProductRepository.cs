@@ -3,8 +3,8 @@ using Diba.Core.Domain.Products;
 
 namespace Diba.Core.Data.Repository.Interfaces
 {
-    public interface IProductRepository : IRepository<Product>
+    public interface IProductRepository : IRepository<ProductClass>
     {
-        Product GetById(int id);
+        ProductClass GetById(int id);
     }
 }

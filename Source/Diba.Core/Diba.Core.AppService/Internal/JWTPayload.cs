@@ -36,7 +36,6 @@ namespace Diba.Core.AppService
             this[ROLE_TITLES] = roles;
         }
 
-        public IEnumerable<string> MyProperty { get; set; }
 
         public string UserDisplayName
         {
@@ -55,6 +54,16 @@ namespace Diba.Core.AppService
             }
 
             set { base[USER_ID] = value; }
+        }
+
+        public IEnumerable<string> RoleTitle
+        {
+            get
+            {
+                return Newtonsoft.Json.JsonConvert.DeserializeObject<IEnumerable<string>>(base[ROLE_TITLES].ToString());
+            }
+
+            set { base[ROLE_TITLES] = value; }
         }
     }
 }

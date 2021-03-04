@@ -14,14 +14,14 @@ namespace Diba.Core.WebApi.Internal
             HttpContextAccessor = httpContextAccessor;
         }
 
-        public string Role
+        public IEnumerable<string> Role
         {
             get
             {
                 if (!HttpContextAccessor.HttpContext.Items.ContainsKey("Role"))
-                    return string.Empty;
+                    return new List<string> { };
                 else
-                    return HttpContextAccessor.HttpContext.Items["Role"].ToString();
+                    return (List<string>)HttpContextAccessor.HttpContext.Items["Role"];
             }
 
             set
@@ -43,22 +43,6 @@ namespace Diba.Core.WebApi.Internal
             set
             {
                 HttpContextAccessor.HttpContext.Items["UserId"] = value.ToString();
-            }
-        }
-
-        public long? OrganizationId
-        {
-            get
-            {
-                if (!HttpContextAccessor.HttpContext.Items.ContainsKey("OrganizationId"))
-                    return null;
-                else
-                    return long.Parse(HttpContextAccessor.HttpContext.Items["OrganizationId"].ToString());
-            }
-
-            set
-            {
-                HttpContextAccessor.HttpContext.Items["OrganizationId"] = value.ToString();
             }
         }
     }
