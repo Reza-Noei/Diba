@@ -11,7 +11,7 @@ Scenario: customer order registration (customer request)
 	Given that a person with following information exists as customer:
 		| frist name | last name |
 		| hamid      | rezaei    |
-	When customer requests collection as follows
+	When 'hamid rezaei' requests collection as follows
 		| Item                               |
 		| Washing a 12 meter handmade carpet |
 	And  'reza' announced '22'$ Price

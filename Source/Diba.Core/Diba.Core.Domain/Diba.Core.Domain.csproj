@@ -8,4 +8,9 @@
     <ProjectReference Include="..\Diba.Core.Common\Diba.Core.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Companies\" />
+    <Folder Include="Brands\" />
+  </ItemGroup>
+
 </Project>
