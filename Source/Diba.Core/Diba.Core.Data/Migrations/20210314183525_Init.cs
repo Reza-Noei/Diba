@@ -266,6 +266,45 @@ namespace Diba.Core.Data.Migrations
                         principalColumn: "Id");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Order",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustomerId = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Order", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Order_Role_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Role",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RequestItem",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(nullable: true),
+                    AnnouncedPrice = table.Column<decimal>(nullable: false),
+                    OrderId = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RequestItem", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RequestItem_Order_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Order",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_ContactInfos_UserId",
                 table: "ContactInfos",
@@ -297,6 +336,11 @@ namespace Diba.Core.Data.Migrations
                 column: "SelectiveConstraintId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Order_CustomerId",
+                table: "Order",
+                column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Organizations_CreatorId",
                 table: "Organizations",
                 column: "CreatorId");
@@ -315,6 +359,11 @@ namespace Diba.Core.Data.Migrations
                 name: "IX_QNames_QuickAccessListId",
                 table: "QNames",
                 column: "QuickAccessListId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RequestItem_OrderId",
+                table: "RequestItem",
+                column: "OrderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Role_OrganizationId",
@@ -347,7 +396,7 @@ namespace Diba.Core.Data.Migrations
                 name: "Permissions");
 
             migrationBuilder.DropTable(
-                name: "Role");
+                name: "RequestItem");
 
             migrationBuilder.DropTable(
                 name: "QNames");
@@ -356,13 +405,19 @@ namespace Diba.Core.Data.Migrations
                 name: "ProductConstraints");
 
             migrationBuilder.DropTable(
-                name: "Organizations");
+                name: "Order");
 
             migrationBuilder.DropTable(
                 name: "QuickAccessLists");
 
             migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "Role");
+
+            migrationBuilder.DropTable(
+                name: "Organizations");
 
             migrationBuilder.DropTable(
                 name: "Users");

@@ -4,12 +4,15 @@ using System.Reflection;
 using AutoMapper;
 using Diba.Core.AppService;
 using Diba.Core.AppService.Contract;
+using Diba.Core.AppService.Contract.Order;
 using Diba.Core.AppService.Contract.Product;
 using Diba.Core.AppService.Contract.ProductConstraint;
 using Diba.Core.AppService.CustomerManagement;
 using Diba.Core.AppService.Dependencies;
+using Diba.Core.AppService.Order;
 using Diba.Core.AppService.ProductConstraint;
 using Diba.Core.AppService.Products;
+using Diba.Core.AppService.RequestItem;
 using Diba.Core.Data.Repository.Implementations;
 using Diba.Core.Data.Repository.Interfaces;
 using Diba.Core.WebApi.Internal.Extension;
@@ -75,6 +78,8 @@ namespace Diba.Core.Service
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+            services.AddScoped<IOrdersCommandService, OrdersCommandService>();
+
             services.AddScoped<IProductCommandService, ProductCommandService>();
             services.AddScoped<IProductQueryService, ProductQueryService>();
             services.AddScoped<IProductRepository, ProductRepository>();
@@ -115,6 +120,9 @@ namespace Diba.Core.Service
                 mc.AddProfile(new ProductMappingConfig());
                 mc.AddProfile(new ProductStringConstraintsConfig());
                 mc.AddProfile(new ProductSelectiveConstraintsConfig());
+                mc.AddProfile(new OrderMappingConfig());
+                mc.AddProfile(new OrderMappingConfig());
+                mc.AddProfile(new RequestItemMappingConfig());
             });
 
             IMapper mapper = mappingConfig.CreateMapper();

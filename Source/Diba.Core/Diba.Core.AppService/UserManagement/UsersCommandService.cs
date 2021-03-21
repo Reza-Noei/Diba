@@ -59,7 +59,7 @@ namespace Diba.Core.AppService
 
             return new ServiceResult<UserViewModel>(_mapper.Map<UserViewModel>(user));
         }
-        
+
         public ServiceResult<UserViewModel> Delete(DeleteUserInputModel request)
         {
             User user = _userRepository.GetById(request.Id);
@@ -90,16 +90,17 @@ namespace Diba.Core.AppService
 
         public ServiceResult<CustomerViewModel> CreateCustomer(long userId, CreateCustomerInputModel request)
         {
-            {
-                Role roles = _roleRepository.GetMany(x => x is Customer && x.UserId == userId).FirstOrDefault();
+            Role roles = _roleRepository.GetMany(x => x is Customer && x.UserId == userId).FirstOrDefault();
 
-                if (roles != null)
-                    return new ServiceResult<CustomerViewModel>(StatusCode.InternalServerError);
-            }
+            if (roles != null)
+                return new ServiceResult<CustomerViewModel>(StatusCode.InternalServerError);
 
             try
             {
-                var customer = _mapper.Map<Customer>(request);
+                request.UserId = userId;
+
+                Customer customer = _mapper.Map<Customer>(request);
+                
                 _customerRepository.Add(customer);
                 _unitOfWork.Commit();
                 return new ServiceResult<CustomerViewModel>(_mapper.Map<CustomerViewModel>(customer));
@@ -322,7 +323,7 @@ namespace Diba.Core.AppService
 
             if (delivery == null)
                 return new ServiceResult<DeliveryViewModel>(StatusCode.NotFound);
-            
+
             _roleRepository.Delete(delivery);
             _unitOfWork.Commit();
 

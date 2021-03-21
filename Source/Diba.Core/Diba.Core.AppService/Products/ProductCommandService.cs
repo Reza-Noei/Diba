@@ -21,7 +21,7 @@ namespace Diba.Core.AppService.Products
 
         public ServiceResult<ProductViewModel> Create(CreateProductViewModel request)
         {
-            var product = _mapper.Map<ProductClass>(request);
+            ProductClass product = _mapper.Map<ProductClass>(request);
             _productRepository.Add(product);
             _unitOfWork.Commit();
 

@@ -98,6 +98,23 @@ namespace Diba.Core.Data.Migrations
                     b.ToTable("CustomerOrders");
                 });
 
+            modelBuilder.Entity("Diba.Core.Domain.Order", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("CustomerId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Order");
+                });
+
             modelBuilder.Entity("Diba.Core.Domain.Organization", b =>
                 {
                     b.Property<long>("Id")
@@ -150,7 +167,7 @@ namespace Diba.Core.Data.Migrations
                     b.ToTable("Permissions");
                 });
 
-            modelBuilder.Entity("Diba.Core.Domain.Products.Product", b =>
+            modelBuilder.Entity("Diba.Core.Domain.Products.ProductClass", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -247,6 +264,29 @@ namespace Diba.Core.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("QuickAccessLists");
+                });
+
+            modelBuilder.Entity("Diba.Core.Domain.RequestItem", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("AnnouncedPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long>("OrderId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("RequestItem");
                 });
 
             modelBuilder.Entity("Diba.Core.Domain.Role", b =>
@@ -427,6 +467,15 @@ namespace Diba.Core.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Diba.Core.Domain.Order", b =>
+                {
+                    b.HasOne("Diba.Core.Domain.Customer", "Customer")
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Diba.Core.Domain.Organization", b =>
                 {
                     b.HasOne("Diba.Core.Domain.User", "Creator")
@@ -449,7 +498,7 @@ namespace Diba.Core.Data.Migrations
 
             modelBuilder.Entity("Diba.Core.Domain.Products.ProductConstraints.ProductConstraint", b =>
                 {
-                    b.HasOne("Diba.Core.Domain.Products.Product", "Product")
+                    b.HasOne("Diba.Core.Domain.Products.ProductClass", "Product")
                         .WithMany("Constraints")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -462,6 +511,15 @@ namespace Diba.Core.Data.Migrations
                         .WithMany("Items")
                         .HasForeignKey("QuickAccessListId")
                         .OnDelete(DeleteBehavior.NoAction);
+                });
+
+            modelBuilder.Entity("Diba.Core.Domain.RequestItem", b =>
+                {
+                    b.HasOne("Diba.Core.Domain.Order", "Order")
+                        .WithMany("RequestItems")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Diba.Core.Domain.Role", b =>
