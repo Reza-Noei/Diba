@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Diba.Core.Domain
 {
@@ -9,9 +10,9 @@ namespace Diba.Core.Domain
 
         }
 
-        public long Id { get; private set; }
+        public long Id { get; set; }
 
-        public long CustomerId { get; private set; }
+        public long CustomerId { get; set; }
 
         public virtual Customer Customer { get; set; }
 
@@ -49,6 +50,11 @@ namespace Diba.Core.Domain
 
             //if (State.DeliveryInfoCanModify())
             //    this.DeliveryInfo = deliveryInfo;
+        }
+
+        public void AddItem(RequestItem item)
+        {
+            this.RequestItems.Add(item);
         }
 
         //public void UpdateItems(List<OrderItem> itmes)

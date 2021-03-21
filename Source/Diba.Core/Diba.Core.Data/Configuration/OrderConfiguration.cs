@@ -10,7 +10,7 @@ namespace Diba.Core.Data.Configuration
         {
             builder.HasKey(P => P.Id);
             builder.Property(P => P.Id).ValueGeneratedOnAdd();
-            builder.HasMany(P => P.RequestItems).WithOne(x=>x.Order).OnDelete(DeleteBehavior.NoAction);
+            builder.HasMany(P => P.RequestItems).WithOne(x=>x.Order).OnDelete(DeleteBehavior.NoAction).OnDelete(DeleteBehavior.Cascade);
             builder.HasOne(p => p.Customer).WithMany(p => p.Orders);
         }
     }
@@ -21,7 +21,7 @@ namespace Diba.Core.Data.Configuration
         {
             builder.HasKey(P => P.Id);
             builder.Property(P => P.Id).ValueGeneratedOnAdd();
-            builder.HasOne(x => x.Order).WithMany(x=>x.RequestItems);
+            builder.HasOne(x => x.Order).WithMany(x=>x.RequestItems).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

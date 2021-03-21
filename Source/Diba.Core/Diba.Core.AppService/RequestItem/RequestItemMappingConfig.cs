@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Diba.Core.AppService.Contract.RequestItem;
+using Diba.Core.AppService.Contract;
 
 namespace Diba.Core.AppService.RequestItem
 {
@@ -7,7 +7,8 @@ namespace Diba.Core.AppService.RequestItem
     {
         public RequestItemMappingConfig()
         {
-            CreateMap<Domain.RequestItem, RequestItemViewModel>();
+            CreateMap<Domain.RequestItem, RequestItemViewModel>().ReverseMap();
+            CreateMap<Domain.RequestItem, CreateOrderRequestItemInputModel>().ReverseMap();
         }
     }
 }

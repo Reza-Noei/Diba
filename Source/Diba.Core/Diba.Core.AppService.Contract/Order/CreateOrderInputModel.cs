@@ -1,7 +1,6 @@
-﻿using Diba.Core.AppService.Contract.RequestItem;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace Diba.Core.AppService.Contract.Order
+namespace Diba.Core.AppService.Contract
 {
     public class CreateOrderInputModel
     {

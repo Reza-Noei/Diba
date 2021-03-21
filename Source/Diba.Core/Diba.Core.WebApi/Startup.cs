@@ -4,7 +4,6 @@ using System.Reflection;
 using AutoMapper;
 using Diba.Core.AppService;
 using Diba.Core.AppService.Contract;
-using Diba.Core.AppService.Contract.Order;
 using Diba.Core.AppService.Contract.Product;
 using Diba.Core.AppService.Contract.ProductConstraint;
 using Diba.Core.AppService.CustomerManagement;
@@ -120,7 +119,6 @@ namespace Diba.Core.Service
                 mc.AddProfile(new ProductMappingConfig());
                 mc.AddProfile(new ProductStringConstraintsConfig());
                 mc.AddProfile(new ProductSelectiveConstraintsConfig());
-                mc.AddProfile(new OrderMappingConfig());
                 mc.AddProfile(new OrderMappingConfig());
                 mc.AddProfile(new RequestItemMappingConfig());
             });

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Diba.Core.AppService.Contract.Order;
+using Diba.Core.AppService.Contract;
 
 namespace Diba.Core.AppService.Order
 {

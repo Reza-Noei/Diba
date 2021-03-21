@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Diba.Core.AppService.Contract;
-using Diba.Core.AppService.Contract.Order;
 using Diba.Core.Common.Infrastructure;
 using Diba.Core.Data.Repository.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Diba.Core.AppService
 {
@@ -22,7 +22,7 @@ namespace Diba.Core.AppService
 
         public ServiceResult<OrderViewModel> Create(CreateOrderInputModel request)
         {
-            List<Domain.RequestItem> items = _mapper.Map<List<Domain.RequestItem>>(request.RequestItems);
+            var items = _mapper.Map<List<Domain.RequestItem>>(request.RequestItems);
 
             var order = new Domain.Order(request.CustomerId, items);
 
@@ -41,10 +41,56 @@ namespace Diba.Core.AppService
 
             //todo
 
-            _orderRepositiry.Add(order);
+            _orderRepositiry.Update(order);
             _unitOfWork.Commit();
 
             return new ServiceResult<OrderViewModel>(_mapper.Map<OrderViewModel>(order));
+        }
+
+        public ServiceResult<OrderViewModel> Delete(int id)
+        {
+            Domain.Order order = _orderRepositiry.GetById(id);
+
+            if (order == null)
+                return new ServiceResult<OrderViewModel>(StatusCode.NotFound);
+
+            _orderRepositiry.Delete(order);
+            _unitOfWork.Commit();
+
+            return new ServiceResult<OrderViewModel>(_mapper.Map<OrderViewModel>(order));
+        }
+
+        public ServiceResult<RequestItemViewModel> AddItem(int id , CreateOrderRequestItemInputModel model)
+        {
+            Domain.Order order = _orderRepositiry.GetById(id);
+
+            if (order == null)
+                return new ServiceResult<RequestItemViewModel>(StatusCode.NotFound);
+
+            var item = _mapper.Map<Domain.RequestItem>(model);
+
+            order.AddItem(item);
+            _unitOfWork.Commit();
+
+            return new ServiceResult<RequestItemViewModel>(_mapper.Map<RequestItemViewModel>(item));
+        }
+
+        public ServiceResult<RequestItemViewModel> DeleteItem(int id, int itemId)
+        {
+            Domain.Order order = _orderRepositiry.GetById(id);
+
+            if (order == null)
+                return new ServiceResult<RequestItemViewModel>(StatusCode.NotFound);
+
+            var item = order.RequestItems.FirstOrDefault(x => x.Id == itemId);
+
+            if (item == null)
+                return new ServiceResult<RequestItemViewModel>(StatusCode.NotFound);
+
+            order.RequestItems.Remove(item);
+            _unitOfWork.Commit();
+
+            return new ServiceResult<RequestItemViewModel>(_mapper.Map<RequestItemViewModel>(item));
         }
     }
 }
