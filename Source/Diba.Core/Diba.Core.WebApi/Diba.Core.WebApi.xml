@@ -11,20 +11,13 @@
             <param name="request">درخواست</param>
             <returns>توکن</returns>
         </member>
-        <member name="M:Diba.Core.WebApi.Controllers.AuthenticationController.Patch(Diba.Core.AppService.Contract.BindingModels.MembershipAuthenticationBindingModel)">
-            <summary>
-            ورود مرحله دوم به سامانه
-            </summary>
-            <param name="request">درخواست</param>
-            <returns>توکن</returns>
-        </member>
         <member name="M:Diba.Core.WebApi.Controllers.AuthenticationController.Get">
             <summary>
             بازیابی عضویت های کاربر
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Diba.Core.WebApi.Controllers.CustomerManagementController.Post(Diba.Core.AppService.CreateCustomerInputModel)">
+        <member name="M:Diba.Core.WebApi.Controllers.CustomerManagementController.Post(Diba.Core.AppService.Contract.CreateCustomerInputModel)">
             <summary>
             ایجاد مشتری
             </summary>
@@ -49,12 +42,6 @@
             اطلاعات سازمان من
             </summary>
             <returns>اطلاعات سازمان</returns>
-        </member>
-        <member name="M:Diba.Core.WebApi.Internal.DibaAuthorization.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)">
-            <summary>  
-            This will Authorize User  
-            </summary>  
-            <returns></returns>  
         </member>
         <member name="P:Diba.Core.WebApi.Internal.JsonWebTokenSetting.Secret">
             <summary>
