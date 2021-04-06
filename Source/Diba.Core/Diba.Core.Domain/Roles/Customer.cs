@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Diba.Core.Domain
 {
-
     public class Customer: Role
     {
         public string Code { get; set; }
@@ -40,7 +40,8 @@ namespace Diba.Core.Domain
         public long OrganizationId { get; set; }
 
         public virtual Organization Organization { get; set; }
-        
+
+        public virtual ICollection<Order> Orders { get; set; }
         
         public Customer()
         {

@@ -8,8 +8,8 @@ namespace Diba.Core.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Customer> builder)
         {
-            //builder.ToTable("Customers");
             builder.HasOne(P => P.Organization).WithMany(Q => Q.Customers).HasForeignKey(P => P.OrganizationId);
+            builder.HasMany(p => p.Orders).WithOne(p => p.Customer);
         }
     }
 }

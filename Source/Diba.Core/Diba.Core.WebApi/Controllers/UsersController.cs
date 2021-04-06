@@ -24,6 +24,7 @@ namespace Diba.Core.WebApi.Controllers
 
         [HttpGet]
         [Route("{id}")]
+        [AllowAnonymous]
         public ServiceResult<UserViewModel> Get(long id)
         {
             var user = _usersQueryService.Get(new GetUserInputModel() { Id = id });
@@ -40,6 +41,7 @@ namespace Diba.Core.WebApi.Controllers
 
         [Scope("addUser")]
         [HttpPost]
+        [AllowAnonymous]
         public ServiceResult<UserViewModel> Create(CreateUserInputModel model)
         {
             ServiceResult<UserViewModel> response = _usersCommandService.Create(model);
@@ -47,8 +49,8 @@ namespace Diba.Core.WebApi.Controllers
         }
 
         [HttpPatch]
-        [AllowAnonymous]
         [Route("{id}")]
+        [AllowAnonymous]
         public ServiceResult<UserViewModel> Update(long id, UpdateUserInputModel model)
         {
             var request = new UpdateUserRequest { Id = id, Username = model.Username };
@@ -57,8 +59,8 @@ namespace Diba.Core.WebApi.Controllers
         }
 
         [HttpDelete]
-        [AllowAnonymous]
         [Route("{id}")]
+        [AllowAnonymous]
         public ServiceResult<UserViewModel> Delete(long id)
         {
             var user = _usersCommandService.Delete(new DeleteUserInputModel() { Id = id });

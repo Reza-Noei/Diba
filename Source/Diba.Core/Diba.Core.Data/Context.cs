@@ -50,6 +50,7 @@ namespace Diba.Core.Data
             
             //modelBuilder.ApplyConfiguration(new RolePermissionConfiguration());
 
+            modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new ContactInfoConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConstraintConfiguration());

@@ -4,11 +4,22 @@ namespace Diba.Core.Domain
 {
     public class RequestItem
     {
-        public string Title { get; private set; }
+        public long Id { get; set; }
 
-        public decimal AnnouncedPrice { get; private set; }
+        public string Title { get; set; }
 
-        private RequestItem(string title, decimal announcedPrice)
+        public decimal AnnouncedPrice { get; set; }
+
+        public long OrderId { get; set; }
+
+        public virtual Order Order { get; set; }
+
+        public RequestItem()
+        {
+
+        }
+
+        RequestItem(string title, decimal announcedPrice)
         {
             this.Title = title;
             this.AnnouncedPrice = announcedPrice;
@@ -19,3 +30,4 @@ namespace Diba.Core.Domain
             return new RequestItem(items, announcedPrice);
         }
     }
+}
