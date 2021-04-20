@@ -2,12 +2,12 @@
 
 namespace Diba.Core.Domain
 {
-    public class Company
+    public class Company : BaseEntity<long>
     {
-        public long Id { get; private set; }
-
         public string Name { get; private set; }
+        public virtual ICollection<Brand> Brands { get; set; }
 
+        public Company() { }
         public Company(long id, string name)
         {
             Id = id;

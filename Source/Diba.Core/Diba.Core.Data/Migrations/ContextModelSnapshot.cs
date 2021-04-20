@@ -19,6 +19,41 @@ namespace Diba.Core.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Diba.Core.Domain.Brand", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("CompanyId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("Brands");
+                });
+
+            modelBuilder.Entity("Diba.Core.Domain.Company", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Company");
+                });
+
             modelBuilder.Entity("Diba.Core.Domain.ContactInfo", b =>
                 {
                     b.Property<long>("Id")
@@ -433,6 +468,15 @@ namespace Diba.Core.Data.Migrations
                     b.HasBaseType("Diba.Core.Domain.Role");
 
                     b.HasDiscriminator().HasValue("SuperAdmin");
+                });
+
+            modelBuilder.Entity("Diba.Core.Domain.Brand", b =>
+                {
+                    b.HasOne("Diba.Core.Domain.Company", "Company")
+                        .WithMany("Brands")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Diba.Core.Domain.ContactInfo", b =>

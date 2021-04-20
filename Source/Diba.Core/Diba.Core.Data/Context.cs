@@ -29,6 +29,9 @@ namespace Diba.Core.Data
         public DbSet<Secretary> Secretaries { get; set; }
         public DbSet<CustomerOrder> Orders { get; set; }
         public DbSet<ProductClass> Products { get; set; }
+        public DbSet<Company> Company { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+
 
         public DbSet<StringConstraint> StringConstraints { get; set; }
 
@@ -38,8 +41,7 @@ namespace Diba.Core.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                @"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=DibaTT; Integrated Security=True; MultipleActiveResultSets=True;");
-
+                @"Data Source=localhost;Initial Catalog=Diba;User Id=sa;Password=P@ssw0rd;MultipleActiveResultSets=true;");
             optionsBuilder.UseLazyLoadingProxies();
             optionsBuilder.EnableSensitiveDataLogging(true);
         }
@@ -47,9 +49,10 @@ namespace Diba.Core.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
-            
-            //modelBuilder.ApplyConfiguration(new RolePermissionConfiguration());
 
+            //modelBuilder.ApplyConfiguration(new RolePermissionConfiguration());
+            modelBuilder.ApplyConfiguration(new CompanyConfiguration());
+            modelBuilder.ApplyConfiguration(new BrandConfiguration());
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new ContactInfoConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Diba.Core.Data.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210314183525_Init")]
-    partial class Init
+    [Migration("20210420125018_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,41 @@ namespace Diba.Core.Data.Migrations
                 .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Diba.Core.Domain.Brand", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("CompanyId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("Brands");
+                });
+
+            modelBuilder.Entity("Diba.Core.Domain.Company", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Company");
+                });
 
             modelBuilder.Entity("Diba.Core.Domain.ContactInfo", b =>
                 {
@@ -437,6 +472,15 @@ namespace Diba.Core.Data.Migrations
                     b.HasDiscriminator().HasValue("SuperAdmin");
                 });
 
+            modelBuilder.Entity("Diba.Core.Domain.Brand", b =>
+                {
+                    b.HasOne("Diba.Core.Domain.Company", "Company")
+                        .WithMany("Brands")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Diba.Core.Domain.ContactInfo", b =>
                 {
                     b.HasOne("Diba.Core.Domain.User", "User")
@@ -520,7 +564,7 @@ namespace Diba.Core.Data.Migrations
                     b.HasOne("Diba.Core.Domain.Order", "Order")
                         .WithMany("RequestItems")
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 

@@ -1,13 +1,16 @@
 ﻿namespace Diba.Core.Domain
 {
-    public class Brand
+    public class Brand : BaseEntity<long>
     {
-        public long companyId { get; private set; }
+        public long CompanyId { get; private set; }
         public string Name { get; private set; }
+        public virtual Company Company { get; set; }
 
-        public Brand(long companyId, string name)
+        public Brand() { }
+        public Brand(long id, long companyId, string name)
         {
-            this.companyId = companyId;
+            this.Id = id;
+            this.CompanyId = companyId;
             Name = name;
         }
     }

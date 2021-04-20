@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Diba.Core.Data.Configuration
 {
-    internal class CompanyConfiguration : IEntityTypeConfiguration<Company>
+    internal class BrandConfiguration : IEntityTypeConfiguration<Brand>
     {
-        public void Configure(EntityTypeBuilder<Company> builder)
+        public void Configure(EntityTypeBuilder<Brand> builder)
         {
             builder.HasKey(c => c.Id);
-            builder.HasMany(p => p.Brands).WithOne(p => p.Company);
+            builder.HasOne(p => p.Company).WithMany(p => p.Brands);
         }
     }
 }

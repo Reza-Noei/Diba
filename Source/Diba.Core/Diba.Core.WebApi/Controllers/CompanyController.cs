@@ -6,7 +6,7 @@ using Diba.Core.AppService.Contract.Companies;
 
 namespace Diba.Core.WebApi.Controllers
 {
-    [Route("api/company")]
+    [Route("api/[controller]")]
     [ApiController]
     public class CompanyController : ControllerBase
     {

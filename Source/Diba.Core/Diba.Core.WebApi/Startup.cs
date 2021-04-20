@@ -3,7 +3,11 @@ using System.IO;
 using System.Reflection;
 using AutoMapper;
 using Diba.Core.AppService;
+using Diba.Core.AppService.Brands;
+using Diba.Core.AppService.Companies;
 using Diba.Core.AppService.Contract;
+using Diba.Core.AppService.Contract.Brands;
+using Diba.Core.AppService.Contract.Companies;
 using Diba.Core.AppService.Contract.Product;
 using Diba.Core.AppService.Contract.ProductConstraint;
 using Diba.Core.AppService.CustomerManagement;
@@ -79,6 +83,10 @@ namespace Diba.Core.Service
 
             services.AddScoped<IOrdersCommandService, OrdersCommandService>();
 
+            services.AddScoped<ICompanyCommandService, CompanyCommandService>();
+            services.AddScoped<IBrandCommandService, BrandCommandService>();
+
+
             services.AddScoped<IProductCommandService, ProductCommandService>();
             services.AddScoped<IProductQueryService, ProductQueryService>();
             services.AddScoped<IProductRepository, ProductRepository>();
@@ -121,6 +129,8 @@ namespace Diba.Core.Service
                 mc.AddProfile(new ProductSelectiveConstraintsConfig());
                 mc.AddProfile(new OrderMappingConfig());
                 mc.AddProfile(new RequestItemMappingConfig());
+                mc.AddProfile(new CompanyMappingConfig());
+                mc.AddProfile(new BrandMappingConfig());
             });
 
             IMapper mapper = mappingConfig.CreateMapper();

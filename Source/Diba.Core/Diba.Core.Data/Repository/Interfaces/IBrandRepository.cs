@@ -3,7 +3,7 @@ using Diba.Core.Domain;
 
 namespace Diba.Core.Data.Repository.Interfaces
 {
-    public interface ICompanyRepository : IRepository<Company>
+    public interface IBrandRepository : IRepository<Brand>
     {
         
     }
