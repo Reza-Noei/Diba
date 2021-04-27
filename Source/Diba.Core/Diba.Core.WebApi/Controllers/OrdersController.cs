@@ -1,4 +1,5 @@
-﻿using Diba.Core.AppService.Contract;
+﻿using System;
+using Diba.Core.AppService.Contract;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
@@ -46,36 +47,67 @@ namespace Diba.Core.WebApi.Controllers
         [AllowAnonymous]
         [HttpPatch]
         [Route("{id}")]
-        public ServiceResult<OrderViewModel> Update(int id, UpdateOrderInputModel model)
+        public ServiceResult<OrderViewModel> Update(long id, UpdateOrderInputModel command)
         {
-            ServiceResult<OrderViewModel> response = _ordersCommandService.Update(id, model);
+            command.Id = id;
+            ServiceResult<OrderViewModel> response = _ordersCommandService.Update(command);
             return response;
         }
 
         [AllowAnonymous]
         [HttpDelete]
         [Route("{id}")]
-        public ServiceResult<OrderViewModel> Delete(int id)
+        public ServiceResult<OrderViewModel> Delete(long id)
         {
             ServiceResult<OrderViewModel> response = _ordersCommandService.Delete(id);
             return response;
         }
 
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPut]
         [Route("{id}/item")]
-        public ServiceResult<RequestItemViewModel> AddItem(int id, CreateOrderRequestItemInputModel model)
+        public ServiceResult<OrderItemsViewModel> UpdateOrderItems(long id, UpdateOrderItemsInputModel command)
         {
-            ServiceResult<RequestItemViewModel> response = _ordersCommandService.AddItem(id, model);
+            command.OrderId = id;
+
+            ServiceResult<OrderItemsViewModel> response = _ordersCommandService.UpdateOrderItems(command);
             return response;
-        }   
-        
+        }
+
         [AllowAnonymous]
-        [HttpDelete]
-        [Route("{id}/item/{itemId}")]
-        public ServiceResult<RequestItemViewModel> DeleteItem(int id, int itemId)
+        [HttpPut]
+        [Route("{id}/status")]
+        public ServiceResult<OrderViewModel> UpdateStatus(long id, int value)
         {
-            ServiceResult<RequestItemViewModel> response = _ordersCommandService.DeleteItem(id, itemId);
+            //TODO:Refactor this
+
+            ServiceResult<OrderViewModel> response = null;
+
+            var state = (OrderStatesEnum)value;
+
+            switch (state)
+            {
+                case OrderStatesEnum.Collected:
+                    response = _ordersCommandService.Collect(id);
+                    break;
+
+                case OrderStatesEnum.Calculated:
+                    response = _ordersCommandService.Calculate(id);
+                    break;
+
+                case OrderStatesEnum.Processed:
+                    response = _ordersCommandService.Process(id);
+                    break;
+
+                case OrderStatesEnum.Deliverd:
+                    response = _ordersCommandService.Deliver(id);
+                    break;
+
+                case OrderStatesEnum.Balanaced:
+                    response = _ordersCommandService.Balance(id);
+                    break;
+            }
+
             return response;
         }
     }

@@ -5,6 +5,10 @@ namespace Diba.Core.Domain
 {
     public class CollectionInfo
     {
+        public CollectionInfo()
+        {
+        }
+
         public int? CollectorId { get; private set; }
 
         public DateTime? CollectionDate { get; private set; }

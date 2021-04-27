@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Diba.Core.Data.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210420125018_init")]
-    partial class init
+    [Migration("20210427083908_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -104,6 +104,9 @@ namespace Diba.Core.Data.Migrations
                     b.Property<decimal>("Discount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<long?>("InvoiceId")
+                        .HasColumnType("bigint");
+
                     b.Property<int>("PaymentType")
                         .HasColumnType("int");
 
@@ -128,11 +131,37 @@ namespace Diba.Core.Data.Migrations
 
                     b.HasIndex("DeliveryId");
 
+                    b.HasIndex("InvoiceId");
+
                     b.HasIndex("ServiceTypeId");
 
                     b.HasIndex("UnitId");
 
                     b.ToTable("CustomerOrders");
+                });
+
+            modelBuilder.Entity("Diba.Core.Domain.Invoice", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("EarnestMoney")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("Reception")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SerialNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("State")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Invoices");
                 });
 
             modelBuilder.Entity("Diba.Core.Domain.Order", b =>
@@ -144,6 +173,9 @@ namespace Diba.Core.Data.Migrations
 
                     b.Property<long>("CustomerId")
                         .HasColumnType("bigint");
+
+                    b.Property<int?>("State")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -301,29 +333,6 @@ namespace Diba.Core.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("QuickAccessLists");
-                });
-
-            modelBuilder.Entity("Diba.Core.Domain.RequestItem", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("AnnouncedPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<long>("OrderId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("RequestItem");
                 });
 
             modelBuilder.Entity("Diba.Core.Domain.Role", b =>
@@ -500,6 +509,10 @@ namespace Diba.Core.Data.Migrations
                         .WithMany()
                         .HasForeignKey("DeliveryId");
 
+                    b.HasOne("Diba.Core.Domain.Invoice", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("InvoiceId");
+
                     b.HasOne("Diba.Core.Domain.QName", "ServiceType")
                         .WithMany()
                         .HasForeignKey("ServiceTypeId")
@@ -520,6 +533,104 @@ namespace Diba.Core.Data.Migrations
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.OwnsOne("Diba.Core.Domain.CollectionInfo", "CollectionInfo", b1 =>
+                        {
+                            b1.Property<long>("OrderId")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("bigint")
+                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                            b1.Property<DateTime?>("CollectionDate")
+                                .HasColumnType("datetime2");
+
+                            b1.Property<string>("CollectionLocation")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<int?>("CollectorId")
+                                .HasColumnType("int");
+
+                            b1.HasKey("OrderId");
+
+                            b1.ToTable("Order");
+
+                            b1.WithOwner()
+                                .HasForeignKey("OrderId");
+                        });
+
+                    b.OwnsOne("Diba.Core.Domain.DeliveryInfo", "DeliveryInfo", b1 =>
+                        {
+                            b1.Property<long>("OrderId")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("bigint")
+                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                            b1.Property<int?>("DelivelerId")
+                                .HasColumnType("int");
+
+                            b1.Property<DateTime?>("DeliveryDate")
+                                .HasColumnType("datetime2");
+
+                            b1.Property<string>("DeliveryLocation")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("OrderId");
+
+                            b1.ToTable("Order");
+
+                            b1.WithOwner()
+                                .HasForeignKey("OrderId");
+                        });
+
+                    b.OwnsMany("Diba.Core.Domain.OrderItem", "OrderItems", b1 =>
+                        {
+                            b1.Property<long>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("bigint")
+                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                            b1.Property<long>("OrderId")
+                                .HasColumnType("bigint");
+
+                            b1.Property<long>("ServiceId")
+                                .HasColumnType("bigint");
+
+                            b1.Property<decimal>("UnitPrice")
+                                .HasColumnType("decimal(18,2)");
+
+                            b1.Property<int>("Units")
+                                .HasColumnType("int");
+
+                            b1.HasKey("Id");
+
+                            b1.HasIndex("OrderId");
+
+                            b1.ToTable("OrderItems");
+
+                            b1.WithOwner()
+                                .HasForeignKey("OrderId");
+                        });
+
+                    b.OwnsOne("Diba.Core.Domain.Request", "Request", b1 =>
+                        {
+                            b1.Property<long>("OrderId")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("bigint")
+                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                            b1.Property<decimal>("AnnouncedPrice")
+                                .HasColumnType("decimal(18,2)");
+
+                            b1.Property<string>("Items")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("OrderId");
+
+                            b1.ToTable("Order");
+
+                            b1.WithOwner()
+                                .HasForeignKey("OrderId");
+                        });
                 });
 
             modelBuilder.Entity("Diba.Core.Domain.Organization", b =>
@@ -557,15 +668,6 @@ namespace Diba.Core.Data.Migrations
                         .WithMany("Items")
                         .HasForeignKey("QuickAccessListId")
                         .OnDelete(DeleteBehavior.NoAction);
-                });
-
-            modelBuilder.Entity("Diba.Core.Domain.RequestItem", b =>
-                {
-                    b.HasOne("Diba.Core.Domain.Order", "Order")
-                        .WithMany("RequestItems")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Diba.Core.Domain.Role", b =>

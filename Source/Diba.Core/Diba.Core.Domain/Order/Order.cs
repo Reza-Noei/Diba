@@ -1,95 +1,92 @@
 ﻿using System;
 using System.Collections.Generic;
+using Diba.Core.Common;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Diba.Core.Domain
 {
-    public class Order
+    public class Order : BaseEntity<long>
     {
-        public Order()
-        {
-
-        }
-
-        public long Id { get; set; }
-
         public long CustomerId { get; set; }
 
         public virtual Customer Customer { get; set; }
 
-        //public IReadOnlyCollection<OrderItem> Items => _items.AsReadOnly();
+        public virtual Request Request { get; set; }
 
-        //public OrderState State { get; private set; }
+        public virtual IReadOnlyCollection<OrderItem> OrderItems => _orderItems.AsReadOnly();
 
-        public virtual ICollection<RequestItem> RequestItems { get; set; }
+        public OrderState State { get; private set; }
 
-        //public CollectionInfo CollectionInfo { get; private set; }
+        public virtual CollectionInfo CollectionInfo { get; set; }
 
-        //public DeliveryInfo DeliveryInfo { get; private set; }
+        public virtual DeliveryInfo DeliveryInfo { get; set; }
 
-        //private List<OrderItem> _items;
+        private List<OrderItem> _orderItems;
 
-        public Order(long customerId, List<RequestItem> requestItems)
+        public Order()
         {
-            //this._items = new List<OrderItem>();
+            _orderItems = new List<OrderItem>();
+        }
 
+        public static Order Create(long customerId, Request request, CollectionInfo collectionInfo, DeliveryInfo deliveryInfo)
+        {
+            return new Order()
+            {
+                CustomerId = customerId,
+
+                Request = request,
+
+                CollectionInfo = collectionInfo,
+
+                DeliveryInfo = deliveryInfo,
+
+                State = new RequestedState(),
+            };
+        }
+
+        public void Update(long customerId, Request request, CollectionInfo collectionInfo, DeliveryInfo deliveryInfo)
+        {
             this.CustomerId = customerId;
 
-            this.RequestItems = requestItems;
+            this.Request = request;
 
-            //this.State = new RequestedState();
+            if (State.CollectionInfoCanModify())
+                this.CollectionInfo = collectionInfo;
+
+            if (State.DeliveryInfoCanModify())
+                this.DeliveryInfo = deliveryInfo;
         }
 
-        public void Update(int customerId, List<RequestItem> requestItems, CollectionInfo collectionInfo, DeliveryInfo deliveryInfo)
+        public void UpdateItems(List<OrderItem> itmes)
         {
-            this.CustomerId = customerId;
-
-            this.RequestItems = requestItems;
-
-            //if (State.CollectionInfoCanModify())
-            //    this.CollectionInfo = collectionInfo;
-
-            //if (State.DeliveryInfoCanModify())
-            //    this.DeliveryInfo = deliveryInfo;
+            this._orderItems.UpdateFrom(itmes);
         }
 
-        public void AddItem(RequestItem item)
+        public void Collect()
         {
-            this.RequestItems.Add(item);
+            if (this.CollectionInfo.IsComplete)
+                this.State = State.Collect();
         }
 
-        //public void UpdateItems(List<OrderItem> itmes)
-        //{
-        //    if (!State.ItemsCanModify())
-        //        throw new Exception();
+        public void Calculate()
+        {
+            this.State = this.State.Calculate();
+        }
 
-        //    this._items.Update(itmes);
-        //}
+        public void Process()
+        {
+            this.State = this.State.Process();
+        }
 
-        //public void Collect()
-        //{
-        //    if (this.CollectionInfo.IsComplete)
-        //        this.State = State.Collect();
-        //}
+        public void Deliver()
+        {
+            if (this.DeliveryInfo.IsComplete)
+                this.State = this.State.Deliver();
+        }
 
-        //public void Calculate()
-        //{
-        //    this.State = this.State.Calculate();
-        //}
-
-        //public void Process()
-        //{
-        //    this.State = this.State.Process();
-        //}
-
-        //public void Deliver()
-        //{
-        //    if (this.DeliveryInfo.IsComplete)
-        //        this.State = this.State.Deliver();
-        //}
-
-        //public void Balance()
-        //{
-        //    this.State = this.State.Balance();
-        //}
+        public void Balance()
+        {
+            this.State = this.State.Balance();
+        }
     }
 }

@@ -6,12 +6,20 @@ namespace Diba.Core.AppService.Contract
     {
         ServiceResult<OrderViewModel> Create(CreateOrderInputModel request);
 
-        ServiceResult<OrderViewModel> Update(int id, UpdateOrderInputModel request);
+        ServiceResult<OrderViewModel> Update(UpdateOrderInputModel request);
 
-        ServiceResult<OrderViewModel> Delete(int id);
+        ServiceResult<OrderViewModel> Delete(long id);
 
-        ServiceResult<RequestItemViewModel> AddItem(int id, CreateOrderRequestItemInputModel model);
+        ServiceResult<OrderItemsViewModel> UpdateOrderItems(UpdateOrderItemsInputModel request);
 
-        ServiceResult<RequestItemViewModel> DeleteItem(int id, int itemId);
+        ServiceResult<OrderViewModel> Collect(long id);
+
+        ServiceResult<OrderViewModel> Calculate(long id);
+
+        ServiceResult<OrderViewModel> Process(long id);
+
+        ServiceResult<OrderViewModel> Deliver(long id);
+
+        ServiceResult<OrderViewModel> Balance(long id);
     }
 }

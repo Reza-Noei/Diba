@@ -105,7 +105,7 @@ namespace Diba.Core.AppService
                 _unitOfWork.Commit();
                 return new ServiceResult<CustomerViewModel>(_mapper.Map<CustomerViewModel>(customer));
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
                 return new ServiceResult<CustomerViewModel>(StatusCode.InternalServerError);
             }

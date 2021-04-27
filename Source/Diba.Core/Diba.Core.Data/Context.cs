@@ -42,7 +42,8 @@ namespace Diba.Core.Data
         {
             optionsBuilder.UseSqlServer(
                 @"Data Source=localhost;Initial Catalog=Diba;User Id=sa;Password=P@ssw0rd;MultipleActiveResultSets=true;");
-            optionsBuilder.UseLazyLoadingProxies();
+            //TODO:Resolve Bug
+            //optionsBuilder.UseLazyLoadingProxies();
             optionsBuilder.EnableSensitiveDataLogging(true);
         }
 
@@ -53,13 +54,11 @@ namespace Diba.Core.Data
             //modelBuilder.ApplyConfiguration(new RolePermissionConfiguration());
             modelBuilder.ApplyConfiguration(new CompanyConfiguration());
             modelBuilder.ApplyConfiguration(new BrandConfiguration());
-            modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new ContactInfoConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConstraintConfiguration());
             modelBuilder.ApplyConfiguration(new StringConstraintConfiguration());
             modelBuilder.ApplyConfiguration(new SelectiveConstraintConfiguration());
-
             modelBuilder.ApplyConfiguration(new AdminConfiguration());
             modelBuilder.ApplyConfiguration(new SuperAdminConfiguration());
             modelBuilder.ApplyConfiguration(new CollectorConfiguration());
@@ -68,11 +67,12 @@ namespace Diba.Core.Data
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
             modelBuilder.ApplyConfiguration(new OrganizationConfiguration());
 
-            //modelBuilder.ApplyConfiguration(new AuthorityConfiguration());
-
             modelBuilder.ApplyConfiguration(new CustomerOrderConfiguration());
             modelBuilder.ApplyConfiguration(new QuickAccessListConfiguration());
             modelBuilder.ApplyConfiguration(new QNameConfiguration());
+
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(OrderConfiguration).Assembly);
+            base.OnModelCreating(modelBuilder);
 
         }
     }

@@ -1,9 +1,11 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Linq;
+using AutoMapper;
 using Diba.Core.AppService.Contract;
 using Diba.Core.Common.Infrastructure;
 using Diba.Core.Data.Repository.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
+using Diba.Core.Domain;
+
 
 namespace Diba.Core.AppService
 {
@@ -11,86 +13,130 @@ namespace Diba.Core.AppService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly IOrderRepository _orderRepositiry;
+        private readonly IOrderRepository _orderRepository;
 
-        public OrdersCommandService(IOrderRepository orderRepositiry, IMapper mapper, IUnitOfWork unitOfWork)
+        public OrdersCommandService(IOrderRepository orderRepository, IMapper mapper, IUnitOfWork unitOfWork)
         {
-            _orderRepositiry = orderRepositiry;
+            _orderRepository = orderRepository;
             _mapper = mapper;
             _unitOfWork = unitOfWork;
         }
 
         public ServiceResult<OrderViewModel> Create(CreateOrderInputModel request)
         {
-            var items = _mapper.Map<List<Domain.RequestItem>>(request.RequestItems);
+            var order = Domain.Order.Create(request.CustomerId, Request.Create(request.RequestItems,request.AnnouncedPrice),CollectionInfo.Create(request.CollectorId,request.CollectionDate,request.CollectionLocation),DeliveryInfo.Create(request.DelivelerId,request.DeliveryDate,request.DeliveryLocation));
 
-            var order = new Domain.Order(request.CustomerId, items);
-
-            _orderRepositiry.Add(order);
+            _orderRepository.Add(order);
             _unitOfWork.Commit();
 
             return new ServiceResult<OrderViewModel>(_mapper.Map<OrderViewModel>(order));
         }
 
-        public ServiceResult<OrderViewModel> Update(int id, UpdateOrderInputModel request)
+        public ServiceResult<OrderViewModel> Update(UpdateOrderInputModel request)
         {
-            Domain.Order order = _orderRepositiry.GetById(id);
+            Domain.Order order = _orderRepository.GetById(request.Id);
 
             if (order == null)
                 return new ServiceResult<OrderViewModel>(StatusCode.NotFound);
 
-            //todo
-
-            _orderRepositiry.Update(order);
+            order.Update(request.CustomerId, Request.Create(request.Items, request.AnnouncedPrice), CollectionInfo.Create(request.CollectorId, request.CollectionDate, request.CollectionLocation), DeliveryInfo.Create(request.DelivelerId, request.DeliveryDate, request.DeliveryLocation));
+            
             _unitOfWork.Commit();
 
             return new ServiceResult<OrderViewModel>(_mapper.Map<OrderViewModel>(order));
         }
 
-        public ServiceResult<OrderViewModel> Delete(int id)
+        public ServiceResult<OrderViewModel> Delete(long id)
         {
-            Domain.Order order = _orderRepositiry.GetById(id);
+            Domain.Order order = _orderRepository.GetById(id);
 
             if (order == null)
                 return new ServiceResult<OrderViewModel>(StatusCode.NotFound);
 
-            _orderRepositiry.Delete(order);
+            _orderRepository.Delete(order);
             _unitOfWork.Commit();
 
             return new ServiceResult<OrderViewModel>(_mapper.Map<OrderViewModel>(order));
         }
 
-        public ServiceResult<RequestItemViewModel> AddItem(int id , CreateOrderRequestItemInputModel model)
+        public ServiceResult<OrderItemsViewModel> UpdateOrderItems(UpdateOrderItemsInputModel request)
         {
-            Domain.Order order = _orderRepositiry.GetById(id);
+            Domain.Order order = _orderRepository.GetById(request.OrderId);
 
             if (order == null)
-                return new ServiceResult<RequestItemViewModel>(StatusCode.NotFound);
+                return new ServiceResult<OrderItemsViewModel>(StatusCode.NotFound);
 
-            var item = _mapper.Map<Domain.RequestItem>(model);
+            var orderItem = _mapper.Map<IEnumerable<OrderItem>>(request.OrderItems).ToList();
 
-            order.AddItem(item);
+            order.UpdateItems(orderItem);
             _unitOfWork.Commit();
 
-            return new ServiceResult<RequestItemViewModel>(_mapper.Map<RequestItemViewModel>(item));
+          return new ServiceResult<OrderItemsViewModel>((_mapper.Map<OrderItemsViewModel>(orderItem)));
         }
 
-        public ServiceResult<RequestItemViewModel> DeleteItem(int id, int itemId)
+        public ServiceResult<OrderViewModel> Collect(long id)
         {
-            Domain.Order order = _orderRepositiry.GetById(id);
+            Domain.Order order = _orderRepository.GetById(id);
 
             if (order == null)
-                return new ServiceResult<RequestItemViewModel>(StatusCode.NotFound);
+                return new ServiceResult<OrderViewModel>(StatusCode.NotFound);
 
-            var item = order.RequestItems.FirstOrDefault(x => x.Id == itemId);
-
-            if (item == null)
-                return new ServiceResult<RequestItemViewModel>(StatusCode.NotFound);
-
-            order.RequestItems.Remove(item);
+            order.Collect();
             _unitOfWork.Commit();
 
-            return new ServiceResult<RequestItemViewModel>(_mapper.Map<RequestItemViewModel>(item));
+            return new ServiceResult<OrderViewModel>(_mapper.Map<OrderViewModel>(order));
+        }
+
+        public ServiceResult<OrderViewModel> Calculate(long id)
+        {
+            Domain.Order order = _orderRepository.GetById(id);
+
+            if (order == null)
+                return new ServiceResult<OrderViewModel>(StatusCode.NotFound);
+
+            order.Calculate();
+            _unitOfWork.Commit();
+
+            return new ServiceResult<OrderViewModel>(_mapper.Map<OrderViewModel>(order));
+        }
+
+        public ServiceResult<OrderViewModel> Process(long id)
+        {
+            Domain.Order order = _orderRepository.GetById(id);
+
+            if (order == null)
+                return new ServiceResult<OrderViewModel>(StatusCode.NotFound);
+
+            order.Process();
+            _unitOfWork.Commit();
+
+            return new ServiceResult<OrderViewModel>(_mapper.Map<OrderViewModel>(order));
+        }
+
+        public ServiceResult<OrderViewModel> Deliver(long id)
+        {
+            Domain.Order order = _orderRepository.GetById(id);
+
+            if (order == null)
+                return new ServiceResult<OrderViewModel>(StatusCode.NotFound);
+
+            order.Deliver();
+            _unitOfWork.Commit();
+
+            return new ServiceResult<OrderViewModel>(_mapper.Map<OrderViewModel>(order));
+        }
+
+        public ServiceResult<OrderViewModel> Balance(long id)
+        {
+            Domain.Order order = _orderRepository.GetById(id);
+
+            if (order == null)
+                return new ServiceResult<OrderViewModel>(StatusCode.NotFound);
+
+            order.Balance();
+            _unitOfWork.Commit();
+
+            return new ServiceResult<OrderViewModel>(_mapper.Map<OrderViewModel>(order));
         }
     }
 }

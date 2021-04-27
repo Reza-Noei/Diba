@@ -5,6 +5,10 @@ namespace Diba.Core.Domain
 {
     public class DeliveryInfo
     {
+        public DeliveryInfo()
+        {
+        }
+
         public int? DelivelerId { get; private set; }
 
         public DateTime? DeliveryDate { get; private set; }

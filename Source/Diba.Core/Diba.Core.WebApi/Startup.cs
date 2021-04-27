@@ -15,7 +15,6 @@ using Diba.Core.AppService.Dependencies;
 using Diba.Core.AppService.Order;
 using Diba.Core.AppService.ProductConstraint;
 using Diba.Core.AppService.Products;
-using Diba.Core.AppService.RequestItem;
 using Diba.Core.Data.Repository.Implementations;
 using Diba.Core.Data.Repository.Interfaces;
 using Diba.Core.WebApi.Internal.Extension;
@@ -128,7 +127,6 @@ namespace Diba.Core.Service
                 mc.AddProfile(new ProductStringConstraintsConfig());
                 mc.AddProfile(new ProductSelectiveConstraintsConfig());
                 mc.AddProfile(new OrderMappingConfig());
-                mc.AddProfile(new RequestItemMappingConfig());
                 mc.AddProfile(new CompanyMappingConfig());
                 mc.AddProfile(new BrandMappingConfig());
             });

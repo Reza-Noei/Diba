@@ -3,16 +3,15 @@ using System.Linq;
 
 namespace Diba.Core.Common
 {
-    public static class ListExtensions
+    public static class ValueObjectExtensions
     {
-        public static void Update<T>(this IList<T> currentList, IList<T> list)
+        public static void UpdateFrom<T>(this List<T> source, List<T> newList) where T : ValueObject<T>
         {
-            var added = list.Except(currentList).ToList();
-            var removed = currentList.Except(list).ToList(); ;
+            var addedItems = newList.Except(source).ToList();
+            var removedItems = source.Except(newList).ToList();
 
-            added.ForEach(currentList.Add);
-            removed.ForEach(a => currentList.Remove(a));
-
+            addedItems.ForEach(source.Add);
+            removedItems.ForEach(item => source.Remove(item));
         }
     }
 }

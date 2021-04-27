@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Diba.Core.Data.Migrations
 {
-    public partial class init : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,6 +18,22 @@ namespace Diba.Core.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Company", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Invoices",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SerialNumber = table.Column<string>(nullable: true),
+                    EarnestMoney = table.Column<decimal>(nullable: false),
+                    Reception = table.Column<DateTime>(nullable: false),
+                    State = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Invoices", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -270,7 +286,8 @@ namespace Diba.Core.Data.Migrations
                     Tax = table.Column<decimal>(nullable: false),
                     DeliveryId = table.Column<long>(nullable: true),
                     CollectorId = table.Column<long>(nullable: true),
-                    PaymentType = table.Column<int>(nullable: false)
+                    PaymentType = table.Column<int>(nullable: false),
+                    InvoiceId = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -285,6 +302,12 @@ namespace Diba.Core.Data.Migrations
                         name: "FK_CustomerOrders_Role_DeliveryId",
                         column: x => x.DeliveryId,
                         principalTable: "Role",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_CustomerOrders_Invoices_InvoiceId",
+                        column: x => x.InvoiceId,
+                        principalTable: "Invoices",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -305,7 +328,16 @@ namespace Diba.Core.Data.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerId = table.Column<long>(nullable: false)
+                    CustomerId = table.Column<long>(nullable: false),
+                    Request_Items = table.Column<string>(nullable: true),
+                    Request_AnnouncedPrice = table.Column<decimal>(nullable: true),
+                    State = table.Column<int>(nullable: true),
+                    CollectionInfo_CollectorId = table.Column<int>(nullable: true),
+                    CollectionInfo_CollectionDate = table.Column<DateTime>(nullable: true),
+                    CollectionInfo_CollectionLocation = table.Column<string>(nullable: true),
+                    DeliveryInfo_DelivelerId = table.Column<int>(nullable: true),
+                    DeliveryInfo_DeliveryDate = table.Column<DateTime>(nullable: true),
+                    DeliveryInfo_DeliveryLocation = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -319,20 +351,21 @@ namespace Diba.Core.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RequestItem",
+                name: "OrderItems",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(nullable: true),
-                    AnnouncedPrice = table.Column<decimal>(nullable: false),
+                    ServiceId = table.Column<long>(nullable: false),
+                    UnitPrice = table.Column<decimal>(nullable: false),
+                    Units = table.Column<int>(nullable: false),
                     OrderId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RequestItem", x => x.Id);
+                    table.PrimaryKey("PK_OrderItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RequestItem_Order_OrderId",
+                        name: "FK_OrderItems_Order_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Order",
                         principalColumn: "Id",
@@ -360,6 +393,11 @@ namespace Diba.Core.Data.Migrations
                 column: "DeliveryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CustomerOrders_InvoiceId",
+                table: "CustomerOrders",
+                column: "InvoiceId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CustomerOrders_ServiceTypeId",
                 table: "CustomerOrders",
                 column: "ServiceTypeId");
@@ -380,6 +418,11 @@ namespace Diba.Core.Data.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrderItems_OrderId",
+                table: "OrderItems",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Organizations_CreatorId",
                 table: "Organizations",
                 column: "CreatorId");
@@ -398,11 +441,6 @@ namespace Diba.Core.Data.Migrations
                 name: "IX_QNames_QuickAccessListId",
                 table: "QNames",
                 column: "QuickAccessListId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RequestItem_OrderId",
-                table: "RequestItem",
-                column: "OrderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Role_OrganizationId",
@@ -435,13 +473,16 @@ namespace Diba.Core.Data.Migrations
                 name: "Option");
 
             migrationBuilder.DropTable(
+                name: "OrderItems");
+
+            migrationBuilder.DropTable(
                 name: "Permissions");
 
             migrationBuilder.DropTable(
-                name: "RequestItem");
+                name: "Company");
 
             migrationBuilder.DropTable(
-                name: "Company");
+                name: "Invoices");
 
             migrationBuilder.DropTable(
                 name: "QNames");
