@@ -142,6 +142,27 @@ namespace Diba.Core.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Services",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(nullable: true),
+                    ProductId = table.Column<int>(nullable: false),
+                    FeeByBrand = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Services", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Services_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "QNames",
                 columns: table => new
                 {
@@ -453,6 +474,11 @@ namespace Diba.Core.Data.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Services_ProductId",
+                table: "Services",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Users_CreatorId",
                 table: "Users",
                 column: "CreatorId");
@@ -477,6 +503,9 @@ namespace Diba.Core.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Permissions");
+
+            migrationBuilder.DropTable(
+                name: "Services");
 
             migrationBuilder.DropTable(
                 name: "Company");

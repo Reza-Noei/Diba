@@ -31,6 +31,8 @@ namespace Diba.Core.Data
         public DbSet<ProductClass> Products { get; set; }
         public DbSet<Company> Company { get; set; }
         public DbSet<Brand> Brands { get; set; }
+        public DbSet<Service> Services { get; set; }
+
 
 
         public DbSet<StringConstraint> StringConstraints { get; set; }
@@ -70,6 +72,9 @@ namespace Diba.Core.Data
             modelBuilder.ApplyConfiguration(new CustomerOrderConfiguration());
             modelBuilder.ApplyConfiguration(new QuickAccessListConfiguration());
             modelBuilder.ApplyConfiguration(new QNameConfiguration());
+            modelBuilder.ApplyConfiguration(new ServiceConfiguration());
+
+
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(OrderConfiguration).Assembly);
             base.OnModelCreating(modelBuilder);

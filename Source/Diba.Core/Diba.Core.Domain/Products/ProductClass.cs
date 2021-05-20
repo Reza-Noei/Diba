@@ -10,6 +10,7 @@ namespace Diba.Core.Domain.Products
     {
         public string Name { get; private set; }
         public virtual ICollection<ProductConstraint> Constraints { get; set; }
+        public virtual ICollection<Service> Services { get; set; }
 
         protected ProductClass()
         {

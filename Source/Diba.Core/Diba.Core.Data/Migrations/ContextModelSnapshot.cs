@@ -356,6 +356,30 @@ namespace Diba.Core.Data.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Role");
                 });
 
+            modelBuilder.Entity("Diba.Core.Domain.Service", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FeeByBrand")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Services");
+                });
+
             modelBuilder.Entity("Diba.Core.Domain.User", b =>
                 {
                     b.Property<long>("Id")
@@ -673,6 +697,15 @@ namespace Diba.Core.Data.Migrations
                     b.HasOne("Diba.Core.Domain.User", "User")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Diba.Core.Domain.Service", b =>
+                {
+                    b.HasOne("Diba.Core.Domain.Products.ProductClass", "Product")
+                        .WithMany("Services")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

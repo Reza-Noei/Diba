@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Diba.Core.Domain.Products
 {
@@ -11,7 +9,7 @@ namespace Diba.Core.Domain.Products
         public ProductClass Class { get; set; }
     
         public virtual ICollection<ConstraintValue> ConstraintValues { get; set; }
-        
+
         public Product(ProductClass productClass)
         {
             Class = productClass;

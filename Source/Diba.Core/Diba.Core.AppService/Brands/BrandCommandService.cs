@@ -7,7 +7,6 @@ using Diba.Core.Domain;
 
 namespace Diba.Core.AppService.Brands
 {
-
     public class BrandCommandService : IBrandCommandService
     {
         private readonly IUnitOfWork _unitOfWork;
