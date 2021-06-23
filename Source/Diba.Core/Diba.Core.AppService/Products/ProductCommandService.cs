@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using Diba.Core.AppService.Contract;
 using Diba.Core.AppService.Contract.Product;
@@ -7,6 +9,7 @@ using Diba.Core.AppService.Contract.Product.Model.ViewModels;
 using Diba.Core.Common.Infrastructure;
 using Diba.Core.Data.Repository.Interfaces;
 using Diba.Core.Domain.Products;
+using Diba.Core.Domain.Products.ProductConstraints;
 
 namespace Diba.Core.AppService.Products
 {
@@ -36,6 +39,24 @@ namespace Diba.Core.AppService.Products
                 return new ServiceResult<ProductViewModel>(StatusCode.NotFound);
 
             product.Update(name: request.Name);
+            //_productRepository.Update(product);
+            _unitOfWork.Commit();
+
+            return new ServiceResult<ProductViewModel>(_mapper.Map<ProductViewModel>(product));
+        }
+
+        public ServiceResult<ProductViewModel> UpdateConstraints( UpdateProductConstraintsViewModel request)
+        {
+            ProductClass product = _productRepository.GetById(request.ProductId);
+
+            if (product == null)
+                return new ServiceResult<ProductViewModel>(StatusCode.NotFound);
+            var stringConstraints = _mapper.Map<IEnumerable<StringConstraint>>(request.StringConstraints).ToList();
+            var selectiveConstraints = _mapper.Map<IEnumerable<SelectiveConstraint>>(request.SelectiveConstraints).ToList();
+            var productConstraint = new List<ProductConstraint>();
+            productConstraint.AddRange(stringConstraints);
+            productConstraint.AddRange(selectiveConstraints);
+            product.UpdateConstraints(productConstraint);
             //_productRepository.Update(product);
             _unitOfWork.Commit();
 

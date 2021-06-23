@@ -7,16 +7,15 @@ namespace Diba.Core.Domain.Products.ProductConstraints
         public int MaxLength { get; private set; }
         public string Format { get; private set; }
 
-        public StringConstraint(int maxLength)
+        public StringConstraint()
         {
-            MaxLength = maxLength;
         }
 
-        public void Update(string title, string format, int maxLength)
+        public StringConstraint(int maxLength, string format, int id, string title) : base(id ,title)
         {
             MaxLength = maxLength;
+            MaxLength = maxLength;
             Format = format;
-            Title = title;
         }
     }
 }

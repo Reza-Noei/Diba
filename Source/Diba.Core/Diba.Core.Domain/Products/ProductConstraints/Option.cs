@@ -1,7 +1,8 @@
 namespace Diba.Core.Domain.Products.ProductConstraints
 {
-    public class Option:BaseEntity<int>
+    public class Option
     {
+        public int Id { get; set; }
         public int SelectiveConstraintId { get; set; }
         public virtual SelectiveConstraint SelectiveConstraint { get; set; }
 

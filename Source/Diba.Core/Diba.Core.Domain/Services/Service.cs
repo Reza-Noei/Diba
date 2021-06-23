@@ -13,7 +13,7 @@ namespace Diba.Core.Domain
 
         public int ProductId { get; private set; }
 
-        public virtual ProductClass Product { get; set; }
+        public virtual Product Product { get; set; }
 
 
         private Dictionary<long, decimal> _feeByBrand;

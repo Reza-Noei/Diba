@@ -31,11 +31,5 @@ namespace Diba.Core.Domain.Products.ProductConstraints
                 throw new DuplicateOptionException();
         }
 
-        public void Update(string title) => this.Title = title;
-
-        public bool Validate(int value)
-        {
-            return options.Any(a => a.Key == value);
-        }
     }
 }

@@ -75,7 +75,6 @@ namespace Diba.Core.Data
             modelBuilder.ApplyConfiguration(new ServiceConfiguration());
 
 
-
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(OrderConfiguration).Assembly);
             base.OnModelCreating(modelBuilder);
 

@@ -9,12 +9,10 @@ using Diba.Core.AppService.Contract;
 using Diba.Core.AppService.Contract.Brands;
 using Diba.Core.AppService.Contract.Companies;
 using Diba.Core.AppService.Contract.Product;
-using Diba.Core.AppService.Contract.ProductConstraint;
 using Diba.Core.AppService.Contract.Services;
 using Diba.Core.AppService.CustomerManagement;
 using Diba.Core.AppService.Dependencies;
 using Diba.Core.AppService.Order;
-using Diba.Core.AppService.ProductConstraint;
 using Diba.Core.AppService.Products;
 using Diba.Core.AppService.Services;
 using Diba.Core.Data.Repository.Implementations;
@@ -93,12 +91,8 @@ namespace Diba.Core.Service
             services.AddScoped<IProductQueryService, ProductQueryService>();
             services.AddScoped<IProductRepository, ProductRepository>();
 
-            services.AddScoped<IProductStringConstraintsQueryService, ProductStringConstraintsQueryService>();
-            services.AddScoped<IProductStringConstraintsCommandService, ProductStringConstraintsCommandService>();
             services.AddScoped<IProductStringConstraintsRepository, ProductStringConstraintsRepository>();
 
-            services.AddScoped<IProductSelectiveConstraintsQueryService, ProductSelectiveConstraintsQueryService>();
-            services.AddScoped<IProductSelectiveConstraintsCommandService, ProductSelectiveConstraintsCommandService>();
             services.AddScoped<IProductSelectiveConstraintsRepository, ProductSelectiveConstraintsRepository>();
 
             services.AddFromConfigurationFile(Configuration.GetSection("Services"));
@@ -127,8 +121,6 @@ namespace Diba.Core.Service
                 mc.AddProfile(new CustomerManagementMappingProfile());
                 mc.AddProfile(new OrganizationManagementMappingProfile());
                 mc.AddProfile(new ProductMappingConfig());
-                mc.AddProfile(new ProductStringConstraintsConfig());
-                mc.AddProfile(new ProductSelectiveConstraintsConfig());
                 mc.AddProfile(new OrderMappingConfig());
                 mc.AddProfile(new CompanyMappingConfig());
                 mc.AddProfile(new BrandMappingConfig());

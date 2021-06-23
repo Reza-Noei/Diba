@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Diba.Core.Data.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210520063650_InitialCreate")]
+    [Migration("20210601103153_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

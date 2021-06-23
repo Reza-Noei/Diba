@@ -10,9 +10,9 @@ namespace Diba.Core.WebApi.Controllers
 {
     [Route("api/product")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductsController : ControllerBase
     {
-        public ProductController(IProductQueryService productQueryService, IProductCommandService productCommandService)
+        public ProductsController(IProductQueryService productQueryService, IProductCommandService productCommandService)
         {
             _productQueryService = productQueryService;
             _productCommandService = productCommandService;
@@ -49,6 +49,17 @@ namespace Diba.Core.WebApi.Controllers
         public ServiceResult<ProductViewModel> Update(int id, UpdateProductViewModel model)
         {
             return _productCommandService.Update(id, model);
+        }
+
+        [AllowAnonymous]
+        [HttpPut]
+        [Route("{id}/constraints")]
+        public ServiceResult<ProductViewModel> UpdateConstraints(int id, UpdateProductConstraintsViewModel command)
+        {
+            command.ProductId = id;
+
+            ServiceResult<ProductViewModel> response = _productCommandService.UpdateConstraints(command);
+            return response;
         }
 
         [HttpDelete]
