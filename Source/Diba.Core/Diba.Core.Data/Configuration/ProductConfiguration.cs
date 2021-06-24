@@ -5,15 +5,30 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Diba.Core.Data.Configuration
 {
-    public class ProductConfiguration : IEntityTypeConfiguration<ProductClass>
+    public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
-        public void Configure(EntityTypeBuilder<ProductClass> builder)
+        public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder.ToTable("Products");
 
             builder.HasKey(x => x.Id);
 
-            builder.HasMany((System.Linq.Expressions.Expression<System.Func<ProductClass, System.Collections.Generic.IEnumerable<ProductConstraint>>>)(x => (System.Collections.Generic.IEnumerable<ProductConstraint>)x.Constraints)).WithOne(z => z.Product).HasForeignKey(z => z.ProductId);
+        }
+    }
+
+    public class GenericProductConfiguration : IEntityTypeConfiguration<GenericProduct>
+    {
+        public void Configure(EntityTypeBuilder<GenericProduct> builder)
+        {
+            builder.HasMany((System.Linq.Expressions.Expression<System.Func<GenericProduct, System.Collections.Generic.IEnumerable<ProductConstraint>>>)(x => (System.Collections.Generic.IEnumerable<ProductConstraint>)x.Constraints)).WithOne(z => z.Product).HasForeignKey(z => z.ProductId);
+        }
+    }
+
+    public class FinalProductConfiguration : IEntityTypeConfiguration<FinalProduct>
+    {
+        public void Configure(EntityTypeBuilder<FinalProduct> builder)
+        {
+            builder.HasMany(p => p.Services).WithOne(p => p.Product);
         }
     }
 
@@ -24,7 +39,7 @@ namespace Diba.Core.Data.Configuration
             builder.ToTable("ProductConstraints");
             builder.HasKey(x => x.Id);
 
-            builder.HasOne(x => x.Product).WithMany((System.Linq.Expressions.Expression<System.Func<ProductClass, System.Collections.Generic.IEnumerable<ProductConstraint>>>)(z => (System.Collections.Generic.IEnumerable<ProductConstraint>)z.Constraints)).HasForeignKey(x => x.ProductId);
+            builder.HasOne(x => x.Product).WithMany((System.Linq.Expressions.Expression<System.Func<GenericProduct, System.Collections.Generic.IEnumerable<ProductConstraint>>>)(z => (System.Collections.Generic.IEnumerable<ProductConstraint>)z.Constraints)).HasForeignKey(x => x.ProductId);
         }
     }
 

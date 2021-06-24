@@ -11,7 +11,7 @@ namespace Diba.Core.Domain.Products.ProductConstraints
 
         public int ProductId { get; set; }
 
-        public virtual ProductClass Product { get; set; }
+        public virtual GenericProduct Product { get; set; }
 
         protected ProductConstraint()
         {

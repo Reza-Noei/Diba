@@ -1,20 +1,26 @@
 ﻿using System.Collections.Generic;
+using Diba.Core.Common;
+using Diba.Core.Domain.Products.ProductConstraints;
 
 namespace Diba.Core.Domain.Products
 {
-    public class Product : BaseEntity<int>
+    public abstract class Product : BaseEntity<int>
     {
         public string Name { get; private set; }
         public long? ParentProductId { get; private set; }
-        public ProductClass Class { get; set; }
-        public virtual ICollection<Service> Services { get; set; }
 
-        public Product(string name, ProductClass productClass)
+        protected Product(string name) : this(name, null)
+        {
+        }
+        protected Product(string name, GenericProduct parentProduct)
         {
             this.Name = name;
-            this.Class = productClass;
-            if (productClass != null)
-                this.ParentProductId = productClass.Id;
+            if (parentProduct != null)
+                this.ParentProductId = parentProduct.Id;
+        }
+        public void Update(string name)
+        {
+            this.Name = name;
         }
     }
 }

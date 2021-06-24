@@ -38,27 +38,38 @@ namespace Diba.Core.WebApi.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ServiceResult<ProductViewModel> Create(CreateProductViewModel model)
+        [Route("/Final")]
+        public ServiceResult<ProductViewModel> CreateFinal(CreateFinalProductViewModel model)
         {
-            return _productCommandService.Create(model);
+            return _productCommandService.CreateFinalProduct(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("/Generic")]
+
+        public ServiceResult<ProductViewModel> CreateGeneric(CreateGenericProductViewModel command)
+        {
+            return _productCommandService.CreateGenericProduct(command);
         }
 
         [HttpPatch]
         [AllowAnonymous]
-        [Route("{id}")]
-        public ServiceResult<ProductViewModel> Update(int id, UpdateProductViewModel model)
+        [Route("{id}/Final")]
+        public ServiceResult<ProductViewModel> UpdateFinal(int id, UpdateFinalProductViewModel command)
         {
-            return _productCommandService.Update(id, model);
+            command.ProductId = id;
+            return _productCommandService.UpdateFinalProduct(command);
         }
 
         [AllowAnonymous]
         [HttpPut]
-        [Route("{id}/constraints")]
-        public ServiceResult<ProductViewModel> UpdateConstraints(int id, UpdateProductConstraintsViewModel command)
+        [Route("{id}/Generic")]
+        public ServiceResult<ProductViewModel> UpdateGeneric(int id, UpdateGenericProductViewModel model)
         {
-            command.ProductId = id;
+            model.ProductId = id;
 
-            ServiceResult<ProductViewModel> response = _productCommandService.UpdateConstraints(command);
+            ServiceResult<ProductViewModel> response = _productCommandService.UpdateGenericProduct(model);
             return response;
         }
 

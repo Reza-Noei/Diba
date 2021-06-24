@@ -5,9 +5,10 @@ namespace Diba.Core.AppService.Contract.Product
 {
     public interface IProductCommandService
     {
-        ServiceResult<ProductViewModel> Create(CreateProductViewModel model);
-        ServiceResult<ProductViewModel> Update(int id, UpdateProductViewModel model);
-        ServiceResult<ProductViewModel> UpdateConstraints(UpdateProductConstraintsViewModel model);
+        ServiceResult<ProductViewModel> CreateFinalProduct(CreateFinalProductViewModel model);
+        ServiceResult<ProductViewModel> CreateGenericProduct(CreateGenericProductViewModel model);
+        ServiceResult<ProductViewModel> UpdateFinalProduct(UpdateFinalProductViewModel model);
+        ServiceResult<ProductViewModel> UpdateGenericProduct(UpdateGenericProductViewModel model);
         ServiceResult<ProductViewModel> Delete(int id);
     }
 }

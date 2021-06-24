@@ -234,19 +234,28 @@ namespace Diba.Core.Data.Migrations
                     b.ToTable("Permissions");
                 });
 
-            modelBuilder.Entity("Diba.Core.Domain.Products.ProductClass", b =>
+            modelBuilder.Entity("Diba.Core.Domain.Products.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("ParentProductId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Product");
                 });
 
             modelBuilder.Entity("Diba.Core.Domain.Products.ProductConstraints.Option", b =>
@@ -404,6 +413,20 @@ namespace Diba.Core.Data.Migrations
                     b.HasIndex("CreatorId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Diba.Core.Domain.Products.FinalProduct", b =>
+                {
+                    b.HasBaseType("Diba.Core.Domain.Products.Product");
+
+                    b.HasDiscriminator().HasValue("FinalProduct");
+                });
+
+            modelBuilder.Entity("Diba.Core.Domain.Products.GenericProduct", b =>
+                {
+                    b.HasBaseType("Diba.Core.Domain.Products.Product");
+
+                    b.HasDiscriminator().HasValue("GenericProduct");
                 });
 
             modelBuilder.Entity("Diba.Core.Domain.Products.ProductConstraints.SelectiveConstraint", b =>
@@ -677,7 +700,7 @@ namespace Diba.Core.Data.Migrations
 
             modelBuilder.Entity("Diba.Core.Domain.Products.ProductConstraints.ProductConstraint", b =>
                 {
-                    b.HasOne("Diba.Core.Domain.Products.ProductClass", "Product")
+                    b.HasOne("Diba.Core.Domain.Products.GenericProduct", "Product")
                         .WithMany("Constraints")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -703,7 +726,7 @@ namespace Diba.Core.Data.Migrations
 
             modelBuilder.Entity("Diba.Core.Domain.Service", b =>
                 {
-                    b.HasOne("Diba.Core.Domain.Products.ProductClass", "Product")
+                    b.HasOne("Diba.Core.Domain.Products.FinalProduct", "Product")
                         .WithMany("Services")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)

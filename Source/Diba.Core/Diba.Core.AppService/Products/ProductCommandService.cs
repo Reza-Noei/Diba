@@ -22,50 +22,79 @@ namespace Diba.Core.AppService.Products
             _unitOfWork = unitOfWork;
         }
 
-        public ServiceResult<ProductViewModel> Create(CreateProductViewModel request)
+        public ServiceResult<ProductViewModel> CreateFinalProduct(CreateFinalProductViewModel command)
         {
-            ProductClass product = _mapper.Map<ProductClass>(request);
-            _productRepository.Add(product);
+            GenericProduct parent = null;
+            if (command.ParentId != null) parent = (GenericProduct)_productRepository.GetById((int)command.ParentId);
+
+            Product finalProduct = new FinalProduct(command.Name, parent);
+
+            _productRepository.Add(finalProduct);
+            _unitOfWork.Commit();
+
+            return new ServiceResult<ProductViewModel>(_mapper.Map<ProductViewModel>(finalProduct));
+        }
+
+        public ServiceResult<ProductViewModel> CreateGenericProduct(CreateGenericProductViewModel command)
+        {
+            GenericProduct parent = null;
+            if (command.ParentId != null) parent = (GenericProduct)_productRepository.GetById((int)command.ParentId);
+
+            var genericProduct = new GenericProduct(command.Name, parent);
+
+            var productConstraint = ConvertProductConstraints(command.StringConstraints, command.SelectiveConstraints);
+            genericProduct.UpdateConstraints(productConstraint);
+
+            _productRepository.Add(genericProduct);
+            _unitOfWork.Commit();
+
+            return new ServiceResult<ProductViewModel>(_mapper.Map<ProductViewModel>(genericProduct));
+        }
+
+        public ServiceResult<ProductViewModel> UpdateFinalProduct(UpdateFinalProductViewModel model)
+        {
+            Product product = _productRepository.GetById(model.ProductId);
+
+            if (product == null)
+                return new ServiceResult<ProductViewModel>(StatusCode.NotFound);
+
+            product.Update(name: model.Name);
             _unitOfWork.Commit();
 
             return new ServiceResult<ProductViewModel>(_mapper.Map<ProductViewModel>(product));
         }
 
-        public ServiceResult<ProductViewModel> Update(int id, UpdateProductViewModel request)
+        public ServiceResult<ProductViewModel> UpdateGenericProduct(UpdateGenericProductViewModel command)
         {
-            ProductClass product = _productRepository.GetById(id);
+            GenericProduct parent = null;
+            if (command.ParentId != null) parent = (GenericProduct)_productRepository.GetById((int)command.ParentId);
 
-            if (product == null)
-                return new ServiceResult<ProductViewModel>(StatusCode.NotFound);
+            var genericProduct = new GenericProduct(command.Name, parent);
 
-            product.Update(name: request.Name);
-            //_productRepository.Update(product);
+            genericProduct.Update(name: command.Name);
+
+            var productConstraint = ConvertProductConstraints(command.StringConstraints, command.SelectiveConstraints);
+            genericProduct.UpdateConstraints(productConstraint);
+
+            _productRepository.Add(genericProduct);
             _unitOfWork.Commit();
 
-            return new ServiceResult<ProductViewModel>(_mapper.Map<ProductViewModel>(product));
+            return new ServiceResult<ProductViewModel>(_mapper.Map<ProductViewModel>(genericProduct));
         }
 
-        public ServiceResult<ProductViewModel> UpdateConstraints( UpdateProductConstraintsViewModel request)
+        private List<ProductConstraint> ConvertProductConstraints(IList<ProductStringConstraintsViewModel> stringConstraints, IList<ProductSelectiveConstraintsViewModel>  selectiveConstraints)
         {
-            ProductClass product = _productRepository.GetById(request.ProductId);
-
-            if (product == null)
-                return new ServiceResult<ProductViewModel>(StatusCode.NotFound);
-            var stringConstraints = _mapper.Map<IEnumerable<StringConstraint>>(request.StringConstraints).ToList();
-            var selectiveConstraints = _mapper.Map<IEnumerable<SelectiveConstraint>>(request.SelectiveConstraints).ToList();
+            var _stringConstraints = _mapper.Map<IEnumerable<StringConstraint>>(stringConstraints).ToList();
+            var _selectiveConstraints = SelectiveConstraintMappers.Map(selectiveConstraints);
             var productConstraint = new List<ProductConstraint>();
-            productConstraint.AddRange(stringConstraints);
-            productConstraint.AddRange(selectiveConstraints);
-            product.UpdateConstraints(productConstraint);
-            //_productRepository.Update(product);
-            _unitOfWork.Commit();
-
-            return new ServiceResult<ProductViewModel>(_mapper.Map<ProductViewModel>(product));
+            productConstraint.AddRange(_stringConstraints);
+            productConstraint.AddRange(_selectiveConstraints);
+            return productConstraint;
         }
 
         public ServiceResult<ProductViewModel> Delete(int id)
         {
-            ProductClass product = _productRepository.GetById(id);
+            Product product = _productRepository.GetById(id);
 
             if (product == null)
                 return new ServiceResult<ProductViewModel>(StatusCode.NotFound);

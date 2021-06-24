@@ -12,11 +12,14 @@ namespace Diba.Core.AppService.Products
     {
         public ProductMappingConfig()
         {
-            CreateMap<ProductClass, ProductViewModel>();
-            CreateMap<ProductViewModel, ProductClass>();
+            CreateMap<FinalProduct, ProductViewModel>();
+            CreateMap<ProductViewModel, FinalProduct>();
 
-            CreateMap<CreateProductViewModel, ProductViewModel>().ForMember(x => x.Id, opt => opt.Ignore()); ;
-            CreateMap<CreateProductViewModel, ProductClass>();
+            CreateMap<GenericProduct, ProductViewModel>();
+            CreateMap<ProductViewModel, GenericProduct>();
+
+            CreateMap<CreateFinalProductViewModel, ProductViewModel>().ForMember(x => x.Id, opt => opt.Ignore()); ;
+            CreateMap<CreateFinalProductViewModel, FinalProduct>();
 
             CreateMap<SelectiveConstraint, ProductSelectiveConstraintsViewModel>();
             CreateMap<ProductSelectiveConstraintsViewModel, SelectiveConstraint>();

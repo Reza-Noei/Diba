@@ -28,7 +28,9 @@ namespace Diba.Core.Data
         public DbSet<Delivery> Deliveries { get; set; }
         public DbSet<Secretary> Secretaries { get; set; }
         public DbSet<CustomerOrder> Orders { get; set; }
-        public DbSet<ProductClass> Products { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<GenericProduct> GenericProduct { get; set; }
+        public DbSet<FinalProduct> FinalProduct { get; set; }
         public DbSet<Company> Company { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Service> Services { get; set; }
@@ -58,6 +60,8 @@ namespace Diba.Core.Data
             modelBuilder.ApplyConfiguration(new BrandConfiguration());
             modelBuilder.ApplyConfiguration(new ContactInfoConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new GenericProductConfiguration());
+            modelBuilder.ApplyConfiguration(new FinalProductConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConstraintConfiguration());
             modelBuilder.ApplyConfiguration(new StringConstraintConfiguration());
             modelBuilder.ApplyConfiguration(new SelectiveConstraintConfiguration());
